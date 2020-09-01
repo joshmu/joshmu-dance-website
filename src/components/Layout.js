@@ -22,7 +22,7 @@ export default function Layout({ children }) {
         <div
           className={`${
             theme === 'dark' ? 'theme-dark' : 'theme-light'
-          } text-themeText bg-themeBackground transition-colors duration-300 ease-in-out font-sans`}
+          } text-themeText bg-themeBackground transition-colors duration-300 ease-in-out font-sans overflow-x-hidden`}
         >
           {/* content */}
           <Header />

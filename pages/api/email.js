@@ -35,7 +35,7 @@ async function email({ from, subject, text }) {
     subject: `✨DANCE CONTACT: ${subject}`,
     text,
     // if we don't specify html then lets create it from the plain text
-    html: `<pre>${text}</pre>`,
+    // html: `<pre>${text}</pre>`,
   }
 
   // send mail with defined transport object
