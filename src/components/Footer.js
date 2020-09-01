@@ -7,7 +7,7 @@ import { FaFacebookF as FacebookIcon } from 'react-icons/fa'
 
 export default function Footer() {
   return (
-    <div className='flex items-center justify-between w-full px-4 py-2 bg-themeText text-themeBackground'>
+    <div className='flex items-center justify-between w-full px-4 bg-themeText text-themeBackground'>
       <div className='text-sm'>
         <p>
           <span className='text-themeAccent'>Josh Mu</span>{' '}
@@ -16,29 +16,29 @@ export default function Footer() {
         </p>
       </div>
       <div>
-        <ul className='flex items-center justify-center text-xl'>
-          <li className='px-1'>
+        <ul className='flex items-center justify-center'>
+          <li>
             <a
-              className='p-2 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
+              className='inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
               href='https://www.facebook.com/josh.mu'
             >
-              <FacebookIcon className='fill-current' />
+              <FacebookIcon className='text-xl fill-current' />
             </a>
           </li>
-          <li className='px-1'>
+          <li>
             <a
-              className='p-2 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
+              className='inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
               href='https://www.instagram.com/joshmu'
             >
-              <InstagramIcon className='fill-current' />
+              <InstagramIcon className='text-xl fill-current' />
             </a>
           </li>
-          <li className='px-1'>
+          <li>
             <a
-              className='p-2 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
+              className='inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
               href='https://www.twitter.com/josh_mu_'
             >
-              <TwitterIcon />
+              <TwitterIcon className='text-xl fill-current' />
             </a>
           </li>
         </ul>

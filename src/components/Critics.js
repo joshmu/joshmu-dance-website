@@ -37,13 +37,13 @@ export default function Critics() {
   const sliderContent = content.map(Review)
 
   return (
-    <div className='relative w-full mt-24 text-center h-80'>
+    <div className='relative w-full mt-24 text-center h-80 text-themeBackground'>
       <img
         src='./assets/theatre.jpg'
         alt='josh mu airborne on the beach'
         className='absolute z-0 object-cover w-full h-full'
       />
-      <div className='absolute z-10 w-full h-full transition-all duration-300 ease-in-out opacity-75 bg-themeBackground'></div>
+      <div className='absolute z-10 w-full h-full transition-all duration-300 ease-in-out opacity-50 bg-themeText'></div>
 
       <div className='relative z-10 py-20'>
         <h2 className='text-3xl text-center uppercase'>
@@ -54,7 +54,7 @@ export default function Critics() {
           <Slider
             content={sliderContent}
             duration={6000}
-            className='text-lg uppercase'
+            className='w-3/5 mx-auto text-center'
           />
         </div>
       </div>
@@ -65,8 +65,8 @@ export default function Critics() {
 function Review({ review, critic }) {
   return (
     <div>
-      <p>{review}</p>
-      <p className='mt-2 font-semibold capitalize'>{critic}</p>
+      <p className='uppercase'>{review}</p>
+      <p className='mt-2 font-semibold'>{critic}</p>
     </div>
   )
 }

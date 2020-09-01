@@ -18,23 +18,23 @@ export default function Twitter() {
   }, [])
 
   return (
-    <div className='relative w-full mt-24 h-80'>
+    <div className='relative w-full mt-24 h-80 text-themeBackground'>
       <img
         src='./assets/yoga.jpg'
         alt='josh mu airborne on the beach'
         className='absolute z-0 object-cover w-full h-full'
       />
-      <div className='absolute z-10 w-full h-full transition-all duration-300 ease-in-out opacity-75 bg-themeBackground'></div>
+      <div className='absolute z-10 w-full h-full transition-all duration-300 ease-in-out opacity-50 bg-themeText'></div>
 
       <div className='container relative z-10 py-16 mx-auto'>
-        <div className='flex flex-col items-center justify-center w-full text-blue-500'>
+        <div className='flex flex-col items-center justify-center w-full text-blue-400'>
           <TwitterIcon className='text-5xl fill-current' />
           <a href='https://twitter.com/josh_mu_'>@josh_mu_</a>
         </div>
         <Slider
           content={tweets}
           duration={6000}
-          className='mt-8 text-lg uppercase'
+          className='w-3/5 mx-auto mt-8 text-lg text-center uppercase'
         />
       </div>
     </div>

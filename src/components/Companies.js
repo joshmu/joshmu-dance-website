@@ -10,13 +10,13 @@ export default function Companies() {
   ]
 
   return (
-    <div className='relative w-full mt-24'>
+    <div className='relative w-full mt-24 text-themeBackground'>
       <img
         src='./assets/sand.jpg'
         alt='josh mu airborne on the beach'
         className='absolute z-0 object-cover w-full h-full'
       />
-      <div className='absolute z-10 w-full h-full transition-all duration-300 ease-in-out opacity-75 bg-themeBackground'></div>
+      <div className='absolute z-10 w-full h-full transition-all duration-300 ease-in-out opacity-50 bg-themeText'></div>
 
       <div className='relative z-10 py-20'>
         <h2 className='text-3xl text-center uppercase'>

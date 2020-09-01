@@ -41,6 +41,7 @@ export default function Home() {
       <Twitter />
       <div>Gallery</div>
       <Critics />
+      <div>Contact</div>
 
       {/* <Reveal>
           <h1 className='p-8 text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500'>
