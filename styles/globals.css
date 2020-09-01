@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 .theme-dark {
-  --text: rgba(0, 0, 0, 1);
-  --background: rgba(255, 255, 255, 1);
+  --text: rgba(22, 30, 46, 1);
+  --background: rgba(249, 250, 251, 1);
   --accent: rgba(255, 138, 76, 1);
 }
 
 .theme-light {
-  --text: rgba(255, 255, 255, 1);
-  --background: rgba(0, 0, 0, 1);
+  --text: rgba(249, 250, 251, 1);
+  --background: rgba(22, 30, 46, 1);
   --accent: rgba(255, 138, 76, 1);
 }

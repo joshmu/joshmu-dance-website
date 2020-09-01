@@ -9,8 +9,14 @@ export default function Hero() {
   const { ref } = useLocation('home')
 
   return (
-    <div ref={ref} className='relative w-full h-screen'>
-      <div className='flex flex-col items-center justify-center w-full h-full'>
+    <div ref={ref} className='relative w-full h-screen overflow-hidden'>
+      <img
+        src='./assets/waves.jpg'
+        alt='josh mu holding a position in ocean waves'
+        className='absolute z-0 object-cover w-full h-full'
+      />
+      <div className='absolute z-10 w-full h-full transition-all duration-300 ease-in-out opacity-50 bg-themeBackground'></div>
+      <div className='relative z-20 flex flex-col items-center justify-center w-full h-full'>
         <h1
           onClick={toggleTheme}
           className='font-semibold text-indigo-700 uppercase cursor-pointer text-8xl'

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
-export default function Slider({ content, duration = 5000 }) {
+export default function Slider({ content, duration = 5000, ...props }) {
   const [output, setOutput] = useState(null)
   const [pos, setPos] = useState(0)
 
@@ -37,7 +37,7 @@ export default function Slider({ content, duration = 5000 }) {
             ease: 'easeInOut',
           }}
         >
-          <p>{output}</p>
+          <div {...props}>{output}</div>
         </motion.div>
       </AnimatePresence>
     </ul>

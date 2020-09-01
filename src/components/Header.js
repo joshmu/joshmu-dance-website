@@ -42,7 +42,7 @@ export default function Header() {
   const widthProgress = useTransform(scrollYProgress, [0, 0.3, 1], [8, 0, 0])
 
   return (
-    <div className='fixed z-10 w-full mt-4'>
+    <div className='fixed z-50 w-full mt-4'>
       <div className='container mx-auto'>
         <div className='flex items-center justify-between'>
           <div
