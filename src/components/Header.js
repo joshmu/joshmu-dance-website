@@ -61,7 +61,7 @@ export default function Header() {
               initial='hidden'
               animate='show'
               variants={parentAnimation}
-              className='flex items-center justify-center h-full py-1 pl-4 text-sm transition-all duration-300 rounded-l-sm bg-themeText text-themeBackground'
+              className='flex items-center justify-center h-full py-1 pl-4 overflow-hidden text-sm transition-all duration-300 rounded-l-sm bg-themeText text-themeBackground'
             >
               {menuItems.map(item => (
                 <li key={item}>

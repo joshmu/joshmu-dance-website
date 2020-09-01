@@ -19,7 +19,7 @@ export default function Hero() {
       <div className='relative z-20 flex flex-col items-center justify-center w-full h-full'>
         <h1
           onClick={toggleTheme}
-          className='font-semibold text-indigo-700 uppercase cursor-pointer text-8xl'
+          className='font-semibold uppercase cursor-pointer text-themeText text-8xl'
         >
           josh mu
         </h1>

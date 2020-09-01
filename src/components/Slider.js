@@ -7,7 +7,6 @@ export default function Slider({ content, duration = 5000, ...props }) {
 
   let timer
   useEffect(() => {
-    console.log('fire')
     // initiate timer to change pos
     clearTimeout(timer)
     timer = setTimeout(() => changeContent(pos), duration)
@@ -28,7 +27,7 @@ export default function Slider({ content, duration = 5000, ...props }) {
     <ul className='flex items-center justify-center'>
       <AnimatePresence initial={false} exitBeforeEnter>
         <motion.div
-          key={output}
+          key={pos}
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: -100, opacity: 0 }}
