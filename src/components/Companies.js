@@ -24,7 +24,7 @@ export default function Companies() {
           with
         </h2>
         <LineAccent center />
-        <div className='py-4'>
+        <div className='py-8'>
           <Slider
             content={sliderContent}
             duration={2000}
