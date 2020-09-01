@@ -18,7 +18,7 @@ export default function About() {
           />
         </div>
         <div className='flex flex-col flex-1 ml-4'>
-          <h2 className='text-3xl uppercase'>
+          <h2 className='text-3xl font-light uppercase'>
             A bit <span className='font-semibold'>about me</span>
           </h2>
           <LineAccent />

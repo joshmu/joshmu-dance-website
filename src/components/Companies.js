@@ -19,7 +19,7 @@ export default function Companies() {
       <div className='absolute z-10 w-full h-full transition-all duration-300 ease-in-out opacity-50 bg-themeText'></div>
 
       <div className='relative z-10 py-20'>
-        <h2 className='text-3xl text-center uppercase'>
+        <h2 className='text-3xl font-light text-center uppercase'>
           some <span className='font-semibold'>companies</span> I have worked
           with
         </h2>

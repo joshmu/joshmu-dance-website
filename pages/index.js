@@ -6,6 +6,7 @@ import Companies from '../src/components/Companies'
 import LineAccent from '../src/components/LineAccent'
 import Twitter from '../src/components/Twitter'
 import Critics from '../src/components/Critics'
+import Contact from '../src/components/Contact'
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
       <Companies />
 
       <div className='container mx-auto mt-24'>
-        <h2 className='text-3xl text-center uppercase'>
+        <h2 className='text-3xl font-light text-center uppercase'>
           What I'm doing in <span className='font-semibold'>2020</span>
         </h2>
         <LineAccent center />
@@ -31,9 +32,9 @@ export default function Home() {
             // width='900'
             // height='400'
             src='https://www.youtube-nocookie.com/embed/LK-DOKAX_RU'
-            frameborder='0'
+            frameBorder='0'
             allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-            allowfullscreen
+            allowFullScreen
           ></iframe>
         </div>
       </div>
@@ -41,7 +42,7 @@ export default function Home() {
       <Twitter />
       <div>Gallery</div>
       <Critics />
-      <div>Contact</div>
+      <Contact />
 
       {/* <Reveal>
           <h1 className='p-8 text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500'>
