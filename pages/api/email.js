@@ -9,8 +9,8 @@ module.exports = async (req, res) => {
 
   try {
     console.log({ from, subject, text })
-    await email({ from, subject, text })
-    res.status(200).send({ msg: 'success' })
+    const info = await email({ from, subject, text })
+    res.status(200).send({ msg: 'success', info })
   } catch (err) {
     console.error(err)
     res.status(400).json({ error: err.message })
