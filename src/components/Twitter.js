@@ -18,13 +18,13 @@ export default function Twitter() {
   }, [])
 
   return (
-    <div className='relative w-full mt-24 h-80 text-themeBackground'>
+    <div className='relative w-full mt-24 overflow-hidden h-80 text-themeBackground'>
       <img
         src='./assets/yoga.jpg'
         alt='josh mu airborne on the beach'
         className='absolute z-0 object-cover w-full h-full'
       />
-      <div className='absolute z-10 w-full h-full transition-all duration-300 ease-in-out opacity-50 bg-themeText'></div>
+      <div className='absolute top-0 bottom-0 left-0 right-0 z-10 transition-all duration-300 ease-in-out opacity-50 bg-themeText'></div>
 
       <div className='container relative z-10 py-16 mx-auto'>
         <div className='flex flex-col items-center justify-center w-full text-blue-400'>
@@ -42,6 +42,9 @@ export default function Twitter() {
 }
 
 function Tweet(tweet) {
+  const customTruncate = txt =>
+    txt.length > 140 ? txt.slice(0, 140) + '...' : txt
+
   return (
     <div className='text-sm text-center'>
       <a
@@ -49,7 +52,7 @@ function Tweet(tweet) {
         href={`https://twitter.com/josh_mu_/status/${tweet.id_str}`}
         target='_blank'
       >
-        <p className=''>{tweet.full_text}</p>
+        <p>{customTruncate(tweet.full_text)}</p>
       </a>
     </div>
   )
