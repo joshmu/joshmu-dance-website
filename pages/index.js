@@ -40,8 +40,11 @@ export default function Home() {
       </div>
 
       <Twitter />
+
       <div>Gallery</div>
+
       <Critics />
+
       <Contact />
 
       {/* <Reveal>

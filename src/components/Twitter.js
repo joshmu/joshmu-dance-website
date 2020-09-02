@@ -41,6 +41,15 @@ export default function Twitter() {
   )
 }
 
+function Title() {
+  return (
+    <>
+      <TwitterIcon className='text-5xl fill-current' />
+      <a href='https://twitter.com/josh_mu_'>@josh_mu_</a>
+    </>
+  )
+}
+
 function Tweet(tweet) {
   const customTruncate = txt =>
     txt.length > 140 ? txt.slice(0, 140) + '...' : txt
