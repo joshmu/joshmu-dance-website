@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react'
-import Slider from './Slider'
-import LineAccent from './LineAccent'
+import Banner from './Banner'
 import { AiOutlineTwitter as TwitterIcon } from 'react-icons/ai'
 
 export default function Twitter() {
-  const [tweets, setTweets] = useState([])
+  const [twitterData, setTwitterData] = useState({
+    header: Title(),
+    duration: 6000,
+    image: './assets/yoga.jpg',
+    imageAlt: 'josh mu performing a yoga posture on the beach',
+    content: [],
+  })
 
   useEffect(() => {
     fetch('https://mu-twitter-timeline-api.herokuapp.com/')
@@ -13,40 +18,34 @@ export default function Twitter() {
         // let's limit to 10 tweets
         const tweets = data.slice(0, 10)
         console.log({ tweets })
-        setTweets(tweets.map(tweetData => Tweet(tweetData)))
+        setTwitterData({
+          ...twitterData,
+          content: tweets.map(tweetData => Tweet(tweetData)),
+        })
       })
   }, [])
 
   return (
-    <div className='relative w-full mt-24 overflow-hidden h-80 text-themeBackground'>
-      <img
-        src='./assets/yoga.jpg'
-        alt='josh mu airborne on the beach'
-        className='absolute z-0 object-cover w-full h-full'
-      />
-      <div className='absolute top-0 bottom-0 left-0 right-0 z-10 transition-all duration-300 ease-in-out opacity-50 bg-themeText'></div>
-
-      <div className='container relative z-10 py-16 mx-auto'>
-        <div className='flex flex-col items-center justify-center w-full text-blue-400'>
-          <TwitterIcon className='text-5xl fill-current' />
-          <a href='https://twitter.com/josh_mu_'>@josh_mu_</a>
-        </div>
-        <Slider
-          content={tweets}
-          duration={6000}
-          className='w-3/5 mx-auto mt-8 text-lg text-center uppercase'
+    <>
+      {twitterData.content.length > 0 && (
+        <Banner
+          header={twitterData.header}
+          sliderContent={twitterData.content}
+          duration={twitterData.duration}
+          image={twitterData.image}
+          imageAlt={twitterData.imageAlt}
         />
-      </div>
-    </div>
+      )}
+    </>
   )
 }
 
 function Title() {
   return (
-    <>
-      <TwitterIcon className='text-5xl fill-current' />
+    <div className='text-blue-400'>
+      <TwitterIcon className='mx-auto text-5xl fill-current' />
       <a href='https://twitter.com/josh_mu_'>@josh_mu_</a>
-    </>
+    </div>
   )
 }
 

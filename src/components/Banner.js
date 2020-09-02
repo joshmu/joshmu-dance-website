@@ -22,20 +22,21 @@ export default function Banner({
       <div className='absolute top-0 bottom-0 left-0 right-0 z-10 transition-all duration-300 ease-in-out opacity-50 bg-themeText'></div>
 
       <div className='relative z-10'>
-
         {/* custom header or default based on title provided */}
-        {header ? (
-          header
-        ) : (
-          <>
-          <h2 className='text-3xl font-light text-center uppercase whitespace-pre'>
-            {txt[0]}
-            <span className='font-semibold '>{txt[1]}</span>
-            {txt[2]}
-          </h2>
-          <LineAccent center />
-          </>
-        )}
+        <div className='flex flex-col items-center justify-center'>
+          {header ? (
+            header
+          ) : (
+            <>
+              <h2 className='text-3xl font-light uppercase whitespace-pre'>
+                {txt[0]}
+                <span className='font-semibold '>{txt[1]}</span>
+                {txt[2]}
+              </h2>
+              <LineAccent center />
+            </>
+          )}
+        </div>
 
         <div className='py-8'>
           <Slider content={sliderContent} duration={duration} />
