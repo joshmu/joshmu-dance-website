@@ -1,6 +1,4 @@
 import React from 'react'
-import { useGlobalContext } from '../context/globalContext'
-import Location from '../hooks/useLocation'
 import useLocation from '../hooks/useLocation'
 import LineAccent from './LineAccent'
 
@@ -8,7 +6,7 @@ export default function About() {
   const { ref } = useLocation('about')
 
   return (
-    <div ref={ref} className='container mx-auto mt-12 sm:mt-24'>
+    <div ref={ref} className='container mx-auto my-12 sm:my-24'>
       <div className='flex flex-col items-center justify-center w-full md:flex-row md:items-start'>
         <div className='flex-1 mx-2 sm:mx-0'>
           <img

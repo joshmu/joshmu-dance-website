@@ -13,7 +13,7 @@ export default function Banner({
   const txt = parseTxt(title, titleHighlight)
 
   return (
-    <div className='relative flex items-center justify-center w-full mt-24 overflow-hidden h-96 text-themeBackground'>
+    <div className='relative flex items-center justify-center w-full overflow-hidden h-96 text-themeBackground'>
       <img
         src={image}
         alt={imageAlt}

@@ -3,7 +3,7 @@ import Reveal from './Reveal'
 
 export default function News() {
   return (
-    <div className='container mx-auto mt-24'>
+    <div className='container mx-auto my-24'>
       <h2 className='text-3xl font-light text-center uppercase'>
         What I'm doing in <span className='font-semibold'>2020</span>
       </h2>
