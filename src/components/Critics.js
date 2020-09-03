@@ -1,6 +1,9 @@
 import Banner from './Banner'
+import useLocation from '../hooks/useLocation'
 
 export default function Critics() {
+  const { ref } = useLocation('critics')
+
   const critics = {
     title: 'from the critics',
     highlight: 'critics',
@@ -44,14 +47,16 @@ export default function Critics() {
   critics.content = critics.raw.map(Critic)
 
   return (
-    <Banner
-      title={critics.title}
-      titleHighlight={critics.highlight}
-      sliderContent={critics.content}
-      duration={critics.duration}
-      image={critics.image}
-      imageAlt={critics.imageAlt}
-    />
+    <div ref={ref}>
+      <Banner
+        title={critics.title}
+        titleHighlight={critics.highlight}
+        sliderContent={critics.content}
+        duration={critics.duration}
+        image={critics.image}
+        imageAlt={critics.imageAlt}
+      />
+    </div>
   )
 }
 

@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react'
 import LineAccent from './LineAccent'
 import { motion } from 'framer-motion'
 import { AiFillInstagram as InstagramIcon } from 'react-icons/ai'
+import useLocation from '../hooks/useLocation'
 
 export default function Gallery({ duration = 3000 }) {
+  const { ref } = useLocation('portfolio')
+
   const [insta, setInsta] = useState([])
   const [images, setImages] = useState([])
 
@@ -57,7 +60,10 @@ export default function Gallery({ duration = 3000 }) {
   return (
     <>
       {images.length > 0 && (
-        <section className='text-gray-700 transition-all duration-1000 ease-in-out body-font'>
+        <section
+          ref={ref}
+          className='text-gray-700 transition-all duration-1000 ease-in-out body-font'
+        >
           <div className='container flex flex-wrap px-5 py-24 mx-auto'>
             <div className='w-full mb-8 text-center'>
               <h2 className='text-3xl font-light uppercase whitespace-pre'>

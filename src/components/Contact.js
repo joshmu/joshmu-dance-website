@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import Reveal from './Reveal'
 import LineAccent from './LineAccent'
+import useLocation from '../hooks/useLocation'
 
 export default function Contact() {
+  const { ref } = useLocation('contact')
+
   const [state, setState] = useState({
     name: '',
     email: '',
@@ -38,7 +41,7 @@ export default function Contact() {
   }
 
   return (
-    <section className='relative text-themeText'>
+    <section ref={ref} className='relative text-themeText'>
       <div className='container px-5 py-24 mx-auto'>
         <div className='flex flex-col w-full mb-12 text-center'>
           <h2 className='mb-2 text-2xl font-light text-themeText sm:text-3xl'>
