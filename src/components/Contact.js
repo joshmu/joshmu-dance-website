@@ -21,7 +21,7 @@ export default function Contact() {
   }
 
   const handleSubmit = async () => {
-    if (state.email.length === 0 || state.message.length === 0) return
+    if (state.sent || state.email.length === 0 || state.message.length === 0) return
 
     const url = '/api/email'
 
