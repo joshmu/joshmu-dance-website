@@ -87,9 +87,12 @@ export default function Contact() {
             <div className='w-full p-2'>
               <button
                 onClick={handleSubmit}
-                className='flex px-8 py-2 mx-auto text-lg text-white uppercase transition-colors duration-300 ease-in-out border-0 rounded-sm bg-themeAccent focus:outline-none hover:bg-orange-500'
+                disabled={state.sent}
+                className={`${
+                  state.sent && 'opacity-50'
+                } flex px-8 py-2 mx-auto text-lg text-white uppercase transition-all duration-300 ease-in-out border-0 rounded-sm bg-themeAccent focus:outline-none hover:bg-orange-500`}
               >
-                send
+                {state.sent ? '️✓' : 'send'}
               </button>
             </div>
             <div className='w-full p-2 pt-8 mt-8 text-center border-t border-gray-200'>
