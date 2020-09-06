@@ -21,6 +21,8 @@ export default function Contact() {
   }
 
   const handleSubmit = async () => {
+    if (state.email.length === 0 || state.message.length === 0) return
+
     const url = '/api/email'
 
     const settings = {
@@ -93,14 +95,16 @@ export default function Contact() {
             <div className='w-full p-2 pt-8 mt-8 text-center border-t border-gray-200'>
               {state.error && (
                 <Reveal>
-                  <p className='text-xl italic text-red-500'>
+                  <p className='text-xl italic text-red-500 animate-bounce'>
                     A server error has occurred, please use my email instead.
                   </p>
                 </Reveal>
               )}
               {state.sent ? (
                 <Reveal>
-                  <p className='text-xl italic text-green-500'>Message sent.</p>
+                  <p className='text-xl italic text-green-500 animate-bounce'>
+                    Message sent!
+                  </p>
                 </Reveal>
               ) : (
                 <Reveal>
