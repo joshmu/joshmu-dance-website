@@ -5,12 +5,13 @@ import useLocation from '../hooks/useLocation'
 
 export default function Contact() {
   const { ref } = useLocation('contact')
-  // todo: encode html email
 
   const [state, setState] = useState({
     name: '',
     email: '',
     message: '',
+    sent: false,
+    error: null,
   })
 
   const handleChange = e => {
@@ -35,9 +36,10 @@ export default function Contact() {
       const fetchResponse = await fetch(url, settings)
       const data = await fetchResponse.json()
       console.log('response', data) // parses JSON response into native JavaScript objects
-      // todo: confirmation/error received message
+      setState({ ...state, sent: true })
     } catch (err) {
       console.error(err.message)
+      setState({ ...state, error: err.message })
     }
   }
 
@@ -89,9 +91,28 @@ export default function Contact() {
               </button>
             </div>
             <div className='w-full p-2 pt-8 mt-8 text-center border-t border-gray-200'>
-              <Reveal>
-                <a className='text-themeAccent'>👋 hello@joshmu.com</a>
-              </Reveal>
+              {state.error && (
+                <Reveal>
+                  <p className='text-xl italic text-red-500'>
+                    A server error has occurred, please use my email instead.
+                  </p>
+                </Reveal>
+              )}
+              {state.sent ? (
+                <Reveal>
+                  <p className='text-xl italic text-green-500'>Message sent.</p>
+                </Reveal>
+              ) : (
+                <Reveal>
+                  <a
+                    href='&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#106;&#111;&#115;&#104;&#109;&#117;&#046;&#099;&#111;&#109;'
+                    className='transition-colors duration-300 ease-in-out text-themeAccent hover:text-orange-500'
+                  >
+                    👋
+                    &#104;&#101;&#108;&#108;&#111;&#064;&#106;&#111;&#115;&#104;&#109;&#117;&#046;&#099;&#111;&#109;
+                  </a>
+                </Reveal>
+              )}
             </div>
           </div>
         </div>
