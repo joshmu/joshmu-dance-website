@@ -5,6 +5,7 @@ import useLocation from '../hooks/useLocation'
 
 export default function Contact() {
   const { ref } = useLocation('contact')
+  // todo: encode html email
 
   const [state, setState] = useState({
     name: '',
@@ -82,7 +83,7 @@ export default function Contact() {
             <div className='w-full p-2'>
               <button
                 onClick={handleSubmit}
-                className='flex px-8 py-2 mx-auto text-lg text-white uppercase transition-colors duration-300 ease-in-out border-0 rounded-sm bg-themeAccent focus:outline-none hover:bg-green-500'
+                className='flex px-8 py-2 mx-auto text-lg text-white uppercase transition-colors duration-300 ease-in-out border-0 rounded-sm bg-themeAccent focus:outline-none hover:bg-orange-500'
               >
                 send
               </button>

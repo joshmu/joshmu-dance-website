@@ -34,13 +34,20 @@ const childAnimation = {
   },
 }
 
-const menuItems = ['home', 'about', 'news', 'portfolio', 'critics', 'contact']
-
 export default function Header() {
-  const { scrollYProgress, currentView } = useGlobalContext()
+  const {
+    SECTIONS,
+    scrollYProgress,
+    currentView,
+    scrollToRef,
+  } = useGlobalContext()
   const { toggleTheme } = useThemeContext()
 
   const widthProgress = useTransform(scrollYProgress, [0, 0.3, 1], [8, 0, 0])
+
+  const handleClick = item => {
+    scrollToRef(item)
+  }
 
   return (
     <div className='fixed z-50 w-full mx-4 mt-4 sm:mx-0'>
@@ -65,9 +72,10 @@ export default function Header() {
                 variants={parentAnimation}
                 className='flex items-center justify-center h-full px-4 py-1 overflow-hidden text-sm transition-all duration-300 rounded-l-sm bg-themeText text-themeBackground'
               >
-                {menuItems.map(item => (
+                {SECTIONS.map(item => (
                   <li key={item}>
                     <motion.button
+                      onClick={() => handleClick(item)}
                       variants={childAnimation}
                       style={{
                         padding: '3px ' + (widthProgress.get() + 6) + 'px',

@@ -7,18 +7,33 @@ import Twitter from '../src/components/Twitter'
 import Gallery from '../src/components/Gallery'
 import Critics from '../src/components/Critics'
 import Contact from '../src/components/Contact'
+import { useGlobalContext } from '../src/context/globalContext'
 
 export default function Home() {
+  const { sectionRefs } = useGlobalContext()
+
   return (
     <Layout>
-      <Hero />
-      <About />
-      <Companies />
-      <News />
-      <Twitter />
-      <Gallery />
-      <Critics />
-      <Contact />
+      <div ref={sectionRefs['home']}>
+        <Hero />
+      </div>
+      <div ref={sectionRefs['about']}>
+        <About />
+        <Companies />
+      </div>
+      <div ref={sectionRefs['news']}>
+        <News />
+        <Twitter />
+      </div>
+      <div ref={sectionRefs['portfolio']}>
+        <Gallery />
+      </div>
+      <div ref={sectionRefs['critics']}>
+        <Critics />
+      </div>
+      <div ref={sectionRefs['contact']}>
+        <Contact />
+      </div>
     </Layout>
   )
 }

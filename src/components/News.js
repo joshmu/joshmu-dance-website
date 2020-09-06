@@ -6,7 +6,7 @@ export default function News() {
   const { ref } = useLocation('news')
 
   return (
-    <div ref={ref} className='container mx-auto my-24'>
+    <div ref={ref} className='container py-24 mx-auto'>
       <h2 className='text-3xl font-light text-center uppercase'>
         What I'm doing in <span className='font-semibold'>2020</span>
       </h2>

@@ -3,8 +3,10 @@ import { MdKeyboardArrowDown as ArrowDownIcon } from 'react-icons/md'
 import { useThemeContext } from '../context/themeContext'
 import Location from '../hooks/useLocation'
 import useLocation from '../hooks/useLocation'
+import { useGlobalContext } from '../context/globalContext'
 
 export default function Hero() {
+  const { scrollToRef } = useGlobalContext()
   const { toggleTheme } = useThemeContext()
   const { ref } = useLocation('home')
 
@@ -28,8 +30,11 @@ export default function Hero() {
           <span>teacher</span>
         </p>
       </div>
-      <div className='absolute bottom-0 flex items-center justify-center w-full mb-8 text-4xl'>
-        <ArrowDownIcon className='fill-current animate-bounce' />
+      <div className='absolute bottom-0 z-30 flex items-center justify-center w-full mb-8 text-4xl '>
+        <ArrowDownIcon
+          onClick={() => scrollToRef('about')}
+          className='transition-colors duration-300 ease-in-out cursor-pointer fill-current animate-bounce hover:text-themeAccent'
+        />
       </div>
     </div>
   )
