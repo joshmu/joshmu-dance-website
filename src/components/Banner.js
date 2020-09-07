@@ -1,5 +1,6 @@
 import Slider from './Slider'
 import LineAccent from './LineAccent'
+import { Parallax } from 'react-scroll-parallax'
 
 export default function Banner({
   title = '',
@@ -14,11 +15,17 @@ export default function Banner({
 
   return (
     <div className='relative flex items-center justify-center w-full overflow-hidden h-96 text-themeBackground'>
-      <img
-        src={image}
-        alt={imageAlt}
+      <Parallax
         className='absolute z-0 object-cover w-full h-full'
-      />
+        y={[-40, 0]}
+        tagOuter='figure'
+      >
+        <img
+          src={image}
+          alt={imageAlt}
+          className='object-cover object-center w-full h-full'
+        />
+      </Parallax>
       <div className='absolute top-0 bottom-0 left-0 right-0 z-10 transition-all duration-300 ease-in-out opacity-75 bg-themeText'></div>
 
       <div className='relative z-10'>

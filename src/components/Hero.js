@@ -1,22 +1,37 @@
-import React, { useEffect } from 'react'
+import React, { useState, useRef, useLayoutEffect } from 'react'
 import { MdKeyboardArrowDown as ArrowDownIcon } from 'react-icons/md'
 import { useThemeContext } from '../context/themeContext'
-import Location from '../hooks/useLocation'
 import useLocation from '../hooks/useLocation'
 import { useGlobalContext } from '../context/globalContext'
+import { Parallax } from 'react-scroll-parallax'
+
+import { useTransform, useViewportScroll, motion } from 'framer-motion'
 
 export default function Hero() {
   const { scrollToRef } = useGlobalContext()
   const { toggleTheme } = useThemeContext()
   const { ref } = useLocation('home')
 
+  // const { scrollY } = useViewportScroll()
+  // //  const topProgress = useTransform(scrollYProgress, [0, 0.3, 1], [8, 0, 0])
+  // const topProgress = useTransform(scrollY, value => value * 0.9, {
+  //   clamp: false,
+  // })
+
   return (
     <div ref={ref} className='relative w-full h-screen overflow-hidden'>
-      <img
-        src='./assets/waves.jpg'
-        alt='josh mu holding a position in ocean waves'
+      <Parallax
         className='absolute z-0 object-cover w-full h-full'
-      />
+        y={[-20, 20]}
+        tagOuter='figure'
+      >
+        <img
+          src='./assets/waves.jpg'
+          alt='josh mu holding a position in ocean waves'
+          style={{ transform: 'scale(1.1)' }}
+          className='object-cover object-center w-full h-full'
+        />
+      </Parallax>
       <div className='absolute z-10 w-full h-full transition-all duration-300 ease-in-out opacity-50 bg-themeBackground'></div>
       <div className='relative z-20 flex flex-col items-center justify-center w-full h-full'>
         <h1

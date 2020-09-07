@@ -1,4 +1,3 @@
-import { useTransform, AnimatePresence } from 'framer-motion'
 import { useGlobalContext } from '../context/globalContext'
 
 import { motion } from 'framer-motion'
