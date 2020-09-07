@@ -76,7 +76,7 @@ export default function Navbar() {
                         currentView === item
                           ? 'active text-themeAccent'
                           : 'font-normal'
-                      } uppercase relative px-3 py-2 focus:outline-none transition-colors duration-300 ease-in-out`}
+                      } uppercase relative px-3 py-2 focus:outline-none`}
                       whileHover={{ scale: 1.5 }}
                     >
                       {item}

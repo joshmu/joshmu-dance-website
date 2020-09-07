@@ -12,7 +12,7 @@ export default function useLocation(location) {
 
   useEffect(() => {
     if (inView && currentView !== location) {
-      console.log({ inView, location })
+      // console.log({ inView, location })
       setCurrentView(location)
     }
   }, [inView, currentView])
