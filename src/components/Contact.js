@@ -21,7 +21,8 @@ export default function Contact() {
   }
 
   const handleSubmit = async () => {
-    if (state.sent || state.email.length === 0 || state.message.length === 0) return
+    if (state.sent || state.email.length === 0 || state.message.length === 0)
+      return
 
     const url = '/api/email'
 
@@ -53,7 +54,7 @@ export default function Contact() {
             FEEL FREE TO <span className='font-semibold'>CONTACT ME</span>
           </h2>
           <LineAccent center />
-          <p className='mx-auto mt-4 text-sm italic leading-relaxed lg:w-2/3'>
+          <p className='mx-auto mt-4 text-sm italic leading-relaxed lg:w-2/3 text-themeTextSecondary'>
             Let's talk!
           </p>
         </div>

@@ -13,7 +13,7 @@ export default function News() {
       <LineAccent center />
       <div className='mt-8'>
         <Reveal>
-          <p className='text-center'>nothing. 😭</p>
+          <p className='text-center text-themeTextSecondary'>nothing. 😭</p>
         </Reveal>
       </div>
 

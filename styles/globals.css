@@ -2,14 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --light: #ffffff;
+  --lightSecondary: #bdbdbc;
+  --dark: #202020;
+  --darkSecondary: #5e5e5e;
+  --highlight: rgba(255, 138, 76, 1);
+  --twitter: #5daadf;
+}
+
 .theme-dark {
-  --text: rgba(22, 30, 46, 1);
-  --background: rgba(249, 250, 251, 1);
-  --accent: rgba(255, 138, 76, 1);
+  --text: var(--dark);
+  --textSecondary: var(--darkSecondary);
+  --background: var(--light);
+
+  --accent: var(--highlight);
 }
 
 .theme-light {
-  --text: rgba(249, 250, 251, 1);
-  --background: rgba(22, 30, 46, 1);
-  --accent: rgba(255, 138, 76, 1);
+  --text: var(--light);
+  --textSecondary: var(--lightSecondary);
+  --background: var(--dark);
+
+  --accent: var(--highlight);
 }

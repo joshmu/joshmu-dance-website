@@ -20,7 +20,7 @@ export default function About() {
             A bit <span className='font-semibold'>about me</span>
           </h2>
           <LineAccent />
-          <div className='leading-6'>
+          <div className='leading-7 text-themeTextSecondary'>
             <p className='mt-2'>
               Josh Mu is an Australian-based independent contemporary dancer and
               yoga practitioner who has performed and taught internationally for
