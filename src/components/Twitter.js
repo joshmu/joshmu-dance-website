@@ -54,7 +54,7 @@ function Tweet(tweet) {
     txt.length > 140 ? txt.slice(0, 140) + '...' : txt
 
   return (
-    <div className='text-sm text-center'>
+    <div className='text-center text-md'>
       <a
         className='cursor-pointer'
         href={`https://twitter.com/josh_mu_/status/${tweet.id_str}`}

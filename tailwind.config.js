@@ -12,6 +12,8 @@ module.exports = {
         themeTextSecondary: 'var(--textSecondary)',
         themeBackground: 'var(--background)',
         themeAccent: 'var(--accent)',
+        varDark: 'var(--dark)',
+        varLight: 'var(--light)',
       },
     },
   },

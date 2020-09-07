@@ -12,9 +12,9 @@ export function ThemeProvider({ children }) {
   useEffect(() => {
     // get locally stored theme
     let savedTheme = window.localStorage.getItem('theme')
-    // if nothing is stored lets initially default to 'dark' and store for user
+    // if nothing is stored lets initially default to 'light' and store for user
     if (!savedTheme) {
-      savedTheme = 'dark'
+      savedTheme = 'light'
       window.localStorage.setItem('theme', savedTheme)
     }
     // set theme

@@ -7,7 +7,7 @@ import { FaFacebookF as FacebookIcon } from 'react-icons/fa'
 
 export default function Footer() {
   return (
-    <div className='flex items-center justify-between w-full px-4 bg-themeText text-themeBackground'>
+    <div className='flex items-center justify-between w-full px-4 bg-varDark text-varLight'>
       <div className='text-sm'>
         <p>
           <span className='text-themeAccent'>Josh Mu</span>{' '}

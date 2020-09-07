@@ -46,7 +46,7 @@ export default function Navbar() {
     <div
       className={`${
         currentView !== 'home'
-          ? 'text-themeBackground bg-themeText h-12'
+          ? 'text-themeBackground bg-themeText h-12 shadow-lg'
           : 'bg-transparent h-16'
       } fixed z-50 w-full mx-4 items-center justify-center sm:mx-0 transition-all duration-700 ease-in-out`}
     >
