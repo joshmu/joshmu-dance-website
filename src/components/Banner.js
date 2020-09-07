@@ -19,7 +19,7 @@ export default function Banner({
         alt={imageAlt}
         className='absolute z-0 object-cover w-full h-full'
       />
-      <div className='absolute top-0 bottom-0 left-0 right-0 z-10 transition-all duration-300 ease-in-out opacity-50 bg-themeText'></div>
+      <div className='absolute top-0 bottom-0 left-0 right-0 z-10 transition-all duration-300 ease-in-out opacity-75 bg-themeText'></div>
 
       <div className='relative z-10'>
         {/* custom header or default based on title provided */}
