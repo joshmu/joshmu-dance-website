@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import Header from './Header'
 import Footer from './Footer'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useThemeContext } from '../context/themeContext'
+import Navbar from './Navbar'
 
 export default function Layout({ children }) {
   const { theme } = useThemeContext()
@@ -25,7 +25,7 @@ export default function Layout({ children }) {
           } text-themeText bg-themeBackground transition-colors duration-300 ease-in-out font-sans overflow-x-hidden`}
         >
           {/* content */}
-          <Header />
+          <Navbar />
           <main>{children}</main>
           <Footer />
         </div>
