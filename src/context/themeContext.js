@@ -22,9 +22,10 @@ export function ThemeProvider({ children }) {
   }, [])
 
   const toggleTheme = () => {
-    console.log('toggle theme')
-    setTheme(theme === 'dark' ? 'light' : 'dark')
-    window.localStorage.setItem('theme', theme)
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    console.log(`${newTheme} theme`)
+    setTheme(newTheme)
+    window.localStorage.setItem('theme', newTheme)
   }
 
   return (

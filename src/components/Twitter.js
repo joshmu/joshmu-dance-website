@@ -17,7 +17,7 @@ export default function Twitter() {
       .then(data => {
         // let's limit to 10 tweets
         const tweets = data.slice(0, 10)
-        console.log({ tweets })
+        // console.log({ tweets })
         setTwitterData({
           ...twitterData,
           content: tweets.map(tweetData => Tweet(tweetData)),

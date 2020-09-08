@@ -11,7 +11,7 @@
   --twitter: #5daadf;
 }
 
-.theme-dark {
+.theme-light {
   --text: var(--dark);
   --textSecondary: var(--darkSecondary);
   --background: var(--light);
@@ -19,7 +19,7 @@
   --accent: var(--highlight);
 }
 
-.theme-light {
+.theme-dark {
   --text: var(--light);
   --textSecondary: var(--lightSecondary);
   --background: var(--dark);
