@@ -11,8 +11,10 @@ export default function FixedBackground({
       style={{
         background: `url(${src})`,
         // disable when on mobile devices
-        backgroundAttachment: isMobile ? 'scroll' : 'fixed',
-        backgroundSize: 'cover',
+        backgroundAttachment: isMobile
+          ? 'scroll !important'
+          : 'fixed !important',
+        backgroundSize: 'cover !important',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
