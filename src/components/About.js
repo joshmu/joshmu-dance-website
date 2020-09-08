@@ -8,14 +8,14 @@ export default function About() {
   return (
     <div ref={ref} className='container py-12 mx-auto sm:py-24'>
       <div className='flex flex-col items-center justify-center w-full md:flex-row md:items-start'>
-        <div className='flex-1 mx-2 sm:mx-0'>
+        <div className='flex-1 mx-8 md:ml-0 md:mr-4'>
           <img
             src='./assets/headshot.jpg'
             alt='placeholder'
             className='object-cover w-full h-full'
           />
         </div>
-        <div className='flex flex-col flex-1 mt-4 ml-4 md:mt-0'>
+        <div className='flex flex-col flex-1 m-8 md:m-0'>
           <h2 className='text-3xl font-light uppercase'>
             A bit <span className='font-semibold'>about me</span>
           </h2>

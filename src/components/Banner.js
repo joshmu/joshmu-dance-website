@@ -31,7 +31,7 @@ export default function Banner({
                     <span className='font-semibold '>{txt[1]}</span>
                     {txt[2]}
                   </h2>
-                  <LineAccent center />
+                  <LineAccent center mb={0} />
                 </>
               )}
             </div>

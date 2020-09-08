@@ -8,7 +8,7 @@ export default function MobileMenuBtn({ isOpen, handleClick }) {
   return (
     <div
       onClick={handleClick}
-      className='flex flex-col justify-center w-full h-full pr-2 transition-transform duration-1000 ease-in-out'
+      className='flex flex-col justify-center w-full h-full pr-2'
     >
       <AnimatePresence exitBeforeEnter>
         {isOpen ? (

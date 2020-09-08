@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function LineAccent({ center = false }) {
+export default function LineAccent({ center = false, mb = 6 }) {
   return (
     <div
-      className={`flex flex-col justify-center w-full ${
+      className={`flex flex-col mb-${mb} mt-2 justify-center w-full ${
         center && 'items-center'
       }`}
     >

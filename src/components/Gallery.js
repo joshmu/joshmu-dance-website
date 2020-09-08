@@ -73,7 +73,7 @@ export default function Gallery({ duration = 3000 }) {
               <LineAccent center />
             </div>
             <div className='flex flex-wrap -m-1 md:-m-2'>
-              <div className='flex flex-wrap w-1/2'>
+              <div className='flex flex-wrap w-full md:w-1/2'>
                 <motion.div
                   key={images[0].id}
                   initial={{ opacity: 0 }}
@@ -141,7 +141,7 @@ export default function Gallery({ duration = 3000 }) {
                   </a>
                 </motion.div>
               </div>
-              <div className='flex flex-wrap w-1/2'>
+              <div className='flex flex-wrap w-full md:w-1/2'>
                 <motion.div
                   key={images[3].id}
                   initial={{ opacity: 0 }}

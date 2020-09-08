@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function MobileMenu({ currentView, sections, handleClick }) {
   // animation
@@ -15,11 +15,11 @@ export default function MobileMenu({ currentView, sections, handleClick }) {
   }
   const childAnimation = {
     hidden: {
-      y: 50,
+      x: 50,
       opacity: 0,
     },
     show: {
-      y: 0,
+      x: 0,
       opacity: 1,
       transition: {
         duration: 1,
@@ -37,7 +37,7 @@ export default function MobileMenu({ currentView, sections, handleClick }) {
         variants={parentAnimation}
         className={`${
           currentView !== 'home'
-            ? 'bg-themeText shadow rounded-bl'
+            ? 'bg-themeText shadow rounded-b-sm'
             : 'bg-transparent'
         } flex flex-col items-stretch transition-all duration-300 ease-in-out justify-center h-full px-4 py-1 overflow-hidden text-sm rounded-l-sm`}
       >

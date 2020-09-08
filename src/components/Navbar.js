@@ -99,23 +99,23 @@ export default function Navbar() {
             </div>
           )}
         </div>
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className='flex justify-end w-full'
+            >
+              <MobileMenu
+                sections={SECTIONS}
+                currentView={currentView}
+                handleClick={handleClick}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className='flex justify-end w-full'
-          >
-            <MobileMenu
-              sections={SECTIONS}
-              currentView={currentView}
-              handleClick={handleClick}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   )
 }
