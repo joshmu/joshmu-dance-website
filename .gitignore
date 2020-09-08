@@ -32,6 +32,3 @@ yarn-error.log*
 
 # vercel
 .vercel
-
-# large files
-public/assets
