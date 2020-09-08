@@ -19,14 +19,14 @@ export default function Banner({
       <FixedBackground src={image} alt={imageAlt}>
         <div className='relative flex items-center justify-center w-full h-full'>
           <Overlay />
-          <div className='relative z-10'>
+          <div className='z-10 flex flex-col h-full'>
             {/* custom header or default based on title provided */}
-            <div className='flex flex-col items-center justify-center'>
+            <div className='flex flex-col items-center justify-end flex-1 mb-8'>
               {header ? (
                 header
               ) : (
                 <>
-                  <h2 className='text-3xl font-light uppercase whitespace-pre'>
+                  <h2 className='text-3xl font-light text-center uppercase whitespace-pre-wrap'>
                     {txt[0]}
                     <span className='font-semibold '>{txt[1]}</span>
                     {txt[2]}
@@ -36,7 +36,7 @@ export default function Banner({
               )}
             </div>
 
-            <div className='py-8'>
+            <div className='flex-1 overflow-hidden'>
               <Slider content={sliderContent} duration={duration} />
             </div>
           </div>
