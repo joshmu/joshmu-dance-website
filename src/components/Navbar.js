@@ -4,7 +4,7 @@ import { useGlobalContext } from '../context/globalContext'
 import { motion, AnimatePresence } from 'framer-motion'
 import Compressor from './Compressor'
 import { useThemeContext } from '../context/themeContext'
-import { isMobile, mobileVendor } from 'react-device-detect'
+import { isMobile } from 'react-device-detect'
 import MobileMenuBtn from './MobileMenuBtn'
 import MobileMenu from './MobileMenu'
 

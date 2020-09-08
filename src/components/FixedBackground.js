@@ -1,3 +1,5 @@
+import { isMobile } from 'react-device-detect'
+
 export default function FixedBackground({
   src = './assets/waves.jpg',
   children,
@@ -8,7 +10,8 @@ export default function FixedBackground({
       className='relative w-full h-full'
       style={{
         background: `url(${src})`,
-        backgroundAttachment: 'fixed',
+        // disable when on mobile devices
+        backgroundAttachment: !isMobile ? 'inherit' : 'fixed',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
