@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useGlobalContext } from '../context/globalContext'
 
 import { motion, AnimatePresence } from 'framer-motion'
@@ -12,6 +12,13 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { SECTIONS, currentView, scrollToRef } = useGlobalContext()
   const { toggleTheme } = useThemeContext()
+
+  const [isMobileAfterLoad, setIsMobileAfterLoad] = useState(null)
+
+  // we need to initially recreate isMobile as it loads src using 'undefined'
+  useEffect(() => {
+    if (Boolean(isMobile)) setIsMobileAfterLoad(isMobile)
+  }, [])
 
   const handleClick = item => {
     scrollToRef(item)
@@ -45,11 +52,16 @@ export default function Navbar() {
     },
   }
 
+  const toggleMenu = choice => {
+    const decision = choice === undefined ? !isMobileMenuOpen : choice
+    setIsMobileMenuOpen(decision)
+  }
+
   return (
     <div
       className={`${
         currentView !== 'home'
-          ? 'text-themeBackground bg-themeText h-12 shadow-lg'
+          ? 'text-themeBackground bg-themeText h-12 shadow'
           : 'bg-transparent h-16 text-themeBackground'
       } fixed z-50 w-full items-center justify-center transition-all duration-700 ease-in-out`}
     >
@@ -62,12 +74,10 @@ export default function Navbar() {
             <Compressor text='josh mu' hide='osh ' />
           </div>
 
-          {isMobile ? (
+          {isMobileAfterLoad ? (
             <div className='relative flex flex-col items-center'>
               <MobileMenuBtn
-                handleClick={() => {
-                  setIsMobileMenuOpen(!isMobileMenuOpen)
-                }}
+                toggleMenu={toggleMenu}
                 isOpen={isMobileMenuOpen}
               />
             </div>
@@ -105,12 +115,13 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className='flex justify-end w-full'
+              className='flex justify-end w-full -mt-px'
             >
               <MobileMenu
                 sections={SECTIONS}
                 currentView={currentView}
-                handleClick={handleClick}
+                selectSection={handleClick}
+                toggleMenu={toggleMenu}
               />
             </motion.div>
           )}
