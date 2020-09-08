@@ -15,12 +15,12 @@ export default function Slider({ content, duration = 5000, ...props }) {
   }, [pos])
 
   function changeContent(index) {
-    setOutput(content[index])
     if (index === content.length - 1) {
       setPos(0)
     } else {
       setPos(index + 1)
     }
+    setOutput(content[index])
   }
 
   return (
