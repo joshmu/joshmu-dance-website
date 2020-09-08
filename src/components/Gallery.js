@@ -38,7 +38,7 @@ export default function Gallery({ duration = 3000 }) {
   useEffect(() => {
     if (images.length === 0) return
 
-    let timer = setTimeout(() => {
+    const timer = setTimeout(() => {
       // randomly select an image to change
       const randomImagesIndex = Math.floor(Math.random() * images.length)
       // randomly select an image that isn't in use

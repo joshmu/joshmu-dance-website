@@ -1,11 +1,15 @@
+import { useState } from 'react'
 import { useGlobalContext } from '../context/globalContext'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Compressor from './Compressor'
 import { useThemeContext } from '../context/themeContext'
-import { isMobile } from 'react-device-detect'
+import { isMobile, mobileVendor } from 'react-device-detect'
+import MobileMenuBtn from './MobileMenuBtn'
+import MobileMenu from './MobileMenu'
 
 export default function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { SECTIONS, currentView, scrollToRef } = useGlobalContext()
   const { toggleTheme } = useThemeContext()
 
@@ -47,10 +51,10 @@ export default function Navbar() {
         currentView !== 'home'
           ? 'text-themeBackground bg-themeText h-12 shadow-lg'
           : 'bg-transparent h-16 text-themeBackground'
-      } fixed z-50 w-full mx-4 items-center justify-center sm:mx-0 transition-all duration-700 ease-in-out`}
+      } fixed z-50 w-full items-center justify-center transition-all duration-700 ease-in-out`}
     >
       <div className='container h-full mx-auto'>
-        <div className='flex items-center justify-between w-full h-full'>
+        <div className='flex items-center justify-between w-full h-full px-4'>
           <div
             onClick={toggleTheme}
             className='flex h-full text-2xl font-semibold uppercase cursor-pointer'
@@ -58,7 +62,16 @@ export default function Navbar() {
             <Compressor text='josh mu' hide='osh ' />
           </div>
 
-          {!isMobile && (
+          {isMobile ? (
+            <div className='relative flex flex-col items-center'>
+              <MobileMenuBtn
+                handleClick={() => {
+                  setIsMobileMenuOpen(!isMobileMenuOpen)
+                }}
+                isOpen={isMobileMenuOpen}
+              />
+            </div>
+          ) : (
             <div className='relative flex h-full uppercase'>
               <motion.ul
                 initial='hidden'
@@ -87,6 +100,22 @@ export default function Navbar() {
           )}
         </div>
       </div>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className='flex justify-end w-full'
+          >
+            <MobileMenu
+              sections={SECTIONS}
+              currentView={currentView}
+              handleClick={handleClick}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
