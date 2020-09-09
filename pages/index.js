@@ -9,6 +9,10 @@ import Critics from '../src/components/Critics'
 import Contact from '../src/components/Contact'
 import { useGlobalContext } from '../src/context/globalContext'
 
+// todo: 100vh resize issue on mobile
+// todo: scrollToRef solution for mobile
+// todo: increase mobileMenuToggle size
+
 export default function Home() {
   const { sectionRefs } = useGlobalContext()
 

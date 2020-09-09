@@ -87,7 +87,7 @@ export default function Navbar() {
                 initial='hidden'
                 animate='show'
                 variants={parentAnimation}
-                className='flex items-center justify-center h-full px-4 py-1 overflow-hidden text-sm rounded-l-sm'
+                className='flex flex-wrap items-center justify-center h-full px-4 py-1 overflow-hidden text-sm'
               >
                 {SECTIONS.map(item => (
                   <li key={item}>
