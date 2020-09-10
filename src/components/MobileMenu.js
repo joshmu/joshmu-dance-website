@@ -52,14 +52,7 @@ export default function MobileMenu({
       >
         {sections.map(item => (
           <li key={item}>
-            <Link
-              activeClass='active'
-              to={item}
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={500}
-            >
+            <Link to={item} smooth={true} offset={0} duration={750}>
               <motion.button
                 onClick={() => handleMobileMenuClick(item)}
                 variants={childAnimation}

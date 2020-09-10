@@ -1,12 +1,11 @@
 import { MdKeyboardArrowDown as ArrowDownIcon } from 'react-icons/md'
 import { useThemeContext } from '../context/themeContext'
 import useLocation from '../hooks/useLocation'
-import { useGlobalContext } from '../context/globalContext'
 import FixedBackground from './FixedBackground'
 import Overlay from './Overlay'
+import { Link } from 'react-scroll'
 
 export default function Hero(props) {
-  const { scrollToRef } = useGlobalContext()
   const { toggleTheme } = useThemeContext()
   const { ref } = useLocation('home')
 
@@ -34,10 +33,9 @@ export default function Hero(props) {
           </p>
         </div>
         <div className='absolute bottom-0 z-10 flex items-center justify-center w-full mb-8 text-4xl '>
-          <ArrowDownIcon
-            onClick={() => scrollToRef('about')}
-            className='transition-colors duration-300 ease-in-out cursor-pointer fill-current animate-bounce hover:text-themeAccent'
-          />
+          <Link to='about' smooth={true} offset={0} duration={750}>
+            <ArrowDownIcon className='transition-colors duration-300 ease-in-out cursor-pointer fill-current animate-bounce hover:text-themeAccent' />
+          </Link>
         </div>
       </FixedBackground>
     </div>
