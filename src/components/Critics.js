@@ -8,8 +8,8 @@ export default function Critics() {
     title: 'from the critics',
     highlight: 'critics',
     duration: 6000,
-    image: './assets/theatre.jpg',
-    imageAlt: 'josh mu on a stage in a theatre',
+    image: './assets/standing.jpg',
+    imageAlt: 'josh mu standing straight, image taken by Pedro Grieg',
     raw: [
       {
         review:

@@ -4,6 +4,8 @@ export default function Companies() {
   const companies = {
     title: 'some companies I have worked for',
     highlight: 'companies',
+    image: './assets/zero_group.jpg',
+    imageAlt: "josh mu's choreographic work ZERO, image taken by Pedro Grieg",
     raw: [
       {
         name: 'Sydney Dance Company',
@@ -47,8 +49,6 @@ export default function Companies() {
       },
     ],
     duration: 2000,
-    image: './assets/sand.jpg',
-    imageAlt: 'josh mu airborne on the beach',
   }
 
   companies.content = companies.raw.map(Company)
