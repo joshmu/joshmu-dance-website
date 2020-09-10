@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { AiFillInstagram as InstagramIcon } from 'react-icons/ai'
 import useLocation from '../hooks/useLocation'
 
-export default function Gallery({ duration = 3000 }) {
+export default function Gallery({ duration = 3000, ...props }) {
   const { ref } = useLocation('portfolio')
 
   const [insta, setInsta] = useState([])
@@ -58,12 +58,13 @@ export default function Gallery({ duration = 3000 }) {
   }, [images])
 
   return (
-    <>
+    <section
+      ref={ref}
+      className='transition-all duration-1000 ease-in-out body-font'
+      {...props}
+    >
       {images.length > 0 && (
-        <section
-          ref={ref}
-          className='transition-all duration-1000 ease-in-out body-font'
-        >
+        <>
           <div className='container flex flex-wrap px-5 py-24 mx-auto'>
             <div className='w-full mb-8 text-center'>
               <h2 className='text-3xl font-light uppercase whitespace-pre'>
@@ -216,9 +217,9 @@ export default function Gallery({ duration = 3000 }) {
               <a href='https://instagram.com/joshmu'>@joshmu</a>
             </div>
           </div>
-        </section>
+        </>
       )}
-    </>
+    </section>
   )
 }
 

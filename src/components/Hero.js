@@ -5,13 +5,17 @@ import { useGlobalContext } from '../context/globalContext'
 import FixedBackground from './FixedBackground'
 import Overlay from './Overlay'
 
-export default function Hero() {
+export default function Hero(props) {
   const { scrollToRef } = useGlobalContext()
   const { toggleTheme } = useThemeContext()
   const { ref } = useLocation('home')
 
   return (
-    <div ref={ref} className='relative w-full h-screen text-themeBackground'>
+    <div
+      ref={ref}
+      className='relative w-full h-screen text-themeBackground'
+      {...props}
+    >
       <FixedBackground
         src='./assets/forearm_pg.jpg'
         alt='josh mu upside down at carriageworks sydney, image taken by Pedro Grieg'

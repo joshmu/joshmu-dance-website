@@ -2,11 +2,11 @@ import React from 'react'
 import useLocation from '../hooks/useLocation'
 import LineAccent from './LineAccent'
 
-export default function About() {
+export default function About(props) {
   const { ref } = useLocation('about')
 
   return (
-    <div ref={ref} className='container py-12 mx-auto sm:py-24'>
+    <div ref={ref} className='container py-12 mx-auto sm:py-24' {...props}>
       <div className='flex flex-col items-center justify-center w-full md:flex-row md:items-start'>
         <div className='flex-1 mx-8 md:ml-0 md:mr-4'>
           <img

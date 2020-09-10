@@ -7,10 +7,11 @@ import { useThemeContext } from '../context/themeContext'
 import { isMobile } from 'react-device-detect'
 import MobileMenuBtn from './MobileMenuBtn'
 import MobileMenu from './MobileMenu'
+import { Link } from 'react-scroll'
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { SECTIONS, currentView, scrollToRef } = useGlobalContext()
+  const { SECTIONS, currentView } = useGlobalContext()
   const { toggleTheme } = useThemeContext()
 
   const [isMobileAfterLoad, setIsMobileAfterLoad] = useState(null)
@@ -19,10 +20,6 @@ export default function Navbar() {
   useEffect(() => {
     if (Boolean(isMobile)) setIsMobileAfterLoad(isMobile)
   }, [])
-
-  const handleClick = item => {
-    scrollToRef(item)
-  }
 
   // animation
   const parentAnimation = {
@@ -91,18 +88,26 @@ export default function Navbar() {
               >
                 {SECTIONS.map(item => (
                   <li key={item}>
-                    <motion.button
-                      onClick={() => handleClick(item)}
-                      variants={childAnimation}
-                      className={`${
-                        currentView === item
-                          ? 'active text-themeAccent'
-                          : 'font-normal'
-                      } uppercase relative px-3 py-2 focus:outline-none`}
-                      whileHover={{ scale: 1.5 }}
+                    <Link
+                      activeClass='active'
+                      to={item}
+                      spy={true}
+                      smooth={true}
+                      offset={0}
+                      duration={500}
                     >
-                      {item}
-                    </motion.button>
+                      <motion.button
+                        variants={childAnimation}
+                        className={`${
+                          currentView === item
+                            ? 'active text-themeAccent'
+                            : 'font-normal'
+                        } uppercase relative px-3 py-2 focus:outline-none`}
+                        whileHover={{ scale: 1.5 }}
+                      >
+                        {item}
+                      </motion.button>
+                    </Link>
                   </li>
                 ))}
               </motion.ul>

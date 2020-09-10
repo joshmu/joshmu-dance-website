@@ -1,7 +1,7 @@
 import Banner from './Banner'
 import useLocation from '../hooks/useLocation'
 
-export default function Critics() {
+export default function Critics(props) {
   const { ref } = useLocation('critics')
 
   const critics = {
@@ -47,7 +47,7 @@ export default function Critics() {
   critics.content = critics.raw.map(Critic)
 
   return (
-    <div ref={ref}>
+    <div ref={ref} {...props}>
       <Banner
         title={critics.title}
         titleHighlight={critics.highlight}
