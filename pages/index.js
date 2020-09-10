@@ -11,6 +11,7 @@ import Contact from '../src/components/Contact'
 export default function Home() {
   return (
     <Layout>
+      {/* use ids to designate where to scroll to */}
       <Hero id='home' />
       <About id='about' />
       <Companies />

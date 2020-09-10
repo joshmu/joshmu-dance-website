@@ -3,11 +3,19 @@ import { useThemeContext } from '../context/themeContext'
 import useLocation from '../hooks/useLocation'
 import FixedBackground from './FixedBackground'
 import Overlay from './Overlay'
-import { Link } from 'react-scroll'
+import { scroller } from 'react-scroll'
 
 export default function Hero(props) {
   const { toggleTheme } = useThemeContext()
   const { ref } = useLocation('home')
+
+  const scrollTo = elemId => {
+    scroller.scrollTo(elemId, {
+      duration: 800,
+      delay: 0,
+      smooth: 'easeInOutQuart',
+    })
+  }
 
   return (
     <div
@@ -33,9 +41,10 @@ export default function Hero(props) {
           </p>
         </div>
         <div className='absolute bottom-0 z-10 flex items-center justify-center w-full mb-8 text-4xl '>
-          <Link to='about' smooth={true} offset={0} duration={750}>
-            <ArrowDownIcon className='transition-colors duration-300 ease-in-out cursor-pointer fill-current animate-bounce hover:text-themeAccent' />
-          </Link>
+          <ArrowDownIcon
+            onClick={() => scrollTo('about')}
+            className='transition-colors duration-300 ease-in-out cursor-pointer fill-current animate-bounce hover:text-themeAccent'
+          />
         </div>
       </FixedBackground>
     </div>

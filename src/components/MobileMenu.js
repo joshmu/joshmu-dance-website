@@ -4,7 +4,7 @@ import { Link } from 'react-scroll'
 export default function MobileMenu({
   currentView,
   sections,
-  selectSection,
+  scrollTo,
   toggleMenu,
 }) {
   // animation
@@ -37,7 +37,7 @@ export default function MobileMenu({
 
   const handleMobileMenuClick = item => {
     toggleMenu(false)
-    selectSection(item)
+    scrollTo(item)
   }
 
   return (

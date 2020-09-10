@@ -7,7 +7,7 @@ import { useThemeContext } from '../context/themeContext'
 import { isMobile } from 'react-device-detect'
 import MobileMenuBtn from './MobileMenuBtn'
 import MobileMenu from './MobileMenu'
-import { Link } from 'react-scroll'
+import { scroller } from 'react-scroll'
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -54,6 +54,14 @@ export default function Navbar() {
     setIsMobileMenuOpen(decision)
   }
 
+  const scrollTo = elemId => {
+    scroller.scrollTo(elemId, {
+      duration: 800,
+      delay: 0,
+      smooth: 'easeInOutQuart',
+    })
+  }
+
   return (
     <div
       className={`${
@@ -88,19 +96,18 @@ export default function Navbar() {
               >
                 {SECTIONS.map(item => (
                   <li key={item}>
-                    <Link to={item} smooth={true} offset={0} duration={750}>
-                      <motion.button
-                        variants={childAnimation}
-                        className={`${
-                          currentView === item
-                            ? 'active text-themeAccent'
-                            : 'font-normal'
-                        } uppercase relative px-3 py-2 focus:outline-none`}
-                        whileHover={{ scale: 1.5 }}
-                      >
-                        {item}
-                      </motion.button>
-                    </Link>
+                    <motion.button
+                      onClick={() => scrollTo(item)}
+                      variants={childAnimation}
+                      className={`${
+                        currentView === item
+                          ? 'active text-themeAccent'
+                          : 'font-normal'
+                      } uppercase relative px-3 py-2 focus:outline-none`}
+                      whileHover={{ scale: 1.5 }}
+                    >
+                      {item}
+                    </motion.button>
                   </li>
                 ))}
               </motion.ul>
@@ -118,7 +125,7 @@ export default function Navbar() {
               <MobileMenu
                 sections={SECTIONS}
                 currentView={currentView}
-                selectSection={handleClick}
+                scrollTo={scrollTo}
                 toggleMenu={toggleMenu}
               />
             </motion.div>

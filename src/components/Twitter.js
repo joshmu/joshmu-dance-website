@@ -7,7 +7,7 @@ export default function Twitter() {
     header: Title(),
     duration: 6000,
     image: './assets/falling_pg.jpg',
-    imageAlt: 'josh mu upside down in bed, image taken by Pedro Grieg',
+    imageAlt: 'josh mu falling through the air, image taken by Pedro Grieg',
     content: [],
   })
 
