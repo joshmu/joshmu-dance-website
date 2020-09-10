@@ -4,7 +4,7 @@ export default function Companies() {
   const companies = {
     title: 'some companies I have worked for',
     highlight: 'companies',
-    image: './assets/zero_group.jpg',
+    image: './assets/zero_group_pg.jpg',
     imageAlt: "josh mu's choreographic work ZERO, image taken by Pedro Grieg",
     raw: [
       {

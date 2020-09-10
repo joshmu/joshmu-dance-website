@@ -8,7 +8,7 @@ export default function Critics() {
     title: 'from the critics',
     highlight: 'critics',
     duration: 6000,
-    image: './assets/standing.jpg',
+    image: './assets/standing_pg.jpg',
     imageAlt: 'josh mu standing straight, image taken by Pedro Grieg',
     raw: [
       {

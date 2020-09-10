@@ -6,7 +6,7 @@ export default function Twitter() {
   const [twitterData, setTwitterData] = useState({
     header: Title(),
     duration: 6000,
-    image: './assets/falling.jpg',
+    image: './assets/falling_pg.jpg',
     imageAlt: 'josh mu upside down in bed, image taken by Pedro Grieg',
     content: [],
   })

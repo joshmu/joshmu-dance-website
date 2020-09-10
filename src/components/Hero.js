@@ -13,7 +13,7 @@ export default function Hero() {
   return (
     <div ref={ref} className='relative w-full h-screen text-themeBackground'>
       <FixedBackground
-        src='./assets/forearm.jpg'
+        src='./assets/forearm_pg.jpg'
         alt='josh mu upside down at carriageworks sydney, image taken by Pedro Grieg'
       >
         <Overlay />
