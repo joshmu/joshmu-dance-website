@@ -8,6 +8,7 @@ import {
 import { useViewportScroll } from 'framer-motion'
 
 const globalContext = createContext({
+  SECTIONS: [],
   scrollProgress: 0,
   currentView: '',
 })

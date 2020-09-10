@@ -19,7 +19,7 @@ export default function Banner({
       <FixedBackground src={image} alt={imageAlt}>
         <div className='relative flex items-center justify-center w-full h-full'>
           <Overlay />
-          <div className='z-10 flex flex-col h-full'>
+          <div className='relative z-10 flex flex-col h-full bottom-4 sm:bottom-2 md:bottom-0'>
             {/* custom header or default based on title provided */}
             <div className='flex flex-col items-center justify-end flex-1 mb-8'>
               {header ? (
@@ -36,7 +36,7 @@ export default function Banner({
               )}
             </div>
 
-            <div className='flex-1 overflow-hidden'>
+            <div className='flex-1 w-full mx-auto overflow-hidden md:w-4/5'>
               <Slider content={sliderContent} duration={duration} />
             </div>
           </div>

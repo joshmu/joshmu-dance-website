@@ -16,15 +16,25 @@ export default function News(props) {
           <Reveal>
             <p className='text-center text-themeTextSecondary'>
               Here is a preview of most recent creation...{' '}
-              <span className='text-xl tracking-tight'>ZERO</span>. 🖤
+            </p>
+          </Reveal>
+          <Reveal
+            transition={{
+              delay: 1,
+              duration: 1.2,
+              ease: [0.6, 0.05, -0.01, 0.9],
+            }}
+          >
+            <p className='text-3xl font-semibold tracking-tight text-center text-themeText'>
+              ZERO
             </p>
           </Reveal>
         </div>
 
-        {/* ZERO Preview Footage */}
+        {/* Video Embed */}
         <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
           <iframe
-            src='https://player.vimeo.com/video/456437416?autoplay=1&loop=1&byline=0&portrait=0'
+            src='https://player.vimeo.com/video/456437416?autoplay=1&loop=1&byline=0&portrait=0&muted=1'
             style={{
               position: 'absolute',
               top: 0,
@@ -33,7 +43,6 @@ export default function News(props) {
               height: '100%',
             }}
             frameBorder='0'
-            allow='autoplay; fullscreen'
             allowFullScreen
           ></iframe>
           <script src='https://player.vimeo.com/api/player.js'></script>

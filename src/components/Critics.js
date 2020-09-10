@@ -17,7 +17,7 @@ export default function Critics(props) {
         critic: 'aussietheatre.com.au',
       },
       {
-        review: 'Josh Mu’s slinky rippling opening solo',
+        review: "Josh Mu's slinky rippling opening solo",
         critic: 'ArtsHub',
       },
       {
@@ -62,8 +62,8 @@ export default function Critics(props) {
 
 function Critic({ review, critic }) {
   return (
-    <div className='w-3/5 mx-auto text-center'>
-      <p className='uppercase text-md'>{review}</p>
+    <div className='w-full mx-auto text-center sm:w-4/5 text-md'>
+      <p className=''>{review}</p>
       <p className='mt-2 font-semibold'>{critic}</p>
     </div>
   )

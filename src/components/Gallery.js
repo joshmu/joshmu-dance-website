@@ -186,7 +186,7 @@ export default function Gallery({ duration = 3000, ...props }) {
               </div>
             </div>
 
-            <div className='w-full mx-auto mt-8 text-center text-pink-600'>
+            <div className='w-full mx-auto mt-8 text-center text-pink-700'>
               <InstagramIcon className='mx-auto text-4xl fill-current' />
               <a href='https://instagram.com/joshmu'>@joshmu</a>
             </div>
