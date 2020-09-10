@@ -15,7 +15,7 @@ export default function News(props) {
         <div className='my-8'>
           <Reveal>
             <p className='text-center text-themeTextSecondary'>
-              Here is a preview of most recent creation...{' '}
+              Here is a preview of my most recent work.
             </p>
           </Reveal>
           <Reveal
