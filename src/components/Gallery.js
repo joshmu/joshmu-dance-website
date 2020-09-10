@@ -15,17 +15,9 @@ export default function Gallery({ duration = 3000, ...props }) {
     fetch('/api/instagram')
       .then(res => res.json())
       .then(json => {
-        const data = json.data.user.edge_owner_to_timeline_media.edges.map(
-          parseInstagramEdge
-        )
-        // console.log(data)
-        setInsta(data)
+        setInsta(json)
       })
   }, [])
-
-  function imgUrl(shortcode) {
-    return `https://www.instagram.com/p/${shortcode}/`
-  }
 
   // initial state
   useEffect(() => {
@@ -86,14 +78,11 @@ export default function Gallery({ duration = 3000, ...props }) {
                   }}
                   className='w-1/2 p-1 md:p-2'
                 >
-                  <a
-                    className='cursor-pointer'
-                    href={imgUrl(images[0].shortcode)}
-                  >
+                  <a className='cursor-pointer' href={images[0].url}>
                     <img
                       alt='gallery'
                       className='block object-cover object-center w-full h-full'
-                      src={images[0].imageSrc}
+                      src={images[0].src}
                     />
                   </a>
                 </motion.div>
@@ -108,14 +97,11 @@ export default function Gallery({ duration = 3000, ...props }) {
                   }}
                   className='w-1/2 p-1 md:p-2'
                 >
-                  <a
-                    className='cursor-pointer'
-                    href={imgUrl(images[1].shortcode)}
-                  >
+                  <a className='cursor-pointer' href={images[1].url}>
                     <img
                       alt='gallery'
                       className='block object-cover object-center w-full h-full'
-                      src={images[1].imageSrc}
+                      src={images[1].src}
                     />
                   </a>
                 </motion.div>
@@ -130,14 +116,11 @@ export default function Gallery({ duration = 3000, ...props }) {
                   }}
                   className='w-full p-1 md:p-2'
                 >
-                  <a
-                    className='cursor-pointer'
-                    href={imgUrl(images[2].shortcode)}
-                  >
+                  <a className='cursor-pointer' href={images[2].url}>
                     <img
                       alt='gallery'
                       className='block object-cover object-center w-full h-full'
-                      src={images[2].imageSrc}
+                      src={images[2].src}
                     />
                   </a>
                 </motion.div>
@@ -154,14 +137,11 @@ export default function Gallery({ duration = 3000, ...props }) {
                   }}
                   className='w-full p-1 md:p-2'
                 >
-                  <a
-                    className='cursor-pointer'
-                    href={imgUrl(images[3].shortcode)}
-                  >
+                  <a className='cursor-pointer' href={images[3].url}>
                     <img
                       alt='gallery'
                       className='block object-cover object-center w-full h-full'
-                      src={images[3].imageSrc}
+                      src={images[3].src}
                     />
                   </a>
                 </motion.div>
@@ -176,14 +156,11 @@ export default function Gallery({ duration = 3000, ...props }) {
                   }}
                   className='w-1/2 p-1 md:p-2'
                 >
-                  <a
-                    className='cursor-pointer'
-                    href={imgUrl(images[4].shortcode)}
-                  >
+                  <a className='cursor-pointer' href={images[4].url}>
                     <img
                       alt='gallery'
                       className='block object-cover object-center w-full h-full'
-                      src={images[4].imageSrc}
+                      src={images[4].src}
                     />
                   </a>
                 </motion.div>
@@ -198,14 +175,11 @@ export default function Gallery({ duration = 3000, ...props }) {
                   }}
                   className='w-1/2 p-1 md:p-2'
                 >
-                  <a
-                    className='cursor-pointer'
-                    href={imgUrl(images[5].shortcode)}
-                  >
+                  <a className='cursor-pointer' href={images[5].url}>
                     <img
                       alt='gallery'
                       className='block object-cover object-center w-full h-full'
-                      src={images[5].imageSrc}
+                      src={images[5].src}
                     />
                   </a>
                 </motion.div>
@@ -221,26 +195,4 @@ export default function Gallery({ duration = 3000, ...props }) {
       )}
     </section>
   )
-}
-
-function parseInstagramEdge(edge) {
-  const { id, shortcode, is_video, taken_at_timestamp, dimensions } = edge.node
-
-  // get the best quality image
-  const imageSrc = edge.node.display_resources.filter(
-    img =>
-      img.config_height === dimensions.height &&
-      img.config_width === dimensions.width
-  )[0].src
-  // const img = edge.node.display_resources.slice(-1)[0].src
-
-  const output = {
-    id,
-    shortcode,
-    is_video,
-    taken_at_timestamp,
-    dimensions,
-    imageSrc,
-  }
-  return output
 }
