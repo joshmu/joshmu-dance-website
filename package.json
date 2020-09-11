@@ -19,10 +19,14 @@
     "react-scroll": "^1.8.1"
   },
   "devDependencies": {
+    "image-trace-loader": "^1.0.2",
     "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^8.0.0",
     "next-compose-plugins": "^2.2.0",
     "next-optimized-images": "^2.6.2",
     "postcss-preset-env": "^6.7.0",
+    "save": "^2.4.0",
     "tailwindcss": "^1.7.0"
   },
   "repository": {

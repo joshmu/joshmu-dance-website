@@ -1,6 +1,6 @@
 // next.config.js
-const withPlugins = require('next-compose-plugins')
-const optimizedImages = require('next-optimized-images')
+const withPlugins = require("next-compose-plugins");
+const optimizedImages = require("next-optimized-images");
 
 module.exports = withPlugins([
   [
@@ -10,7 +10,8 @@ module.exports = withPlugins([
       mozjpeg: {
         quality: 80,
       },
+      optimizeImagesInDev: true,
     },
   ],
   // your other plugins here
-])
+]);
