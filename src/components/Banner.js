@@ -8,7 +8,7 @@ export default function Banner({
   titleHighlight = '',
   sliderContent,
   duration = 5000,
-  image = './assets/waves.jpg',
+  image = '../../public/assets/waves.jpg',
   imageAlt = 'josh mu in the waves',
   header = null,
 }) {

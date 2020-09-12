@@ -1,6 +1,7 @@
 import React from 'react'
 import useLocation from '../hooks/useLocation'
 import LineAccent from './LineAccent'
+import headshotImg from '../../public/assets/headshot.jpg'
 
 export default function About(props) {
   const { ref } = useLocation('about')
@@ -10,7 +11,7 @@ export default function About(props) {
       <div className='flex flex-col items-center justify-center w-full md:flex-row md:items-start'>
         <div className='flex-1 mx-8 md:ml-0 md:mr-4'>
           <img
-            src='./assets/headshot.jpg'
+            src={headshotImg}
             alt='placeholder'
             className='object-cover w-full h-full'
           />

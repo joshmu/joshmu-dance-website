@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import Banner from './Banner'
 import { AiOutlineTwitter as TwitterIcon } from 'react-icons/ai'
+import twitterBannerImg from '../../public/assets/falling_pg.jpg'
 
 export default function Twitter() {
   const [twitterData, setTwitterData] = useState({
     header: Title(),
     duration: 6000,
-    image: './assets/falling_pg.jpg',
+    image: twitterBannerImg,
     imageAlt: 'josh mu falling through the air, image taken by Pedro Grieg',
     content: [],
   })

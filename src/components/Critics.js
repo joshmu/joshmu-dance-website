@@ -1,5 +1,6 @@
 import Banner from './Banner'
 import useLocation from '../hooks/useLocation'
+import criticsBannerImg from '../../public/assets/standing_pg.jpg'
 
 export default function Critics(props) {
   const { ref } = useLocation('critics')
@@ -8,7 +9,7 @@ export default function Critics(props) {
     title: 'from the critics',
     highlight: 'critics',
     duration: 6000,
-    image: './assets/standing_pg.jpg',
+    image: criticsBannerImg,
     imageAlt: 'josh mu standing straight, image taken by Pedro Grieg',
     raw: [
       {

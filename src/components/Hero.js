@@ -4,6 +4,7 @@ import useLocation from '../hooks/useLocation'
 import FixedBackground from './FixedBackground'
 import Overlay from './Overlay'
 import { scroller } from 'react-scroll'
+import heroImg from '../../public/assets/forearm_pg.jpg'
 
 export default function Hero(props) {
   const { toggleTheme } = useThemeContext()
@@ -24,7 +25,7 @@ export default function Hero(props) {
       {...props}
     >
       <FixedBackground
-        src='./assets/forearm_pg.jpg'
+        src={heroImg}
         alt='josh mu upside down at carriageworks sydney, image taken by Pedro Grieg'
       >
         <Overlay />
