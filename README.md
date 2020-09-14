@@ -1,6 +1,6 @@
 # My Dance & Yoga Website
 
-Feel free to get in touch or fly my some feedback on how I could improve this. ✌️
+Feel free to get in touch or fly me some feedback. ✌️
 
 ## Tech Stack
 
