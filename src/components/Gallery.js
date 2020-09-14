@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import LineAccent from './LineAccent'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { AiFillInstagram as InstagramIcon } from 'react-icons/ai'
 import useLocation from '../hooks/useLocation'
 
@@ -15,9 +15,15 @@ export default function Gallery({ duration = 3000, ...props }) {
     fetch('/api/instagram')
       .then(res => res.json())
       .then(json => {
-        setInsta(json)
+        parseInstaData(json)
       })
   }, [])
+
+  const parseInstaData = json => {
+    // remove our engagement photo (at marlo's request ♡)
+    const posts = json.filter(j => j.id !== '2059453213557158049')
+    setInsta(posts)
+  }
 
   // initial state
   useEffect(() => {
@@ -55,144 +61,146 @@ export default function Gallery({ duration = 3000, ...props }) {
       className='transition-all duration-1000 ease-in-out body-font'
       {...props}
     >
-      {images.length > 0 && (
-        <>
-          <div className='container flex flex-wrap px-5 py-24 mx-auto'>
-            <div className='w-full mb-8 text-center'>
-              <h2 className='text-3xl font-light uppercase whitespace-pre'>
-                snapshots of my
-                <span className='font-semibold '> life</span>
-              </h2>
-              <LineAccent center />
-            </div>
-            <div className='flex flex-wrap -m-1 md:-m-2'>
-              <div className='flex flex-wrap w-full md:w-1/2'>
-                <motion.div
-                  key={images[0].id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{
-                    ease: [0.6, 0.05, -0.01, 0.9],
-                    duration: 1,
-                  }}
-                  className='w-1/2 p-1 md:p-2'
-                >
-                  <a className='cursor-pointer' href={images[0].url}>
-                    <img
-                      alt='gallery'
-                      className='block object-cover object-center w-full h-full'
-                      src={images[0].src}
-                    />
-                  </a>
-                </motion.div>
-                <motion.div
-                  key={images[1].id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{
-                    ease: [0.6, 0.05, -0.01, 0.9],
-                    duration: 1,
-                  }}
-                  className='w-1/2 p-1 md:p-2'
-                >
-                  <a className='cursor-pointer' href={images[1].url}>
-                    <img
-                      alt='gallery'
-                      className='block object-cover object-center w-full h-full'
-                      src={images[1].src}
-                    />
-                  </a>
-                </motion.div>
-                <motion.div
-                  key={images[2].id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{
-                    ease: [0.6, 0.05, -0.01, 0.9],
-                    duration: 1,
-                  }}
-                  className='w-full p-1 md:p-2'
-                >
-                  <a className='cursor-pointer' href={images[2].url}>
-                    <img
-                      alt='gallery'
-                      className='block object-cover object-center w-full h-full'
-                      src={images[2].src}
-                    />
-                  </a>
-                </motion.div>
+      <AnimatePresence exitBeforeEnter initial={false}>
+        {images.length > 0 && (
+          <>
+            <div className='container flex flex-wrap px-5 py-24 mx-auto'>
+              <div className='w-full mb-8 text-center'>
+                <h2 className='text-3xl font-light uppercase whitespace-pre'>
+                  snapshots of my
+                  <span className='font-semibold '> life</span>
+                </h2>
+                <LineAccent center />
               </div>
-              <div className='flex flex-wrap w-full md:w-1/2'>
-                <motion.div
-                  key={images[3].id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{
-                    ease: [0.6, 0.05, -0.01, 0.9],
-                    duration: 1,
-                  }}
-                  className='w-full p-1 md:p-2'
-                >
-                  <a className='cursor-pointer' href={images[3].url}>
-                    <img
-                      alt='gallery'
-                      className='block object-cover object-center w-full h-full'
-                      src={images[3].src}
-                    />
-                  </a>
-                </motion.div>
-                <motion.div
-                  key={images[4].id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{
-                    ease: [0.6, 0.05, -0.01, 0.9],
-                    duration: 1,
-                  }}
-                  className='w-1/2 p-1 md:p-2'
-                >
-                  <a className='cursor-pointer' href={images[4].url}>
-                    <img
-                      alt='gallery'
-                      className='block object-cover object-center w-full h-full'
-                      src={images[4].src}
-                    />
-                  </a>
-                </motion.div>
-                <motion.div
-                  key={images[5].id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{
-                    ease: [0.6, 0.05, -0.01, 0.9],
-                    duration: 1,
-                  }}
-                  className='w-1/2 p-1 md:p-2'
-                >
-                  <a className='cursor-pointer' href={images[5].url}>
-                    <img
-                      alt='gallery'
-                      className='block object-cover object-center w-full h-full'
-                      src={images[5].src}
-                    />
-                  </a>
-                </motion.div>
+              <div className='flex flex-wrap -m-1 md:-m-2'>
+                <div className='flex flex-wrap w-full md:w-1/2'>
+                  <motion.div
+                    key={images[0].id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                      ease: [0.6, 0.05, -0.01, 0.9],
+                      duration: 2,
+                    }}
+                    className='w-1/2 p-1 md:p-2'
+                  >
+                    <a className='cursor-pointer' href={images[0].url}>
+                      <img
+                        alt='gallery'
+                        className='block object-cover object-center w-full h-full'
+                        src={images[0].src}
+                      />
+                    </a>
+                  </motion.div>
+                  <motion.div
+                    key={images[1].id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                      ease: [0.6, 0.05, -0.01, 0.9],
+                      duration: 2,
+                    }}
+                    className='w-1/2 p-1 md:p-2'
+                  >
+                    <a className='cursor-pointer' href={images[1].url}>
+                      <img
+                        alt='gallery'
+                        className='block object-cover object-center w-full h-full'
+                        src={images[1].src}
+                      />
+                    </a>
+                  </motion.div>
+                  <motion.div
+                    key={images[2].id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                      ease: [0.6, 0.05, -0.01, 0.9],
+                      duration: 2,
+                    }}
+                    className='w-full p-1 md:p-2'
+                  >
+                    <a className='cursor-pointer' href={images[2].url}>
+                      <img
+                        alt='gallery'
+                        className='block object-cover object-center w-full h-full'
+                        src={images[2].src}
+                      />
+                    </a>
+                  </motion.div>
+                </div>
+                <div className='flex flex-wrap w-full md:w-1/2'>
+                  <motion.div
+                    key={images[3].id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                      ease: [0.6, 0.05, -0.01, 0.9],
+                      duration: 2,
+                    }}
+                    className='w-full p-1 md:p-2'
+                  >
+                    <a className='cursor-pointer' href={images[3].url}>
+                      <img
+                        alt='gallery'
+                        className='block object-cover object-center w-full h-full'
+                        src={images[3].src}
+                      />
+                    </a>
+                  </motion.div>
+                  <motion.div
+                    key={images[4].id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                      ease: [0.6, 0.05, -0.01, 0.9],
+                      duration: 2,
+                    }}
+                    className='w-1/2 p-1 md:p-2'
+                  >
+                    <a className='cursor-pointer' href={images[4].url}>
+                      <img
+                        alt='gallery'
+                        className='block object-cover object-center w-full h-full'
+                        src={images[4].src}
+                      />
+                    </a>
+                  </motion.div>
+                  <motion.div
+                    key={images[5].id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                      ease: [0.6, 0.05, -0.01, 0.9],
+                      duration: 2,
+                    }}
+                    className='w-1/2 p-1 md:p-2'
+                  >
+                    <a className='cursor-pointer' href={images[5].url}>
+                      <img
+                        alt='gallery'
+                        className='block object-cover object-center w-full h-full'
+                        src={images[5].src}
+                      />
+                    </a>
+                  </motion.div>
+                </div>
               </div>
-            </div>
 
-            <div className='w-full mx-auto mt-8 text-center text-pink-700'>
-              <InstagramIcon className='mx-auto text-4xl fill-current' />
-              <a href='https://instagram.com/joshmu'>@joshmu</a>
+              <div className='w-full mx-auto mt-8 text-center text-pink-700'>
+                <InstagramIcon className='mx-auto text-4xl fill-current' />
+                <a href='https://instagram.com/joshmu'>@joshmu</a>
+              </div>
             </div>
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
