@@ -25,18 +25,16 @@ export default function Reveal({
         ref={ref}
         animate={controls}
         initial='hidden'
-        variants={
-          variants || {
-            visible: { opacity: 1, y: 0 },
-            hidden: { opacity: 0, y: 25 },
-          }
-        }
-        transition={
-          transition || {
-            duration: 0.8,
-            ease: [0.6, 0.05, -0.01, 0.9],
-          }
-        }
+        variants={{
+          visible: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, y: 25 },
+          ...variants,
+        }}
+        transition={{
+          duration: 0.8,
+          ease: [0.6, 0.05, -0.01, 0.9],
+          ...transition,
+        }}
         {...props}
       >
         {children}
