@@ -20,7 +20,7 @@ export default function Footer() {
         <div className='absolute top-0 left-1/2'>
           <div
             onClick={handleScrollToTopBtn}
-            className='p-1 transition-colors duration-300 ease-in-out transform -translate-x-1/2 -translate-y-1/2 border-4 rounded-full shadow-lg cursor-pointer border-themeBackground bg-themeAccent hover:bg-orange-500'
+            className='p-1 transition-colors duration-300 ease-in-out transform -translate-x-1/2 -translate-y-1/2 border-4 rounded-full cursor-pointer border-themeBackground bg-themeAccent hover:bg-orange-500'
           >
             <ArrowUpIcon className='text-3xl fill-current sm:text-4xl' />
           </div>
