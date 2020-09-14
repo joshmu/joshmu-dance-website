@@ -20,14 +20,20 @@
   },
   "devDependencies": {
     "image-trace-loader": "^1.0.2",
+    "imagemin-gifsicle": "^7.0.0",
     "imagemin-mozjpeg": "^9.0.0",
     "imagemin-optipng": "^8.0.0",
     "imagemin-svgo": "^8.0.0",
+    "jimp": "^0.16.1",
+    "lqip-loader": "^2.2.1",
     "next-compose-plugins": "^2.2.0",
     "next-optimized-images": "^2.6.2",
     "postcss-preset-env": "^6.7.0",
+    "responsive-loader": "^2.1.1",
     "save": "^2.4.0",
-    "tailwindcss": "^1.7.0"
+    "svg-sprite-loader": "^5.0.0",
+    "tailwindcss": "^1.7.0",
+    "webp-loader": "^0.6.0"
   },
   "repository": {
     "type": "git",

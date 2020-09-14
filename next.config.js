@@ -8,7 +8,7 @@ module.exports = withPlugins([
     {
       /* config for next-optimized-images */
       mozjpeg: {
-        quality: 60,
+        quality: 40,
       },
       optimizeImagesInDev: true,
     },
