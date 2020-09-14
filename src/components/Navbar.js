@@ -8,18 +8,20 @@ import { isMobile } from 'react-device-detect'
 import MobileMenuBtn from './MobileMenuBtn'
 import MobileMenu from './MobileMenu'
 import { scroller } from 'react-scroll'
+import useScreenSize from '../hooks/useScreenSize'
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { SECTIONS, currentView } = useGlobalContext()
   const { toggleTheme } = useThemeContext()
 
-  const [isMobileAfterLoad, setIsMobileAfterLoad] = useState(null)
+  const screenSize = useScreenSize()
+  // const [isMobileAfterLoad, setIsMobileAfterLoad] = useState(null)
 
   // we need to initially recreate isMobile as it loads src using 'undefined'
-  useEffect(() => {
-    if (Boolean(isMobile)) setIsMobileAfterLoad(isMobile)
-  }, [])
+  // useEffect(() => {
+  //   if (Boolean(isMobile)) setIsMobileAfterLoad(isMobile)
+  // }, [])
 
   // animation
   const parentAnimation = {
@@ -79,7 +81,7 @@ export default function Navbar() {
             <Compressor text='josh mu' hide='osh ' />
           </div>
 
-          {isMobileAfterLoad ? (
+          {screenSize.name === 'sm' ? (
             <div className='relative flex flex-col items-center'>
               <MobileMenuBtn
                 toggleMenu={toggleMenu}

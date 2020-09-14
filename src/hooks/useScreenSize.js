@@ -16,7 +16,7 @@ export const useMediaQuery = query => {
   return matches
 }
 
-export const useScreenSize = () => {
+export default function useScreenSize() {
   const SIZES = {
     sm: 640,
     md: 1024,
