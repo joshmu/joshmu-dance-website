@@ -20,8 +20,8 @@ export default function News(props) {
           </Reveal>
           <Reveal
             transition={{
-              delay: 1,
-              duration: 1.2,
+              delay: 0.5,
+              duration: 0.8,
               ease: [0.6, 0.05, -0.01, 0.9],
             }}
           >

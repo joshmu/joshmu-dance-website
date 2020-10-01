@@ -36,18 +36,16 @@ export function GlobalProvider({ children }) {
     }
   }, [])
 
+  const value = {
+    SECTIONS,
+    scrollYProgress,
+    scrollProgress,
+    currentView,
+    setCurrentView,
+  }
+
   return (
-    <globalContext.Provider
-      value={{
-        SECTIONS,
-        scrollYProgress,
-        scrollProgress,
-        currentView,
-        setCurrentView,
-      }}
-    >
-      {children}
-    </globalContext.Provider>
+    <globalContext.Provider value={value}>{children}</globalContext.Provider>
   )
 }
 

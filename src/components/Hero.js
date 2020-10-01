@@ -19,11 +19,7 @@ export default function Hero(props) {
   }
 
   return (
-    <div
-      ref={ref}
-      className='relative w-full h-screen text-themeBackground'
-      {...props}
-    >
+    <div ref={ref} className='relative w-full h-screen text-themeBg' {...props}>
       <FixedBackground
         src={heroImg}
         alt='josh mu upside down at carriageworks sydney, image taken by Pedro Grieg'

@@ -68,8 +68,8 @@ export default function Navbar() {
     <div
       className={`${
         currentView !== 'home'
-          ? 'text-themeBackground bg-themeText h-12'
-          : 'bg-transparent h-16 text-themeBackground'
+          ? 'text-themeBg bg-themeText h-12'
+          : 'bg-transparent h-16 text-themeBg'
       } fixed z-50 w-full items-center justify-center transition-all duration-700 ease-in-out`}
     >
       <div className='container h-full mx-auto'>

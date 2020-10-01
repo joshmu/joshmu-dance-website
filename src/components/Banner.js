@@ -15,7 +15,7 @@ export default function Banner({
   const txt = parseTxt(title, titleHighlight)
 
   return (
-    <div className='relative w-full overflow-hidden h-96 text-themeBackground'>
+    <div className='relative w-full overflow-hidden h-96 text-themeBg'>
       <FixedBackground src={image} alt={imageAlt}>
         <div className='relative flex items-center justify-center w-full h-full'>
           <Overlay />

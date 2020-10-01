@@ -32,11 +32,7 @@ export default function Layout({ children }) {
         </Head>
 
         {/* theme wrapper style */}
-        <div
-          className={`${
-            theme === 'dark' ? 'theme-dark' : 'theme-light'
-          } text-themeText bg-themeBackground transition-colors duration-300 ease-in-out font-sans overflow-hidden`}
-        >
+        <div className='overflow-hidden font-sans antialiased transition-colors duration-300 ease-in-out text-themeText bg-themeBg'>
           {/* content */}
           <Navbar />
           <main>{children}</main>

@@ -5,39 +5,51 @@ const themeContext = createContext({
   toggleTheme: () => {},
 })
 
-export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(null)
+const TYPES = {
+  dark: 'theme-dark',
+  light: 'theme-light',
+}
+
+export function ThemeProvider(props) {
+  // initial default is light theme
+  const [theme, setTheme] = useState('light')
 
   // initial theme
   useEffect(() => {
     // get locally stored theme
     let savedTheme = window.localStorage.getItem('theme')
-    // if nothing is stored lets initially default to 'light' and store for user
+
+    // if we don't have local stored then lets set it
     if (!savedTheme) {
-      savedTheme = 'light'
-      window.localStorage.setItem('theme', savedTheme)
+      window.localStorage.setItem('theme', theme)
     }
-    // set theme
-    setTheme(savedTheme)
+
+    // if we have a local stored theme then let's set it
+    if (savedTheme) {
+      setTheme(savedTheme)
+    }
   }, [])
 
+  // when theme changes then assign to body tag
+  useEffect(() => {
+    Object.entries(TYPES).forEach(([, className]) =>
+      globalThis.document.body.classList.remove(className)
+    )
+    globalThis.document.body.classList.add(TYPES[theme])
+  }, [theme])
+
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light'
-    console.log(`${newTheme} theme`)
+    const newTheme = theme === 'dark' ? 'light' : 'dark'
     setTheme(newTheme)
     window.localStorage.setItem('theme', newTheme)
   }
 
-  return (
-    <themeContext.Provider
-      value={{
-        theme,
-        toggleTheme,
-      }}
-    >
-      {children}
-    </themeContext.Provider>
-  )
+  const value = {
+    theme,
+    toggleTheme,
+  }
+
+  return <themeContext.Provider value={value} {...props} />
 }
 
 export function useThemeContext() {
