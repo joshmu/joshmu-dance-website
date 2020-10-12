@@ -13,11 +13,12 @@ const cache = {
   posts: [],
 }
 
-// todo: check nextjs cache details
+// cache the ig data
 async function getPosts() {
-  // first see if we have a cache in 30 mins
   const timeSinceLastFetch = Date.now() - cache.lastFetch
-  if (timeSinceLastFetch <= 1800000) {
+  // 30 minutes
+  const cacheDuration = 1800000
+  if (timeSinceLastFetch <= cacheDuration) {
     return cache.posts
   }
   const data = await fetch(url).then(res => res.json())
