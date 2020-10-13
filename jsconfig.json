@@ -8,7 +8,7 @@
       "@/hooks/*": ["src/hooks/*"],
       "@/pages/*": ["src/pages/*"],
       "@/api/*": ["src/pages/api/*"],
-      "@/services/*": ["./services/*"],
+      "@/services/*": ["src/services/*"],
       "@/styles/*": ["./styles/*"],
       "@/public/*": ["./public/*"]
     }
