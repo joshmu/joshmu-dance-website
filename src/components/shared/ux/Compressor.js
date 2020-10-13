@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
 import { motion, useAnimation } from 'framer-motion'
-import { useGlobalContext } from '../context/globalContext'
+import React, { useEffect, useState } from 'react'
 
-export default function Compressor({ text, hide, ...props }) {
+import { useGlobalContext } from '@/context/globalContext'
+
+const Compressor = ({ text, hide, ...props }) => {
   const [output, setOutput] = useState(['', '', ''])
   const [toggle, setToggle] = useState(false)
 
@@ -59,3 +60,5 @@ export default function Compressor({ text, hide, ...props }) {
     </p>
   )
 }
+
+export default Compressor

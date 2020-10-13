@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import Reveal from './Reveal'
-import LineAccent from './LineAccent'
-import useLocation from '../hooks/useLocation'
 
-export default function Contact(props) {
+import useLocation from '@/hooks/useLocation'
+import LineAccent from '@/shared/LineAccent/LineAccent'
+import Reveal from '@/shared/ux/Reveal'
+
+const Contact = props => {
   const { ref } = useLocation('contact')
 
   const [state, setState] = useState({
@@ -133,3 +134,5 @@ export default function Contact(props) {
     </section>
   )
 }
+
+export default Contact

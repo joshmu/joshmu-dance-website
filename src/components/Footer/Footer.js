@@ -3,12 +3,13 @@ import {
   AiFillInstagram as InstagramIcon,
   AiOutlineTwitter as TwitterIcon,
 } from 'react-icons/ai'
-import { MdKeyboardArrowUp as ArrowUpIcon } from 'react-icons/md'
 import { FaFacebookF as FacebookIcon } from 'react-icons/fa'
-import Reveal from './Reveal'
+import { MdKeyboardArrowUp as ArrowUpIcon } from 'react-icons/md'
 import { animateScroll as scroll } from 'react-scroll'
 
-export default function Footer() {
+import Reveal from '@/shared/ux/Reveal'
+
+const Footer = () => {
   const handleScrollToTopBtn = () => {
     scroll.scrollToTop()
   }
@@ -84,3 +85,5 @@ export default function Footer() {
     </div>
   )
 }
+
+export default Footer

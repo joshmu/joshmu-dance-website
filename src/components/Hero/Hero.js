@@ -1,12 +1,13 @@
 import { MdKeyboardArrowDown as ArrowDownIcon } from 'react-icons/md'
-import { useThemeContext } from '../context/themeContext'
-import useLocation from '../hooks/useLocation'
-import FixedBackground from './FixedBackground'
-import Overlay from './Overlay'
 import { scroller } from 'react-scroll'
-import heroImg from '../../public/assets/forearm_pg.jpg'
 
-export default function Hero(props) {
+import { useThemeContext } from '@/context/themeContext'
+import useLocation from '@/hooks/useLocation'
+import heroImg from '@/public/assets/forearm_pg.jpg'
+import FixedBackground from '@/shared/FixedBackground/FixedBackground'
+import Overlay from '@/shared/Overlay/Overlay'
+
+const Hero = props => {
   const { toggleTheme } = useThemeContext()
   const { ref } = useLocation('home')
 
@@ -47,3 +48,5 @@ export default function Hero(props) {
     </div>
   )
 }
+
+export default Hero

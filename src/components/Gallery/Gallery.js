@@ -1,10 +1,11 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import LineAccent from './LineAccent'
-import { motion, AnimatePresence } from 'framer-motion'
 import { AiFillInstagram as InstagramIcon } from 'react-icons/ai'
-import useLocation from '../hooks/useLocation'
 
-export default function Gallery({ duration = 3000, ...props }) {
+import useLocation from '@/hooks/useLocation'
+import LineAccent from '@/shared/LineAccent/LineAccent'
+
+const Gallery = ({ duration = 3000, ...props }) => {
   const { ref } = useLocation('portfolio')
 
   const [insta, setInsta] = useState([])
@@ -204,3 +205,5 @@ export default function Gallery({ duration = 3000, ...props }) {
     </section>
   )
 }
+
+export default Gallery

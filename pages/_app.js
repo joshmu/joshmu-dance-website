@@ -1,7 +1,7 @@
-import { GlobalProvider } from '../src/context/globalContext'
-import { ThemeProvider } from '../src/context/themeContext'
+import '@/styles/globals.css'
 
-import '../styles/globals.css'
+import { GlobalProvider } from '@/context/globalContext'
+import { ThemeProvider } from '@/context/themeContext'
 
 function MyApp({ Component, pageProps }) {
   return (

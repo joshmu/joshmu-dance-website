@@ -1,9 +1,9 @@
-import Slider from './Slider'
-import LineAccent from './LineAccent'
-import FixedBackground from './FixedBackground'
-import Overlay from './Overlay'
+import FixedBackground from '../FixedBackground/FixedBackground'
+import LineAccent from '../LineAccent/LineAccent'
+import Overlay from '../Overlay/Overlay'
+import Slider from '../Slider/Slider'
 
-export default function Banner({
+const Banner = ({
   title = '',
   titleHighlight = '',
   sliderContent,
@@ -11,7 +11,7 @@ export default function Banner({
   image = '../../public/assets/waves.jpg',
   imageAlt = 'josh mu in the waves',
   header = null,
-}) {
+}) => {
   const txt = parseTxt(title, titleHighlight)
 
   return (
@@ -54,3 +54,5 @@ const parseTxt = (txt, highlight) => {
   textArray[2] = txt.slice(txt.indexOf(highlight) + highlight.length)
   return textArray
 }
+
+export default Banner

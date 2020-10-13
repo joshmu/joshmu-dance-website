@@ -1,12 +1,14 @@
-import { useEffect } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import Head from 'next/head'
-import Footer from './Footer'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useThemeContext } from '../context/themeContext'
-import Navbar from './Navbar'
-import { initGA, logPageView } from '../services/googleAnalytics'
+import { useEffect } from 'react'
 
-export default function Layout({ children }) {
+import { useThemeContext } from '@/context/themeContext'
+import { initGA, logPageView } from '@/services/googleAnalytics'
+
+import Footer from '../Footer/Footer'
+import Navbar from '../Navbar/Navbar'
+
+const Layout = ({ children }) => {
   const { theme } = useThemeContext()
 
   // initialise google analytics on load
@@ -42,3 +44,5 @@ export default function Layout({ children }) {
     </AnimatePresence>
   )
 }
+
+export default Layout

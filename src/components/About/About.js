@@ -1,9 +1,10 @@
 import React from 'react'
-import useLocation from '../hooks/useLocation'
-import LineAccent from './LineAccent'
-import headshotImg from '../../public/assets/headshot.jpg'
 
-export default function About(props) {
+import useLocation from '@/hooks/useLocation'
+import headshotImg from '@/public/assets/headshot.jpg'
+import LineAccent from '@/shared/LineAccent/LineAccent'
+
+const About = props => {
   const { ref } = useLocation('about')
 
   return (
@@ -53,3 +54,5 @@ export default function About(props) {
     </div>
   )
 }
+
+export default About

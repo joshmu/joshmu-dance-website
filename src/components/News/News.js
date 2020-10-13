@@ -1,8 +1,8 @@
-import LineAccent from './LineAccent'
-import Reveal from './Reveal'
-import useLocation from '../hooks/useLocation'
+import useLocation from '@/hooks/useLocation'
+import LineAccent from '@/shared/LineAccent/LineAccent'
+import Reveal from '@/shared/ux/Reveal'
 
-export default function News(props) {
+const News = props => {
   const { ref } = useLocation('news')
 
   return (
@@ -51,3 +51,5 @@ export default function News(props) {
     </>
   )
 }
+
+export default News

@@ -1,7 +1,7 @@
-import Banner from './Banner'
-import companyBannerImg from '../../public/assets/zero_group_pg.jpg'
+import companyBannerImg from '@/public/assets/zero_group_pg.jpg'
+import Banner from '@/shared/Banner/Banner'
 
-export default function Companies() {
+const Companies = () => {
   const companies = {
     title: 'some companies I have worked for',
     highlight: 'companies',
@@ -75,3 +75,5 @@ function Company(data) {
     </div>
   )
 }
+
+export default Companies

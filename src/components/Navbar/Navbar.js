@@ -1,27 +1,21 @@
-import { useState, useEffect } from 'react'
-import { useGlobalContext } from '../context/globalContext'
-
-import { motion, AnimatePresence } from 'framer-motion'
-import Compressor from './Compressor'
-import { useThemeContext } from '../context/themeContext'
-import { isMobile } from 'react-device-detect'
-import MobileMenuBtn from './MobileMenuBtn'
-import MobileMenu from './MobileMenu'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useState } from 'react'
 import { scroller } from 'react-scroll'
-import useScreenSize from '../hooks/useScreenSize'
 
-export default function Navbar() {
+import { useGlobalContext } from '@/context/globalContext'
+import { useThemeContext } from '@/context/themeContext'
+import useScreenSize from '@/hooks/useScreenSize'
+import Compressor from '@/shared/ux/Compressor'
+
+import MobileMenu from './MobileMenu/MobileMenu'
+import MobileMenuBtn from './MobileMenu/MobileMenuBtn/MobileMenuBtn'
+
+const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { SECTIONS, currentView } = useGlobalContext()
   const { toggleTheme } = useThemeContext()
 
   const screenSize = useScreenSize()
-  // const [isMobileAfterLoad, setIsMobileAfterLoad] = useState(null)
-
-  // we need to initially recreate isMobile as it loads src using 'undefined'
-  // useEffect(() => {
-  //   if (Boolean(isMobile)) setIsMobileAfterLoad(isMobile)
-  // }, [])
 
   // animation
   const parentAnimation = {
@@ -137,3 +131,5 @@ export default function Navbar() {
     </div>
   )
 }
+
+export default Navbar

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import Banner from './Banner'
 import { AiOutlineTwitter as TwitterIcon } from 'react-icons/ai'
-import twitterBannerImg from '../../public/assets/falling_pg.jpg'
 
-export default function Twitter() {
+import twitterBannerImg from '@/public/assets/falling_pg.jpg'
+import Banner from '@/shared/Banner/Banner'
+
+const Twitter = () => {
   const [twitterData, setTwitterData] = useState({
     header: Title(),
     duration: 6000,
@@ -13,6 +14,7 @@ export default function Twitter() {
   })
 
   useEffect(() => {
+    // todo: what cache options do we have on the heroku side?
     fetch('https://mu-twitter-timeline-api.herokuapp.com/')
       .then(response => response.json())
       .then(data => {
@@ -66,3 +68,5 @@ function Tweet(tweet) {
     </div>
   )
 }
+
+export default Twitter

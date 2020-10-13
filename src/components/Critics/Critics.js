@@ -1,8 +1,8 @@
-import Banner from './Banner'
-import useLocation from '../hooks/useLocation'
-import criticsBannerImg from '../../public/assets/standing_pg.jpg'
+import useLocation from '@/hooks/useLocation'
+import criticsBannerImg from '@/public/assets/standing_pg.jpg'
+import Banner from '@/shared/Banner/Banner'
 
-export default function Critics(props) {
+const Critics = props => {
   const { ref } = useLocation('critics')
 
   const critics = {
@@ -69,3 +69,5 @@ function Critic({ review, critic }) {
     </div>
   )
 }
+
+export default Critics
