@@ -34,7 +34,7 @@ const About = props => {
               An award recipient for Outstanding Performance, Mu has performed
               with many of Australia’s leading major dance companies. Some of
               which are Chunky Move, Dancenorth, Stephanie Lake Company, Force
-              Majeure, Shaun Parker & Company, and Sydney Theatre Company.
+              Majeure, Shaun Parker & Company, and Marrugeku.
             </p>
             <p className='mt-2'>
               Mu has choreographed works for Tracks Dance Theatre, Foxtel, Style
