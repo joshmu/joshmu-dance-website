@@ -37,16 +37,15 @@ const About = props => {
               Majeure, Shaun Parker & Company, and Sydney Theatre Company.
             </p>
             <p className='mt-2'>
-              Mu has choreographed works for Tracks Dance Theatre - Endurance &
-              Man Made, Style Impressions Breakdance Krew - United, Ev & Bow -
-              Chrysalis, and Foxtel. Recently Mu has created ZERO, a new work
-              for Sydney Dance Company for their New Breed 2019 Season.
+              Mu has choreographed works for Tracks Dance Theatre, Foxtel, Style
+              Impressions Breakdance Krew, Ev & Bow, and his latest work ZERO
+              for Sydney Dance Company.
             </p>
             <p className='mt-2'>
-              Mu is continually exploring potential for new movement pathways,
-              choreographic expression through an individual’s somatic
-              experience, and provide non dancers tools and techniques to
-              encourage movement curiosity for improved health and freedom.
+              Mu is continually exploring potential for new phsyical expression,
+              investigating the overlap of Arts and Technology, and providing
+              non dancers tools and techniques to encourage movement curiosity
+              for improved health and freedom.
             </p>
           </div>
         </div>
