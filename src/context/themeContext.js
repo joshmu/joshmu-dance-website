@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 const themeContext = createContext({
   theme: '',
@@ -19,15 +19,11 @@ export function ThemeProvider(props) {
     // get locally stored theme
     let savedTheme = window.localStorage.getItem('theme')
 
-    // if we don't have local stored then lets set it
-    if (!savedTheme) {
-      window.localStorage.setItem('theme', theme)
-    }
-
-    // if we have a local stored theme then let's set it
-    if (savedTheme) {
-      setTheme(savedTheme)
-    }
+    // if we have a saved theme then set it
+    // otherwise update localStorage with default initial theme
+    savedTheme
+      ? setTheme(savedTheme)
+      : window.localStorage.setItem(LOCALSTORAGE_KEY, theme)
   }, [])
 
   // when theme changes then assign to body tag
