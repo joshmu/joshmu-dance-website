@@ -18,7 +18,7 @@ module.exports = {
     },
   },
   variants: {},
-  plugins: [],
+  plugins: [require('tailwindcss-debug-screens')],
   future: {
     removeDeprecatedGapUtilities: true,
   },

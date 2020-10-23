@@ -31,7 +31,7 @@ const Layout = ({ children }) => {
       </Head>
 
       {/* theme wrapper style */}
-      <div className='overflow-hidden font-sans antialiased transition-colors duration-300 ease-in-out text-themeText bg-themeBg'>
+      <div className='overflow-hidden font-sans antialiased transition-colors duration-300 ease-in-out text-themeText bg-themeBg debug-screens'>
         {/* content */}
         <Navbar />
         <main>{children}</main>
