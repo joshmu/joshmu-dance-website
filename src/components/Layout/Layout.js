@@ -6,6 +6,7 @@ import { initGA, logPageView } from '@/services/googleAnalytics'
 
 import Footer from '../Footer/Footer'
 import Navbar from '../Navbar/Navbar'
+import MetaTags from './MetaTags/MetaTags'
 
 const Layout = ({ children }) => {
   // initialise google analytics on load
@@ -27,7 +28,7 @@ const Layout = ({ children }) => {
       exit={{ opacity: 0 }}
     >
       <Head>
-        <title>Josh Mu</title>
+        <MetaTags />
       </Head>
 
       {/* theme wrapper style */}
