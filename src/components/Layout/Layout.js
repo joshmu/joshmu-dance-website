@@ -20,6 +20,12 @@ const Layout = ({ children }) => {
     logPageView()
   }, [])
 
+  const meta = {
+    title: 'Josh Mu - Official Dance Website',
+    description: 'The official website for professional dance artist Josh Mu.',
+    imgUrl: 'https://joshmu.com/assets/avatar.jpg',
+  }
+
   return (
     <motion.div
       key='layout'
@@ -28,7 +34,11 @@ const Layout = ({ children }) => {
       exit={{ opacity: 0 }}
     >
       <Head>
-        <MetaTags />
+        <MetaTags
+          title={meta.title}
+          description={meta.description}
+          imgUrl={meta.imgUrl}
+        />
       </Head>
 
       {/* theme wrapper style */}
