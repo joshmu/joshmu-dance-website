@@ -15,6 +15,9 @@ module.exports = {
         varDark: 'var(--dark)',
         varLight: 'var(--light)',
       },
+      maxHeight: {
+        'screen-1/2': '50vh',
+      },
     },
   },
   variants: {},

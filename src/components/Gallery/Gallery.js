@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { AiFillInstagram as InstagramIcon } from 'react-icons/ai'
 
@@ -59,7 +60,6 @@ const Gallery = ({ duration = 3000, ...props }) => {
   return (
     <section
       ref={ref}
-      className='transition-all duration-1000 ease-in-out body-font'
       {...props}
     >
       <AnimatePresence exitBeforeEnter initial={false}>
@@ -73,124 +73,166 @@ const Gallery = ({ duration = 3000, ...props }) => {
                 </h2>
                 <LineAccent center />
               </div>
-              <div className='flex flex-wrap -m-1 md:-m-2'>
+              <div className='flex flex-wrap -m-1 overflow-hidden md:-m-2'>
                 <div className='flex flex-wrap w-full md:w-1/2'>
-                  <motion.div
-                    key={images[0].id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{
-                      ease: [0.6, 0.05, -0.01, 0.9],
-                      duration: 2,
-                    }}
-                    className='w-1/2 p-1 md:p-2'
-                  >
-                    <a className='cursor-pointer' href={images[0].url}>
-                      <img
-                        alt='gallery'
-                        className='block object-cover object-center w-full h-full'
-                        src={images[0].src}
-                      />
-                    </a>
-                  </motion.div>
-                  <motion.div
-                    key={images[1].id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{
-                      ease: [0.6, 0.05, -0.01, 0.9],
-                      duration: 2,
-                    }}
-                    className='w-1/2 p-1 md:p-2'
-                  >
-                    <a className='cursor-pointer' href={images[1].url}>
-                      <img
-                        alt='gallery'
-                        className='block object-cover object-center w-full h-full'
-                        src={images[1].src}
-                      />
-                    </a>
-                  </motion.div>
-                  <motion.div
-                    key={images[2].id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{
-                      ease: [0.6, 0.05, -0.01, 0.9],
-                      duration: 2,
-                    }}
-                    className='w-full p-1 md:p-2'
-                  >
-                    <a className='cursor-pointer' href={images[2].url}>
-                      <img
-                        alt='gallery'
-                        className='block object-cover object-center w-full h-full'
-                        src={images[2].src}
-                      />
-                    </a>
-                  </motion.div>
+                  <div className='relative w-1/2 h-64 p-1 overflow-hidden md:h-80 md:p-2'>
+                    <motion.div
+                      key={images[0].id}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{
+                        ease: [0.6, 0.05, -0.01, 0.9],
+                        duration: 2,
+                      }}
+                      className='w-full h-full overflow-hidden'
+                    >
+                      <a
+                        className='cursor-pointer ig-gallery-img'
+                        href={images[0].url}
+                      >
+                        <Image
+                          alt='gallery'
+                          className='block object-cover object-center w-full h-full'
+                          src={images[0].src}
+                          width={images[0].width}
+                          height={images[0].height}
+                        />
+                      </a>
+                    </motion.div>
+                  </div>
+                  <div className='relative w-1/2 h-64 p-1 overflow-hidden md:h-80 md:p-2'>
+                    <motion.div
+                      key={images[1].id}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{
+                        ease: [0.6, 0.05, -0.01, 0.9],
+                        duration: 2,
+                      }}
+                      className='w-full h-full overflow-hidden'
+                    >
+                      <a
+                        className='cursor-pointer ig-gallery-img'
+                        href={images[1].url}
+                      >
+                        <Image
+                          alt='gallery'
+                          className='block object-cover object-center w-full h-full'
+                          src={images[1].src}
+                          width={images[1].width}
+                          height={images[1].height}
+                        />
+                      </a>
+                    </motion.div>
+                  </div>
+                  <div className='relative w-full h-64 p-1 overflow-hidden md:h-96 md:p-2'>
+                    <motion.div
+                      key={images[2].id}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{
+                        ease: [0.6, 0.05, -0.01, 0.9],
+                        duration: 2,
+                      }}
+                      className='w-full h-full overflow-hidden'
+                    >
+                      <a
+                        className='cursor-pointer ig-gallery-img'
+                        href={images[2].url}
+                      >
+                        <Image
+                          alt='gallery'
+                          className='block object-cover object-center w-full h-full'
+                          src={images[2].src}
+                          width={images[2].width}
+                          height={images[2].height}
+                        />
+                      </a>
+                    </motion.div>
+                  </div>
                 </div>
                 <div className='flex flex-wrap w-full md:w-1/2'>
-                  <motion.div
-                    key={images[3].id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{
-                      ease: [0.6, 0.05, -0.01, 0.9],
-                      duration: 2,
-                    }}
-                    className='w-full p-1 md:p-2'
-                  >
-                    <a className='cursor-pointer' href={images[3].url}>
-                      <img
-                        alt='gallery'
-                        className='block object-cover object-center w-full h-full'
-                        src={images[3].src}
-                      />
-                    </a>
-                  </motion.div>
-                  <motion.div
-                    key={images[4].id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{
-                      ease: [0.6, 0.05, -0.01, 0.9],
-                      duration: 2,
-                    }}
-                    className='w-1/2 p-1 md:p-2'
-                  >
-                    <a className='cursor-pointer' href={images[4].url}>
-                      <img
-                        alt='gallery'
-                        className='block object-cover object-center w-full h-full'
-                        src={images[4].src}
-                      />
-                    </a>
-                  </motion.div>
-                  <motion.div
-                    key={images[5].id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{
-                      ease: [0.6, 0.05, -0.01, 0.9],
-                      duration: 2,
-                    }}
-                    className='w-1/2 p-1 md:p-2'
-                  >
-                    <a className='cursor-pointer' href={images[5].url}>
-                      <img
-                        alt='gallery'
-                        className='block object-cover object-center w-full h-full'
-                        src={images[5].src}
-                      />
-                    </a>
-                  </motion.div>
+                  <div className='relative w-full p-1 overflow-hidden h-96 md:h-96 md:p-2'>
+                    <motion.div
+                      key={images[3].id}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{
+                        ease: [0.6, 0.05, -0.01, 0.9],
+                        duration: 2,
+                      }}
+                      className='w-full h-full overflow-hidden'
+                    >
+                      <a
+                        className='cursor-pointer ig-gallery-img'
+                        href={images[3].url}
+                      >
+                        <Image
+                          alt='gallery'
+                          className='block object-cover object-center w-full h-full'
+                          src={images[3].src}
+                          width={images[3].width}
+                          height={images[3].height}
+                        />
+                      </a>
+                    </motion.div>
+                  </div>
+                  <div className='relative w-1/2 h-48 p-1 overflow-hidden md:h-80 md:p-2'>
+                    <motion.div
+                      key={images[4].id}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{
+                        ease: [0.6, 0.05, -0.01, 0.9],
+                        duration: 2,
+                      }}
+                      className='w-full h-full overflow-hidden'
+                    >
+                      <a
+                        className='cursor-pointer ig-gallery-img'
+                        href={images[4].url}
+                      >
+                        <Image
+                          alt='gallery'
+                          className='block object-cover object-center w-full h-full'
+                          src={images[4].src}
+                          width={images[4].width}
+                          height={images[4].height}
+                        />
+                      </a>
+                    </motion.div>
+                  </div>
+                  <div className='relative w-1/2 h-48 p-1 overflow-hidden md:h-80 md:p-2'>
+                    <motion.div
+                      key={images[5].id}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{
+                        ease: [0.6, 0.05, -0.01, 0.9],
+                        duration: 2,
+                      }}
+                      className='w-full h-full overflow-hidden'
+                    >
+                      <a
+                        className='cursor-pointer ig-gallery-img'
+                        href={images[5].url}
+                      >
+                        <Image
+                          alt='gallery'
+                          className='block object-cover object-center w-full h-full'
+                          src={images[5].src}
+                          width={images[5].width}
+                          height={images[5].height}
+                        />
+                      </a>
+                    </motion.div>
+                  </div>
                 </div>
               </div>
 

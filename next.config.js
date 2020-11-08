@@ -13,5 +13,10 @@ module.exports = withPlugins([
       optimizeImagesInDev: true,
     },
   ],
+  {
+    images: {
+      domains: ['instagram.fbne5-1.fna.fbcdn.net'],
+    },
+  },
   // your other plugins here
 ])

@@ -1,4 +1,4 @@
-import React from 'react'
+import Image from 'next/image'
 
 import useLocation from '@/hooks/useLocation'
 import headshotImg from '@/public/assets/headshot.jpg'
@@ -11,9 +11,11 @@ const About = props => {
     <div ref={ref} className='container py-12 mx-auto sm:py-24' {...props}>
       <div className='flex flex-col items-center justify-center w-full md:flex-row md:items-start'>
         <div className='flex-1 mx-8 md:ml-0 md:mr-4'>
-          <img
+          <Image
             src={headshotImg}
-            alt='placeholder'
+            width='744'
+            height='841'
+            alt='josh mu headshot'
             className='object-cover w-full h-full'
           />
         </div>

@@ -29,13 +29,20 @@ async function getPosts() {
 }
 
 function trimPostInformation(response) {
-  return response.data.user.edge_owner_to_timeline_media.edges.map(edge => ({
-    src: edge.node.thumbnail_src,
-    thumbnail: edge.node.thumbnail_resources[2].src,
-    url: `https://instagram.com/p/${edge.node.shortcode}`,
-    caption: edge.node.edge_media_to_caption.edges[0].node.text,
-    id: edge.node.id,
-  }))
+  return response.data.user.edge_owner_to_timeline_media.edges.map(edge => {
+    if (!edge.node.dimensions) {
+      console.log('no dimensions?', edge.node)
+    }
+    return {
+      src: edge.node.display_url,
+      width: edge.node.dimensions.width,
+      height: edge.node.dimensions.height,
+      thumbnail: edge.node.thumbnail_src,
+      url: `https://instagram.com/p/${edge.node.shortcode}`,
+      caption: edge.node.edge_media_to_caption.edges[0].node.text,
+      id: edge.node.id,
+    }
+  })
 }
 
 export default async (req, res) => {
