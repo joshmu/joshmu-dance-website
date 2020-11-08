@@ -1,5 +1,4 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { AiFillInstagram as InstagramIcon } from 'react-icons/ai'
 
@@ -58,10 +57,7 @@ const Gallery = ({ duration = 3000, ...props }) => {
   }, [images])
 
   return (
-    <section
-      ref={ref}
-      {...props}
-    >
+    <section ref={ref} {...props}>
       <AnimatePresence exitBeforeEnter initial={false}>
         {images.length > 0 && (
           <>
@@ -91,7 +87,7 @@ const Gallery = ({ duration = 3000, ...props }) => {
                         className='cursor-pointer ig-gallery-img'
                         href={images[0].url}
                       >
-                        <Image
+                        <img
                           alt='gallery'
                           className='block object-cover object-center w-full h-full'
                           src={images[0].src}
@@ -117,7 +113,7 @@ const Gallery = ({ duration = 3000, ...props }) => {
                         className='cursor-pointer ig-gallery-img'
                         href={images[1].url}
                       >
-                        <Image
+                        <img
                           alt='gallery'
                           className='block object-cover object-center w-full h-full'
                           src={images[1].src}
@@ -143,7 +139,7 @@ const Gallery = ({ duration = 3000, ...props }) => {
                         className='cursor-pointer ig-gallery-img'
                         href={images[2].url}
                       >
-                        <Image
+                        <img
                           alt='gallery'
                           className='block object-cover object-center w-full h-full'
                           src={images[2].src}
@@ -171,7 +167,7 @@ const Gallery = ({ duration = 3000, ...props }) => {
                         className='cursor-pointer ig-gallery-img'
                         href={images[3].url}
                       >
-                        <Image
+                        <img
                           alt='gallery'
                           className='block object-cover object-center w-full h-full'
                           src={images[3].src}
@@ -197,7 +193,7 @@ const Gallery = ({ duration = 3000, ...props }) => {
                         className='cursor-pointer ig-gallery-img'
                         href={images[4].url}
                       >
-                        <Image
+                        <img
                           alt='gallery'
                           className='block object-cover object-center w-full h-full'
                           src={images[4].src}
@@ -223,7 +219,7 @@ const Gallery = ({ duration = 3000, ...props }) => {
                         className='cursor-pointer ig-gallery-img'
                         href={images[5].url}
                       >
-                        <Image
+                        <img
                           alt='gallery'
                           className='block object-cover object-center w-full h-full'
                           src={images[5].src}
