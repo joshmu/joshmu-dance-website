@@ -21,7 +21,6 @@ const Contact = props => {
   const [isEmailValid, setIsEmailValid] = useState(true)
 
   const isValid = (type, text) => {
-    console.log('isValid')
     if (type === 'email') {
       if (!checkValidEmail(text)) {
         setIsEmailValid(false)
