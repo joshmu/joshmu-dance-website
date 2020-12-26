@@ -39,45 +39,51 @@ const Footer = () => {
           {/* social icons */}
           <div>
             <ul className='flex items-center justify-center'>
-              <Reveal
-                variants={{
-                  hidden: { opacity: 0, x: -20 },
-                  visible: { opacity: 1, x: 0 },
-                }}
-              >
-                <a
-                  className='inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
-                  href='https://www.facebook.com/josh.mu'
+              <li>
+                <Reveal
+                  variants={{
+                    hidden: { opacity: 0, x: -20 },
+                    visible: { opacity: 1, x: 0 },
+                  }}
                 >
-                  <FacebookIcon className='text-xl fill-current' />
-                </a>
-              </Reveal>
-              <Reveal
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-              >
-                <a
-                  className='inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
-                  href='https://www.instagram.com/joshmu'
+                  <a
+                    className='inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
+                    href='https://www.facebook.com/josh.mu'
+                  >
+                    <FacebookIcon className='text-xl fill-current' />
+                  </a>
+                </Reveal>
+              </li>
+              <li>
+                <Reveal
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
                 >
-                  <InstagramIcon className='text-xl fill-current' />
-                </a>
-              </Reveal>
-              <Reveal
-                variants={{
-                  hidden: { opacity: 0, x: 20 },
-                  visible: { opacity: 1, x: 0 },
-                }}
-              >
-                <a
-                  className='inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
-                  href='https://www.twitter.com/josh_mu_'
+                  <a
+                    className='inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
+                    href='https://www.instagram.com/joshmu'
+                  >
+                    <InstagramIcon className='text-xl fill-current' />
+                  </a>
+                </Reveal>
+              </li>
+              <li>
+                <Reveal
+                  variants={{
+                    hidden: { opacity: 0, x: 20 },
+                    visible: { opacity: 1, x: 0 },
+                  }}
                 >
-                  <TwitterIcon className='text-xl fill-current' />
-                </a>
-              </Reveal>
+                  <a
+                    className='inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
+                    href='https://www.twitter.com/josh_mu_'
+                  >
+                    <TwitterIcon className='text-xl fill-current' />
+                  </a>
+                </Reveal>
+              </li>
             </ul>
           </div>
         </div>

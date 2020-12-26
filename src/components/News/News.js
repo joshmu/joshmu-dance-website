@@ -26,9 +26,9 @@ const News = props => {
               ease: [0.6, 0.05, -0.01, 0.9],
             }}
           >
-            <p className='text-3xl font-semibold tracking-tight text-center text-themeText'>
+            <span className='text-3xl font-semibold tracking-tight text-center text-themeText'>
               ZERO
-            </p>
+            </span>
           </Reveal>
         </div>
 
