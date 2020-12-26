@@ -4,6 +4,10 @@ import useLocation from '@/hooks/useLocation'
 import LineAccent from '@/shared/LineAccent/LineAccent'
 import Reveal from '@/shared/ux/Reveal'
 
+// @see https://www.w3resource.com/javascript/form/email-validation.php
+const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+const checkValidEmail = email => emailPattern.test(email)
+
 const Contact = props => {
   const { ref } = useLocation('contact')
 
@@ -14,6 +18,20 @@ const Contact = props => {
     sent: false,
     error: null,
   })
+  const [isEmailValid, setIsEmailValid] = useState(true)
+
+  const isValid = (type, text) => {
+    console.log('isValid')
+    if (type === 'email') {
+      if (!checkValidEmail(text)) {
+        setIsEmailValid(false)
+        return false
+      } else {
+        setIsEmailValid(true)
+        return true
+      }
+    }
+  }
 
   const handleChange = e => {
     // match the state props with the placeholder names
@@ -21,9 +39,14 @@ const Contact = props => {
     setState({ ...state, [id]: e.target.value })
   }
 
-  const handleSubmit = async () => {
-    if (state.sent || state.email.length === 0 || state.message.length === 0)
-      return
+  const handleSubmit = async event => {
+    event.preventDefault()
+
+    // if no message
+    if (state.message.length === 0) return
+
+    // if email is not valid
+    if (!isValid('email', state.email)) return
 
     const url = '/api/email'
 
@@ -65,13 +88,14 @@ const Contact = props => {
           </p>
         </div>
         <div className='mx-auto lg:w-1/2 md:w-2/3'>
-          <div className='flex flex-wrap -m-2 text-gray-900'>
+          <form className='flex flex-wrap -m-2 text-gray-900'>
             <div className='w-1/2 p-2'>
               <input
                 value={state.name}
                 onChange={handleChange}
                 className='w-full px-4 py-2 text-base bg-gray-100 border border-gray-400 rounded-sm focus:outline-none focus:border-themeAccent'
                 placeholder='Name'
+                name='name'
                 type='text'
               />
             </div>
@@ -79,9 +103,16 @@ const Contact = props => {
               <input
                 value={state.email}
                 onChange={handleChange}
-                className='w-full px-4 py-2 text-base bg-gray-100 border border-gray-400 rounded-sm focus:outline-none focus:border-themeAccent'
+                onBlur={() => isValid('email', state.email)}
+                className={`w-full px-4 py-2 text-base bg-gray-100 rounded-sm focus:outline-none focus:border-themeAccent ${
+                  isEmailValid
+                    ? 'border border-gray-400'
+                    : 'border-2 border-red-400'
+                }`}
                 placeholder='Email'
+                name='email'
                 type='email'
+                required
               />
             </div>
             <div className='w-full p-2'>
@@ -89,15 +120,18 @@ const Contact = props => {
                 onChange={handleChange}
                 className='block w-full h-48 px-4 py-2 text-base bg-gray-100 border border-gray-400 rounded-sm resize-none focus:outline-none focus:border-themeAccent'
                 placeholder='Message'
+                name='message'
+                required
               ></textarea>
             </div>
             <div className='w-full p-2'>
               <button
+                type='submit'
                 onClick={handleSubmit}
                 disabled={state.sent}
                 className={`${
                   state.sent ? 'opacity-50' : ''
-                } flex px-8 py-2 mx-auto text-lg text-white uppercase transition-all duration-300 ease-in-out border-0 rounded-sm bg-themeAccent focus:outline-none hover:bg-orange-500`}
+                } flex px-8 py-2 mx-auto text-lg text-white uppercase transition-all duration-300 ease-in-out border-0 rounded-sm bg-orange-700 focus:outline-none hover:bg-orange-500`}
               >
                 {state.sent ? '️✓' : 'send'}
               </button>
@@ -128,7 +162,7 @@ const Contact = props => {
                 </Reveal>
               )}
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </section>

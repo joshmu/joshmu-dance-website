@@ -1,4 +1,15 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const plugin = require('tailwindcss/plugin')
+
+const invalidPsuedoPlugin = plugin(function ({ addVariant, e }) {
+  addVariant('invalid', ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      return `.${e(`invalid${separator}${className}`)}:invalid`
+    })
+  })
+})
+const plugins = [invalidPsuedoPlugin]
+const devOnlyPlugins = [require('tailwindcss-debug-screens')]
 
 module.exports = {
   purge: ['./pages/**/*.js', './src/components/**/*.js'],
@@ -20,11 +31,13 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    backgroundColor: ({ after }) => after(['invalid']),
+  },
   plugins:
     process.env.NODE_ENV === 'production'
-      ? []
-      : [require('tailwindcss-debug-screens')],
+      ? plugins
+      : [...plugins, devOnlyPlugins],
   future: {
     removeDeprecatedGapUtilities: true,
   },
