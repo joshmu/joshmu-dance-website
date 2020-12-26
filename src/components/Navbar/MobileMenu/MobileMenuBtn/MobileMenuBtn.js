@@ -1,8 +1,8 @@
-import {
-  RiMenu5Line as HamburgerIcon,
-  RiCloseFill as CloseIcon,
-} from 'react-icons/ri'
 import { AnimatePresence, motion } from 'framer-motion'
+import {
+  RiCloseFill as CloseIcon,
+  RiMenu5Line as HamburgerIcon,
+} from 'react-icons/ri'
 
 export default function MobileMenuBtn({ isOpen, toggleMenu }) {
   const handleClick = () => {
@@ -11,7 +11,7 @@ export default function MobileMenuBtn({ isOpen, toggleMenu }) {
   return (
     <div
       onClick={handleClick}
-      className='flex flex-col justify-center w-full h-full p-2 text-2xl bg-transparent'
+      className='flex flex-col justify-center w-full h-full p-2 text-2xl bg-transparent cursor-pointer'
     >
       <AnimatePresence exitBeforeEnter>
         {isOpen ? (

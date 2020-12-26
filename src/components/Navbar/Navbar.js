@@ -59,7 +59,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav
+    <header
       className={`${
         currentView !== 'home'
           ? 'text-themeBg bg-themeText h-12'
@@ -83,7 +83,7 @@ const Navbar = () => {
               />
             </div>
           ) : (
-            <div className='relative flex h-full uppercase'>
+            <nav className='relative flex h-full uppercase'>
               <motion.ul
                 initial='hidden'
                 animate='show'
@@ -107,7 +107,7 @@ const Navbar = () => {
                   </li>
                 ))}
               </motion.ul>
-            </div>
+            </nav>
           )}
         </div>
         <AnimatePresence>
@@ -128,7 +128,7 @@ const Navbar = () => {
           )}
         </AnimatePresence>
       </div>
-    </nav>
+    </header>
   )
 }
 
