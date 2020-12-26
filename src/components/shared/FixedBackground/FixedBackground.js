@@ -3,6 +3,7 @@ import { isMobile } from 'react-device-detect'
 
 export default function FixedBackground({
   src = './assets/waves.jpg',
+  alt = 'image from joshmu.com',
   children,
   ...props
 }) {

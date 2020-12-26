@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 export default function Slider({ content, duration = 5000, ...props }) {
   const [output, setOutput] = useState(null)
@@ -26,7 +26,7 @@ export default function Slider({ content, duration = 5000, ...props }) {
   return (
     <ul className='flex items-center justify-center px-2'>
       <AnimatePresence initial={false} exitBeforeEnter>
-        <motion.div
+        <motion.li
           key={pos}
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
@@ -36,8 +36,8 @@ export default function Slider({ content, duration = 5000, ...props }) {
             ease: 'easeInOut',
           }}
         >
-          <div {...props}>{output}</div>
-        </motion.div>
+          <span {...props}>{output}</span>
+        </motion.li>
       </AnimatePresence>
     </ul>
   )
