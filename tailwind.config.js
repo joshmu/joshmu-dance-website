@@ -28,12 +28,4 @@ module.exports = {
     process.env.NODE_ENV === 'production'
       ? plugins
       : [...plugins, devOnlyPlugins],
-  future: {
-    removeDeprecatedGapUtilities: true,
-  },
-  experimental: {
-    uniformColorPalette: true, // color shades are similar brightness
-    extendedSpacingScale: true, // 72, 80, 96
-    extendedFontSizeScale: true, // 7xl, 8xl, 9xl
-  },
 }

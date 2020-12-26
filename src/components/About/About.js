@@ -15,6 +15,7 @@ const About = props => {
             src={headshotImg}
             width='744'
             height='841'
+            layout='responsive'
             alt='josh mu headshot'
             className='object-cover w-full h-full'
           />
