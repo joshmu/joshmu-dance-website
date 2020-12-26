@@ -14,9 +14,9 @@ const News = props => {
         <LineAccent center />
         <div className='my-8 text-center'>
           <Reveal>
-            <p className='text-center text-themeTextSecondary'>
+            <span className='text-center text-themeTextSecondary'>
               Here is a preview of my most recent work.
-            </p>
+            </span>
           </Reveal>
           <span> </span>
           <Reveal
