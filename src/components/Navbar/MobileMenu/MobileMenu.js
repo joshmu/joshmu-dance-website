@@ -41,7 +41,7 @@ export default function MobileMenu({
   }
 
   return (
-    <div className='z-50 flex h-full text-right uppercase'>
+    <div className='z-50 flex h-full text-right uppercase md:hidden'>
       <motion.ul
         initial='hidden'
         animate='show'

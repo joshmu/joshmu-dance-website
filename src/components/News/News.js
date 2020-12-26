@@ -12,12 +12,13 @@ const News = props => {
           What I'm doing in <span className='font-semibold'>2020</span>
         </h2>
         <LineAccent center />
-        <div className='my-8'>
+        <div className='my-8 text-center'>
           <Reveal>
             <p className='text-center text-themeTextSecondary'>
               Here is a preview of my most recent work.
             </p>
           </Reveal>
+          <span> </span>
           <Reveal
             transition={{
               delay: 0.5,
@@ -42,7 +43,6 @@ const News = props => {
               width: '100%',
               height: '100%',
             }}
-            frameBorder='0'
             allowFullScreen
           ></iframe>
           <script src='https://player.vimeo.com/api/player.js'></script>
