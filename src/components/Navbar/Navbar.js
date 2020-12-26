@@ -59,7 +59,7 @@ const Navbar = () => {
   }
 
   return (
-    <div
+    <nav
       className={`${
         currentView !== 'home'
           ? 'text-themeBg bg-themeText h-12'
@@ -128,7 +128,7 @@ const Navbar = () => {
           )}
         </AnimatePresence>
       </div>
-    </div>
+    </nav>
   )
 }
 

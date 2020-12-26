@@ -46,7 +46,10 @@ const Twitter = () => {
 function Title() {
   return (
     <div className='text-blue-400'>
-      <TwitterIcon className='mx-auto text-5xl fill-current' />
+      <TwitterIcon
+        aria-label='twitter'
+        className='mx-auto text-5xl fill-current'
+      />
       <a href='https://twitter.com/josh_mu_'>@josh_mu_</a>
     </div>
   )

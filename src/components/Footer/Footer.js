@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import {
   AiOutlineCopyright as CopyrightIcon,
   AiFillInstagram as InstagramIcon,
@@ -15,7 +16,7 @@ const Footer = () => {
   }
 
   return (
-    <div className='w-full bg-varDark text-varLight'>
+    <footer className='w-full bg-varDark text-varLight'>
       <div className='container relative mx-auto'>
         {/* scroll to top */}
         <div className='absolute top-0 left-1/2'>
@@ -26,11 +27,17 @@ const Footer = () => {
             <ArrowUpIcon className='text-3xl fill-current sm:text-4xl' />
           </div>
         </div>
+
         <div className='flex items-center justify-between w-full px-4 '>
           {/* copyright */}
           <div className='text-sm'>
             <p>
-              <span className='text-themeAccent'>Josh Mu</span>{' '}
+              Developed by{' '}
+              <Link href='https://joshmu.dev' target='_blank'>
+                <span className='font-bold transition-colors duration-300 cursor-pointer text-themeAccent hover:text-orange-500'>
+                  Josh Mu
+                </span>
+              </Link>{' '}
               <CopyrightIcon className='relative inline fill-current' />{' '}
               <span>{new Date().getFullYear()}</span>
             </p>
@@ -50,7 +57,10 @@ const Footer = () => {
                     className='inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
                     href='https://www.facebook.com/josh.mu'
                   >
-                    <FacebookIcon className='text-xl fill-current' />
+                    <FacebookIcon
+                      aria-label='facebook'
+                      className='text-xl fill-current'
+                    />
                   </a>
                 </Reveal>
               </li>
@@ -65,7 +75,10 @@ const Footer = () => {
                     className='inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
                     href='https://www.instagram.com/joshmu'
                   >
-                    <InstagramIcon className='text-xl fill-current' />
+                    <InstagramIcon
+                      aria-label='instagram'
+                      className='text-xl fill-current'
+                    />
                   </a>
                 </Reveal>
               </li>
@@ -80,7 +93,10 @@ const Footer = () => {
                     className='inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
                     href='https://www.twitter.com/josh_mu_'
                   >
-                    <TwitterIcon className='text-xl fill-current' />
+                    <TwitterIcon
+                      aria-label='twitter'
+                      className='text-xl fill-current'
+                    />
                   </a>
                 </Reveal>
               </li>
@@ -88,7 +104,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   )
 }
 

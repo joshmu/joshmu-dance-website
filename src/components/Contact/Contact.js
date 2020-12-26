@@ -96,7 +96,7 @@ const Contact = props => {
                 onClick={handleSubmit}
                 disabled={state.sent}
                 className={`${
-                  state.sent && 'opacity-50'
+                  state.sent ? 'opacity-50' : ''
                 } flex px-8 py-2 mx-auto text-lg text-white uppercase transition-all duration-300 ease-in-out border-0 rounded-sm bg-themeAccent focus:outline-none hover:bg-orange-500`}
               >
                 {state.sent ? '️✓' : 'send'}
@@ -120,7 +120,7 @@ const Contact = props => {
                 <Reveal>
                   <a
                     href='&#109;&#097;&#105;&#108;&#116;&#111;:&#104;&#101;&#108;&#108;&#111;&#064;&#106;&#111;&#115;&#104;&#109;&#117;&#046;&#099;&#111;&#109;'
-                    className='transition-colors duration-300 ease-in-out text-themeAccent hover:text-orange-500'
+                    className='transition-colors duration-300 ease-in-out text-themeText hover:text-orange-500'
                   >
                     👋
                     &#104;&#101;&#108;&#108;&#111;&#064;&#106;&#111;&#115;&#104;&#109;&#117;&#046;&#099;&#111;&#109;

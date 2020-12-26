@@ -35,6 +35,7 @@ const News = props => {
         {/* Video Embed */}
         <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
           <iframe
+            title='zero trailer'
             src='https://player.vimeo.com/video/456437416?autoplay=1&loop=1&byline=0&portrait=0&muted=1'
             style={{
               position: 'absolute',
