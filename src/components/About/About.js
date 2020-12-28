@@ -15,11 +15,12 @@ const About = props => {
             src={headshotImg}
             width='744'
             height='841'
-            layout='responsive'
+            // layout='responsive' // <= causes img to disappear on mobile
             alt='josh mu headshot'
             className='object-cover w-full h-full'
           />
         </div>
+
         <div className='flex flex-col flex-1 m-8 md:m-0'>
           <h2 className='text-3xl font-light uppercase'>
             A bit <span className='font-semibold'>about me</span>

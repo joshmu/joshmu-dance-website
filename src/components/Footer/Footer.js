@@ -32,7 +32,7 @@ const Footer = () => {
           {/* copyright */}
           <div className='text-sm'>
             <p>
-              Developed by{' '}
+              <span className='hidden md:inline-block'>Developed by </span>
               <Link href='https://joshmu.dev' target='_blank'>
                 <span className='font-bold transition-colors duration-300 cursor-pointer text-themeAccent hover:text-orange-500'>
                   Josh Mu

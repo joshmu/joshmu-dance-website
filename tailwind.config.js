@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
 
 const plugins = []
 const devOnlyPlugins = [require('tailwindcss-debug-screens')]
@@ -11,6 +12,7 @@ module.exports = {
         sans: ['Roboto', ...defaultTheme.fontFamily.sans],
       },
       colors: {
+        orange: colors.orange,
         themeText: 'var(--text)',
         themeTextSecondary: 'var(--textSecondary)',
         themeBg: 'var(--background)',

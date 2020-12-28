@@ -136,7 +136,7 @@ const Contact = props => {
                 disabled={state.sent}
                 className={`${
                   state.sent ? 'opacity-50' : ''
-                } flex px-8 py-2 mx-auto text-lg text-white uppercase transition-all duration-300 ease-in-out border-0 rounded-sm bg-orange-700 focus:outline-none hover:bg-orange-500`}
+                } flex px-8 py-2 mx-auto text-lg text-white uppercase transition-all duration-300 ease-in-out border-0 rounded-sm bg-themeAccent focus:outline-none hover:bg-orange-500`}
               >
                 {state.sent ? '️✓' : 'send'}
               </button>
