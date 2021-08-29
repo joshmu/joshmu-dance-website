@@ -30,7 +30,7 @@ const About = props => {
             <p className='mt-2'>
               Josh Mu is an Australian-based independent contemporary dancer and
               yoga practitioner who has performed and taught internationally for
-              over 10 years. His movement roots begin in breakdance and hip hop
+              over 15 years. His movement roots begin in breakdance and hip hop
               culture, and have expanded to include contemporary, ballet,
               circus, gymnastics, physical theatre and yoga.
             </p>
@@ -42,14 +42,16 @@ const About = props => {
             </p>
             <p className='mt-2'>
               Mu has choreographed works for Tracks Dance Theatre, Foxtel, Style
-              Impressions Breakdance Krew, Ev & Bow, and his latest work ZERO
-              for Sydney Dance Company.
+              Impressions Breakdance Krew, Ev & Bow, and ZERO for Sydney Dance
+              Company.
             </p>
             <p className='mt-2'>
-              Mu is continually exploring potential for new phsyical expression,
-              investigating the overlap of Arts and Technology, and providing
-              non dancers tools and techniques to encourage movement curiosity
-              for improved health and freedom.
+              Computer programming has always been an obsession for Mu, and over
+              the past few years he has leaned in to a taking on opportunities
+              as a frontend software engineer, collaborating with developers
+              from around the globe. The tech industry has provided Mu new
+              insight and desire to find ways in which arts and technology can
+              intersect.
             </p>
           </div>
         </div>
