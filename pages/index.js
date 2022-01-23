@@ -17,7 +17,8 @@ const Home = () => {
       <Companies />
       <News id='news' />
       <Twitter />
-      <Gallery id='portfolio' />
+      {/* // TODO: update instagram api */}
+      {/* <Gallery id='portfolio' /> */}
       <Critics id='critics' />
       <Contact id='contact' />
     </Layout>

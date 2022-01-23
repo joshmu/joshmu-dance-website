@@ -9,7 +9,7 @@ const News = props => {
     <>
       <div ref={ref} className='container py-24 mx-auto' {...props}>
         <h2 className='text-3xl font-light text-center uppercase'>
-          What I'm doing in <span className='font-semibold'>2020</span>
+          What I did in <span className='font-semibold'>2020</span>
         </h2>
         <LineAccent center />
         <div className='my-8 text-center'>
