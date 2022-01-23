@@ -1,6 +1,7 @@
 import useLocation from '@/hooks/useLocation'
-import criticsBannerImg from '@/public/assets/standing_pg.jpg'
 import Banner from '@/shared/Banner/Banner'
+
+const criticsBannerImg = '/assets/standing_pg.jpg'
 
 const Critics = props => {
   const { ref } = useLocation('critics')

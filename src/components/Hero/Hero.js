@@ -3,9 +3,10 @@ import { scroller } from 'react-scroll'
 
 import { useThemeContext } from '@/context/themeContext'
 import useLocation from '@/hooks/useLocation'
-import heroImg from '@/public/assets/forearm_pg.jpg'
 import FixedBackground from '@/shared/FixedBackground/FixedBackground'
 import Overlay from '@/shared/Overlay/Overlay'
+
+const heroImg = '/assets/forearm_pg.jpg'
 
 const Hero = props => {
   const { toggleTheme } = useThemeContext()
