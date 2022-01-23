@@ -1,5 +1,6 @@
-import companyBannerImg from '@/public/assets/zero_group_pg.jpg'
 import Banner from '@/shared/Banner/Banner'
+
+const companyBannerImg = '/assets/zero_group_pg.jpg'
 
 const Companies = () => {
   const companies = {

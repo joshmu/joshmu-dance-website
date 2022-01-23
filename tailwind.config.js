@@ -5,7 +5,7 @@ const plugins = []
 const devOnlyPlugins = [require('tailwindcss-debug-screens')]
 
 module.exports = {
-  purge: ['./pages/**/*.js', './src/components/**/*.js'],
+  content: ['./pages/**/*.js', './src/components/**/*.js'],
   theme: {
     extend: {
       fontFamily: {

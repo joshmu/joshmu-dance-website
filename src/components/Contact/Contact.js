@@ -5,7 +5,8 @@ import LineAccent from '@/shared/LineAccent/LineAccent'
 import Reveal from '@/shared/ux/Reveal'
 
 // @see https://www.w3resource.com/javascript/form/email-validation.php
-const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+const emailPattern =
+  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 const checkValidEmail = email => emailPattern.test(email)
 
 const Contact = props => {
@@ -151,7 +152,7 @@ const Contact = props => {
               )}
               {state.sent ? (
                 <Reveal>
-                  <p className='text-xl italic text-green-500 animate-bounce'>
+                  <p className='text-xl italic text-green-600 animate-bounce'>
                     Message sent!
                   </p>
                 </Reveal>
