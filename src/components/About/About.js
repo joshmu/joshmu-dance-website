@@ -1,8 +1,9 @@
 import Image from 'next/image'
 
 import useLocation from '@/hooks/useLocation'
-import headshotImg from '@/public/assets/headshot.jpg'
 import LineAccent from '@/shared/LineAccent/LineAccent'
+
+const headshotImg = '/assets/headshot.jpg'
 
 const About = props => {
   const { ref } = useLocation('about')

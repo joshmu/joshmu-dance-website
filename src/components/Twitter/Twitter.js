@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { AiOutlineTwitter as TwitterIcon } from 'react-icons/ai'
 
-import twitterBannerImg from '@/public/assets/falling_pg.jpg'
 import Banner from '@/shared/Banner/Banner'
+
+const twitterBannerImg = '/assets/falling_pg.jpg'
 
 const Twitter = () => {
   const [twitterData, setTwitterData] = useState({
