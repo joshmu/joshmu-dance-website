@@ -2,8 +2,21 @@ import { Banner } from '@/shared/Banner/Banner'
 
 const companyBannerImg = '/assets/zero_group_pg.jpg'
 
+interface ICompany {
+  title: string
+  highlight: string
+  image: string
+  imageAlt: string
+  raw: {
+    name: string
+    url: string
+  }[]
+  content?: JSX.Element[]
+  duration?: number
+}
+
 const Companies = () => {
-  const companies = {
+  const companies: ICompany = {
     title: 'some companies I have worked for',
     highlight: 'companies',
     image: companyBannerImg,

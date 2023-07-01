@@ -5,12 +5,14 @@ interface IGlobalContext {
   SECTIONS: string[]
   scrollProgress: number
   currentView: string
+  setCurrentView: React.Dispatch<React.SetStateAction<string>>
 }
 
 const globalContext = createContext<IGlobalContext>({
   SECTIONS: [],
   scrollProgress: 0,
   currentView: '',
+  setCurrentView: () => {},
 })
 
 export function GlobalProvider({ children }) {

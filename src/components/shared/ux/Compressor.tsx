@@ -50,7 +50,7 @@ export const Compressor = ({ text, hide, ...props }) => {
     <p className="flex items-center justify-center whitespace-pre" {...props}>
       <span>{output[0]}</span>
       <motion.span
-        variants={animationVariants}
+        variants={animationVariants as any}
         animate={controls}
         className="overflow-hidden"
       >

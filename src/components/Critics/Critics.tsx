@@ -3,10 +3,23 @@ import { Banner } from '@/shared/Banner/Banner'
 
 const criticsBannerImg = '/assets/standing_pg.jpg'
 
+interface Critics {
+  title: string
+  highlight: string
+  image: string
+  imageAlt: string
+  raw: {
+    review: string
+    critic: string
+  }[]
+  content?: React.ReactNode[]
+  duration?: number
+}
+
 const Critics = (props) => {
   const { ref } = useLocation('critics')
 
-  const critics = {
+  const critics: Critics = {
     title: 'from the critics',
     highlight: 'critics',
     duration: 6000,

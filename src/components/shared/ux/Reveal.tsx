@@ -2,12 +2,19 @@ import { motion, useAnimation } from 'framer-motion'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
+interface RevealProps {
+  children: React.ReactNode
+  variants?: any
+  transition?: any
+  props?: any
+}
+
 export const Reveal = ({
   children,
   variants = null,
   transition = null,
   ...props
-}) => {
+}: RevealProps) => {
   const controls = useAnimation()
   const [ref, inView] = useInView({
     // triggerOnce: true,

@@ -20,7 +20,7 @@ export function ThemeProvider(props) {
     let savedTheme = window.localStorage.getItem(LOCALSTORAGE_KEY)
 
     // validation check
-    if (!Object.keys(THEME_TYPES).includes(savedTheme)) savedTheme = null
+    if (!Object.keys(THEME_TYPES).includes(savedTheme || '')) savedTheme = null
 
     // if we have a saved theme then set it
     // otherwise update localStorage with default initial theme
@@ -32,7 +32,7 @@ export function ThemeProvider(props) {
   // when theme changes then assign to body tag
   useEffect(() => {
     Object.entries(THEME_TYPES).forEach(([, className]) =>
-      globalThis.document.body.classList.remove(className)
+      globalThis.document.body.classList.remove(className),
     )
     globalThis.document.body.classList.add(THEME_TYPES[theme])
   }, [theme])
@@ -40,7 +40,7 @@ export function ThemeProvider(props) {
   const toggleTheme = () => {
     // get list of themeIds
     const themeIdList = Object.keys(THEME_TYPES)
-    const themeIndex = themeIdList.findIndex(themeId => themeId === theme)
+    const themeIndex = themeIdList.findIndex((themeId) => themeId === theme)
     // logic to continuously cycle through array
     const nextThemeIndex =
       themeIndex === themeIdList.length - 1 ? 0 : themeIndex + 1

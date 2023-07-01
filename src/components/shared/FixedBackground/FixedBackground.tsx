@@ -7,7 +7,7 @@ export const FixedBackground = ({
   children,
   ...props
 }) => {
-  const [isMobileAfterLoad, setIsMobileAfterLoad] = useState(null)
+  const [isMobileAfterLoad, setIsMobileAfterLoad] = useState<Boolean>(null!)
 
   // we need to initially recreate isMobile as it loads src using 'undefined'
   useEffect(() => {

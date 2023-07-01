@@ -34,7 +34,7 @@ const Twitter = () => {
     <>
       {twitterData.content.length > 0 && (
         <Banner
-          header={twitterData.header}
+          header={twitterData.header as any}
           sliderContent={twitterData.content}
           duration={twitterData.duration}
           image={twitterData.image}
@@ -62,7 +62,7 @@ function Tweet(tweet) {
     txt.length > 140 ? txt.slice(0, 140) + '...' : txt
 
   return (
-    <div className="mx-auto w-4/5 text-center text-md">
+    <div className="w-4/5 mx-auto text-center text-md">
       <a
         className="cursor-pointer"
         href={`https://twitter.com/josh_mu_/status/${tweet.id_str}`}

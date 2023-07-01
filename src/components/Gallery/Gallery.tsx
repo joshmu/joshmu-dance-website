@@ -5,11 +5,22 @@ import { AiFillInstagram as InstagramIcon } from 'react-icons/ai'
 import useLocation from '@/hooks/useLocation'
 import { LineAccent } from '@/components/shared/LineAccent/LineAccent'
 
+interface InstaImage {
+  id: string
+  media_url: string
+  permalink: string
+  caption: string
+  url: string
+  src: string
+  width: number
+  height: number
+}
+
 const Gallery = ({ duration = 3000, ...props }) => {
   const { ref } = useLocation('portfolio')
 
-  const [insta, setInsta] = useState([])
-  const [images, setImages] = useState([])
+  const [insta, setInsta] = useState<InstaImage[]>([])
+  const [images, setImages] = useState<InstaImage[]>([])
 
   // initial
   useEffect(() => {
