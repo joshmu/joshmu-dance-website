@@ -2,7 +2,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
 const plugins = []
-const devOnlyPlugins = [require('tailwindcss-debug-screens')]
+const devOnlyPlugins = []
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -33,7 +33,6 @@ module.exports = {
       },
     },
   },
-  variants: {},
   plugins:
     process.env.NODE_ENV === 'production'
       ? plugins

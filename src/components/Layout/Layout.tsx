@@ -85,7 +85,7 @@ const Layout = ({ children }) => {
       </Head>
 
       {/* theme wrapper style */}
-      <div className="overflow-hidden font-sans antialiased transition-colors duration-300 ease-in-out debug-screens">
+      <div className="overflow-hidden font-sans antialiased transition-colors duration-300 ease-in-out">
         {/* content */}
         <Navbar />
         <main>{children}</main>
