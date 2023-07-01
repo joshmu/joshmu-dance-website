@@ -33,7 +33,7 @@ const Footer = () => {
           <div className='text-sm'>
             <p>
               <span className='hidden md:inline-block'>Developed by </span>
-              <Link href='https://joshmu.dev' target='_blank'>
+              <Link href='https://joshmu.dev' target='_blank' legacyBehavior>
                 <span className='font-bold transition-colors duration-300 cursor-pointer text-themeAccent hover:text-orange-500'>
                   Josh Mu
                 </span>
@@ -105,7 +105,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
+  );
 }
 
 export default Footer
