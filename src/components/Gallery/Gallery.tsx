@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { AiFillInstagram as InstagramIcon } from 'react-icons/ai'
 
 import useLocation from '@/hooks/useLocation'
-import LineAccent from '@/shared/LineAccent/LineAccent'
+import LineAccent from '@/components/shared/Lineaccent/LineAccent'
 
 const Gallery = ({ duration = 3000, ...props }) => {
   const { ref } = useLocation('portfolio')
@@ -14,15 +14,15 @@ const Gallery = ({ duration = 3000, ...props }) => {
   // initial
   useEffect(() => {
     fetch('/api/instagram')
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         parseInstaData(json)
       })
   }, [])
 
-  const parseInstaData = json => {
+  const parseInstaData = (json) => {
     // remove our engagement photo (at marlo's request ♡)
-    const posts = json.filter(j => j.id !== '2059453213557158049')
+    const posts = json.filter((j) => j.id !== '2059453213557158049')
     setInsta(posts)
   }
 
@@ -42,7 +42,7 @@ const Gallery = ({ duration = 3000, ...props }) => {
       const randomImagesIndex = Math.floor(Math.random() * images.length)
       // randomly select an image that isn't in use
       const unusedImages = insta.filter(
-        instaImg => !images.some(img => img.id === instaImg.id)
+        (instaImg) => !images.some((img) => img.id === instaImg.id),
       )
       // random index of unused
       const unusedRandomImage =
@@ -62,17 +62,17 @@ const Gallery = ({ duration = 3000, ...props }) => {
   return (
     <section ref={ref} {...props}>
       <AnimatePresence exitBeforeEnter initial={false}>
-        <div className='container flex flex-wrap px-5 py-24 mx-auto'>
-          <div className='w-full mb-8 text-center'>
-            <h2 className='text-3xl font-light uppercase whitespace-pre'>
+        <div className="container flex flex-wrap px-5 py-24 mx-auto">
+          <div className="w-full mb-8 text-center">
+            <h2 className="text-3xl font-light uppercase whitespace-pre">
               snapshots of my
-              <span className='font-semibold'> life</span>
+              <span className="font-semibold"> life</span>
             </h2>
             <LineAccent center />
           </div>
-          <div className='flex flex-wrap -m-1 overflow-hidden md:-m-2'>
-            <div className='flex flex-wrap w-full md:w-1/2'>
-              <div className='relative w-1/2 h-64 p-1 overflow-hidden md:h-80 md:p-2'>
+          <div className="flex flex-wrap -m-1 overflow-hidden md:-m-2">
+            <div className="flex flex-wrap w-full md:w-1/2">
+              <div className="relative w-1/2 h-64 p-1 overflow-hidden md:h-80 md:p-2">
                 <motion.div
                   key={images[0].id}
                   initial={{ opacity: 0 }}
@@ -82,15 +82,15 @@ const Gallery = ({ duration = 3000, ...props }) => {
                     ease: [0.6, 0.05, -0.01, 0.9],
                     duration: 2,
                   }}
-                  className='w-full h-full overflow-hidden'
+                  className="w-full h-full overflow-hidden"
                 >
                   <a
-                    className='cursor-pointer ig-gallery-img'
+                    className="cursor-pointer ig-gallery-img"
                     href={images[0].url}
                   >
                     <img
-                      alt='gallery'
-                      className='block object-cover object-center w-full h-full'
+                      alt="gallery"
+                      className="block object-cover object-center w-full h-full"
                       src={images[0].src}
                       width={images[0].width}
                       height={images[0].height}
@@ -98,7 +98,7 @@ const Gallery = ({ duration = 3000, ...props }) => {
                   </a>
                 </motion.div>
               </div>
-              <div className='relative w-1/2 h-64 p-1 overflow-hidden md:h-80 md:p-2'>
+              <div className="relative w-1/2 h-64 p-1 overflow-hidden md:h-80 md:p-2">
                 <motion.div
                   key={images[1].id}
                   initial={{ opacity: 0 }}
@@ -108,15 +108,15 @@ const Gallery = ({ duration = 3000, ...props }) => {
                     ease: [0.6, 0.05, -0.01, 0.9],
                     duration: 2,
                   }}
-                  className='w-full h-full overflow-hidden'
+                  className="w-full h-full overflow-hidden"
                 >
                   <a
-                    className='cursor-pointer ig-gallery-img'
+                    className="cursor-pointer ig-gallery-img"
                     href={images[1].url}
                   >
                     <img
-                      alt='gallery'
-                      className='block object-cover object-center w-full h-full'
+                      alt="gallery"
+                      className="block object-cover object-center w-full h-full"
                       src={images[1].src}
                       width={images[1].width}
                       height={images[1].height}
@@ -124,7 +124,7 @@ const Gallery = ({ duration = 3000, ...props }) => {
                   </a>
                 </motion.div>
               </div>
-              <div className='relative w-full h-64 p-1 overflow-hidden md:h-96 md:p-2'>
+              <div className="relative w-full h-64 p-1 overflow-hidden md:h-96 md:p-2">
                 <motion.div
                   key={images[2].id}
                   initial={{ opacity: 0 }}
@@ -134,15 +134,15 @@ const Gallery = ({ duration = 3000, ...props }) => {
                     ease: [0.6, 0.05, -0.01, 0.9],
                     duration: 2,
                   }}
-                  className='w-full h-full overflow-hidden'
+                  className="w-full h-full overflow-hidden"
                 >
                   <a
-                    className='cursor-pointer ig-gallery-img'
+                    className="cursor-pointer ig-gallery-img"
                     href={images[2].url}
                   >
                     <img
-                      alt='gallery'
-                      className='block object-cover object-center w-full h-full'
+                      alt="gallery"
+                      className="block object-cover object-center w-full h-full"
                       src={images[2].src}
                       width={images[2].width}
                       height={images[2].height}
@@ -151,8 +151,8 @@ const Gallery = ({ duration = 3000, ...props }) => {
                 </motion.div>
               </div>
             </div>
-            <div className='flex flex-wrap w-full md:w-1/2'>
-              <div className='relative w-full p-1 overflow-hidden h-96 md:h-96 md:p-2'>
+            <div className="flex flex-wrap w-full md:w-1/2">
+              <div className="relative w-full p-1 overflow-hidden h-96 md:h-96 md:p-2">
                 <motion.div
                   key={images[3].id}
                   initial={{ opacity: 0 }}
@@ -162,15 +162,15 @@ const Gallery = ({ duration = 3000, ...props }) => {
                     ease: [0.6, 0.05, -0.01, 0.9],
                     duration: 2,
                   }}
-                  className='w-full h-full overflow-hidden'
+                  className="w-full h-full overflow-hidden"
                 >
                   <a
-                    className='cursor-pointer ig-gallery-img'
+                    className="cursor-pointer ig-gallery-img"
                     href={images[3].url}
                   >
                     <img
-                      alt='gallery'
-                      className='block object-cover object-center w-full h-full'
+                      alt="gallery"
+                      className="block object-cover object-center w-full h-full"
                       src={images[3].src}
                       width={images[3].width}
                       height={images[3].height}
@@ -178,7 +178,7 @@ const Gallery = ({ duration = 3000, ...props }) => {
                   </a>
                 </motion.div>
               </div>
-              <div className='relative w-1/2 h-48 p-1 overflow-hidden md:h-80 md:p-2'>
+              <div className="relative w-1/2 h-48 p-1 overflow-hidden md:h-80 md:p-2">
                 <motion.div
                   key={images[4].id}
                   initial={{ opacity: 0 }}
@@ -188,15 +188,15 @@ const Gallery = ({ duration = 3000, ...props }) => {
                     ease: [0.6, 0.05, -0.01, 0.9],
                     duration: 2,
                   }}
-                  className='w-full h-full overflow-hidden'
+                  className="w-full h-full overflow-hidden"
                 >
                   <a
-                    className='cursor-pointer ig-gallery-img'
+                    className="cursor-pointer ig-gallery-img"
                     href={images[4].url}
                   >
                     <img
-                      alt='gallery'
-                      className='block object-cover object-center w-full h-full'
+                      alt="gallery"
+                      className="block object-cover object-center w-full h-full"
                       src={images[4].src}
                       width={images[4].width}
                       height={images[4].height}
@@ -204,7 +204,7 @@ const Gallery = ({ duration = 3000, ...props }) => {
                   </a>
                 </motion.div>
               </div>
-              <div className='relative w-1/2 h-48 p-1 overflow-hidden md:h-80 md:p-2'>
+              <div className="relative w-1/2 h-48 p-1 overflow-hidden md:h-80 md:p-2">
                 <motion.div
                   key={images[5].id}
                   initial={{ opacity: 0 }}
@@ -214,15 +214,15 @@ const Gallery = ({ duration = 3000, ...props }) => {
                     ease: [0.6, 0.05, -0.01, 0.9],
                     duration: 2,
                   }}
-                  className='w-full h-full overflow-hidden'
+                  className="w-full h-full overflow-hidden"
                 >
                   <a
-                    className='cursor-pointer ig-gallery-img'
+                    className="cursor-pointer ig-gallery-img"
                     href={images[5].url}
                   >
                     <img
-                      alt='gallery'
-                      className='block object-cover object-center w-full h-full'
+                      alt="gallery"
+                      className="block object-cover object-center w-full h-full"
                       src={images[5].src}
                       width={images[5].width}
                       height={images[5].height}
@@ -233,12 +233,12 @@ const Gallery = ({ duration = 3000, ...props }) => {
             </div>
           </div>
 
-          <div className='w-full mx-auto mt-8 text-center text-pink-700'>
+          <div className="w-full mx-auto mt-8 text-center text-pink-700">
             <InstagramIcon
-              aria-label='instagram'
-              className='mx-auto text-4xl fill-current'
+              aria-label="instagram"
+              className="mx-auto text-4xl fill-current"
             />
-            <a href='https://instagram.com/joshmu'>@joshmu</a>
+            <a href="https://instagram.com/joshmu">@joshmu</a>
           </div>
         </div>
       </AnimatePresence>
