@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/legacy/image"
 
 import useLocation from '@/hooks/useLocation'
 import LineAccent from '@/shared/LineAccent/LineAccent'
