@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { isMobile } from 'react-device-detect'
 
-export default function FixedBackground({
+export const FixedBackground = ({
   src = '/assets/waves.jpg',
   alt = 'image from joshmu.com',
   children,
   ...props
-}) {
-  const [isMobileAfterLoad, setIsMobileAfterLoad] = useState(null)
+}) => {
+  const [isMobileAfterLoad, setIsMobileAfterLoad] = useState<Boolean>(null!)
 
   // we need to initially recreate isMobile as it loads src using 'undefined'
   useEffect(() => {

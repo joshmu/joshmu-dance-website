@@ -1,24 +1,27 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  createRef,
-} from 'react'
-import { useViewportScroll } from 'framer-motion'
+import { createContext, useContext, useState, useEffect } from 'react'
+import { useScroll } from 'framer-motion'
 
-const globalContext = createContext({
+interface IGlobalContext {
+  SECTIONS: string[]
+  scrollProgress: number
+  currentView: string
+  setCurrentView: React.Dispatch<React.SetStateAction<string>>
+}
+
+const globalContext = createContext<IGlobalContext>({
   SECTIONS: [],
   scrollProgress: 0,
   currentView: '',
+  setCurrentView: () => {},
 })
 
 export function GlobalProvider({ children }) {
   const [currentView, setCurrentView] = useState('hero')
-  const { scrollYProgress } = useViewportScroll()
+  const { scrollYProgress } = useScroll()
   const [scrollProgress, setScrollProgress] = useState(0)
 
-  const SECTIONS = ['home', 'about', 'news', 'portfolio', 'critics', 'contact']
+  // const SECTIONS = ['home', 'about', 'news', 'portfolio', 'critics', 'contact']
+  const SECTIONS = ['home', 'about', 'news', 'critics', 'contact']
 
   // initial scroll
   useEffect(() => {

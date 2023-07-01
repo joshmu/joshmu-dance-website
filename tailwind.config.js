@@ -2,10 +2,18 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
 const plugins = []
-const devOnlyPlugins = [require('tailwindcss-debug-screens')]
+const devOnlyPlugins = []
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./pages/**/*.js', './src/components/**/*.js'],
+  content: [
+    './app/**/*.{js,ts,jsx,tsx,mdx}', // Note the addition of the `app` directory.
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+
+    // Or if using `src` directory:
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -25,7 +33,6 @@ module.exports = {
       },
     },
   },
-  variants: {},
   plugins:
     process.env.NODE_ENV === 'production'
       ? plugins

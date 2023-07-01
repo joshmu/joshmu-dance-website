@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 import { useGlobalContext } from '@/context/globalContext'
 
-const Compressor = ({ text, hide, ...props }) => {
+export const Compressor = ({ text, hide, ...props }) => {
   const [output, setOutput] = useState(['', '', ''])
   const [toggle, setToggle] = useState(false)
 
@@ -47,12 +47,12 @@ const Compressor = ({ text, hide, ...props }) => {
   }
 
   return (
-    <p className='flex items-center justify-center whitespace-pre' {...props}>
+    <p className="flex items-center justify-center whitespace-pre" {...props}>
       <span>{output[0]}</span>
       <motion.span
-        variants={animationVariants}
+        variants={animationVariants as any}
         animate={controls}
-        className='overflow-hidden'
+        className="overflow-hidden"
       >
         <span>{output[1]}</span>
       </motion.span>
@@ -60,5 +60,3 @@ const Compressor = ({ text, hide, ...props }) => {
     </p>
   )
 }
-
-export default Compressor

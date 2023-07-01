@@ -1,12 +1,25 @@
 import useLocation from '@/hooks/useLocation'
-import Banner from '@/shared/Banner/Banner'
+import { Banner } from '@/shared/Banner/Banner'
 
 const criticsBannerImg = '/assets/standing_pg.jpg'
 
-const Critics = props => {
+interface Critics {
+  title: string
+  highlight: string
+  image: string
+  imageAlt: string
+  raw: {
+    review: string
+    critic: string
+  }[]
+  content?: React.ReactNode[]
+  duration?: number
+}
+
+const Critics = (props) => {
   const { ref } = useLocation('critics')
 
-  const critics = {
+  const critics: Critics = {
     title: 'from the critics',
     highlight: 'critics',
     duration: 6000,
@@ -64,9 +77,9 @@ const Critics = props => {
 
 function Critic({ review, critic }) {
   return (
-    <div className='w-full mx-auto text-center sm:w-4/5 text-md'>
-      <p className=''>{review}</p>
-      <p className='mt-2 font-semibold'>{critic}</p>
+    <div className="w-full mx-auto text-center sm:w-4/5 text-md">
+      <p className="">{review}</p>
+      <p className="mt-2 font-semibold">{critic}</p>
     </div>
   )
 }
