@@ -1,4 +1,4 @@
-import Banner from '@/shared/Banner/Banner'
+import { Banner } from '@/shared/Banner/Banner'
 
 const companyBannerImg = '/assets/zero_group_pg.jpg'
 
@@ -70,7 +70,7 @@ const Companies = () => {
 function Company(data) {
   return (
     <div>
-      <a href={data.url} target='_blank' className='uppercase text-md'>
+      <a href={data.url} target="_blank" className="uppercase text-md">
         <p>{data.name}</p>
       </a>
     </div>

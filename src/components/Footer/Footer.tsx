@@ -8,7 +8,7 @@ import { FaFacebookF as FacebookIcon } from 'react-icons/fa'
 import { MdKeyboardArrowUp as ArrowUpIcon } from 'react-icons/md'
 import { animateScroll as scroll } from 'react-scroll'
 
-import Reveal from '@/shared/ux/Reveal'
+import { Reveal } from '@/shared/ux/Reveal'
 
 const Footer = () => {
   const handleScrollToTopBtn = () => {
@@ -16,36 +16,36 @@ const Footer = () => {
   }
 
   return (
-    <footer className='w-full bg-varDark text-varLight'>
-      <div className='container relative mx-auto'>
+    <footer className="w-full bg-varDark text-varLight">
+      <div className="container relative mx-auto">
         {/* scroll to top */}
-        <div className='absolute top-0 left-1/2'>
+        <div className="absolute top-0 left-1/2">
           <div
             onClick={handleScrollToTopBtn}
-            className='p-1 transition-colors duration-300 ease-in-out transform -translate-x-1/2 -translate-y-1/2 border-4 rounded-full cursor-pointer border-themeBg bg-themeAccent hover:bg-orange-500'
+            className="p-1 transition-colors duration-300 ease-in-out transform -translate-x-1/2 -translate-y-1/2 border-4 rounded-full cursor-pointer border-themeBg bg-themeAccent hover:bg-orange-500"
           >
-            <ArrowUpIcon className='text-3xl fill-current sm:text-4xl' />
+            <ArrowUpIcon className="text-3xl fill-current sm:text-4xl" />
           </div>
         </div>
 
-        <div className='flex items-center justify-between w-full px-4 '>
+        <div className="flex items-center justify-between w-full px-4 ">
           {/* copyright */}
-          <div className='text-sm'>
+          <div className="text-sm">
             <p>
-              <span className='hidden md:inline-block'>Developed by </span>
-              <Link href='https://joshmu.dev' target='_blank' legacyBehavior>
-                <span className='font-bold transition-colors duration-300 cursor-pointer text-themeAccent hover:text-orange-500'>
+              <span className="hidden md:inline-block">Developed by </span>
+              <Link href="https://joshmu.dev" target="_blank" legacyBehavior>
+                <span className="font-bold transition-colors duration-300 cursor-pointer text-themeAccent hover:text-orange-500">
                   Josh Mu
                 </span>
               </Link>{' '}
-              <CopyrightIcon className='relative inline fill-current' />{' '}
+              <CopyrightIcon className="relative inline fill-current" />{' '}
               <span>{new Date().getFullYear()}</span>
             </p>
           </div>
 
           {/* social icons */}
           <div>
-            <ul className='flex items-center justify-center'>
+            <ul className="flex items-center justify-center">
               <li>
                 <Reveal
                   variants={{
@@ -54,12 +54,12 @@ const Footer = () => {
                   }}
                 >
                   <a
-                    className='inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
-                    href='https://www.facebook.com/josh.mu'
+                    className="inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent"
+                    href="https://www.facebook.com/josh.mu"
                   >
                     <FacebookIcon
-                      aria-label='facebook'
-                      className='text-xl fill-current'
+                      aria-label="facebook"
+                      className="text-xl fill-current"
                     />
                   </a>
                 </Reveal>
@@ -72,12 +72,12 @@ const Footer = () => {
                   }}
                 >
                   <a
-                    className='inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
-                    href='https://www.instagram.com/joshmu'
+                    className="inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent"
+                    href="https://www.instagram.com/joshmu"
                   >
                     <InstagramIcon
-                      aria-label='instagram'
-                      className='text-xl fill-current'
+                      aria-label="instagram"
+                      className="text-xl fill-current"
                     />
                   </a>
                 </Reveal>
@@ -90,12 +90,12 @@ const Footer = () => {
                   }}
                 >
                   <a
-                    className='inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent'
-                    href='https://www.twitter.com/josh_mu_'
+                    className="inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent"
+                    href="https://www.twitter.com/josh_mu_"
                   >
                     <TwitterIcon
-                      aria-label='twitter'
-                      className='text-xl fill-current'
+                      aria-label="twitter"
+                      className="text-xl fill-current"
                     />
                   </a>
                 </Reveal>
@@ -105,7 +105,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  );
+  )
 }
 
 export default Footer

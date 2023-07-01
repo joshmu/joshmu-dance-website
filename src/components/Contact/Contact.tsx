@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
 import useLocation from '@/hooks/useLocation'
-import LineAccent from '@/components/shared/LineAccent/LineAccent'
-import Reveal from '@/shared/ux/Reveal'
+import { LineAccent } from '@/components/shared/LineAccent/LineAccent'
+import { Reveal } from '@/shared/ux/Reveal'
 
 // @see https://www.w3resource.com/javascript/form/email-validation.php
 const emailPattern =

@@ -1,9 +1,9 @@
-import FixedBackground from '../FixedBackground/FixedBackground'
-import LineAccent from '../LineAccent/LineAccent'
-import Overlay from '../Overlay/Overlay'
-import Slider from '../Slider/Slider'
+import { FixedBackground } from '../FixedBackground/FixedBackground'
+import { LineAccent } from '../LineAccent/LineAccent'
+import { Overlay } from '../Overlay/Overlay'
+import { Slider } from '../Slider/Slider'
 
-const Banner = ({
+export const Banner = ({
   title = '',
   titleHighlight = '',
   sliderContent,
@@ -54,5 +54,3 @@ const parseTxt = (txt, highlight) => {
   textArray[2] = txt.slice(txt.indexOf(highlight) + highlight.length)
   return textArray
 }
-
-export default Banner

@@ -18,7 +18,8 @@ export function GlobalProvider({ children }) {
   const { scrollYProgress } = useScroll()
   const [scrollProgress, setScrollProgress] = useState(0)
 
-  const SECTIONS = ['home', 'about', 'news', 'portfolio', 'critics', 'contact']
+  // const SECTIONS = ['home', 'about', 'news', 'portfolio', 'critics', 'contact']
+  const SECTIONS = ['home', 'about', 'news', 'critics', 'contact']
 
   // initial scroll
   useEffect(() => {

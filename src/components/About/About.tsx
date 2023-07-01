@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
 import useLocation from '@/hooks/useLocation'
-import LineAccent from '@/components/shared/LineAccent/LineAccent'
+import { LineAccent } from '@/components/shared/LineAccent/LineAccent'
 
 const headshotImg = '/assets/headshot.jpg'
 

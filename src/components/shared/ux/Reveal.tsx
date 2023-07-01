@@ -2,12 +2,12 @@ import { motion, useAnimation } from 'framer-motion'
 import { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-export default function Reveal({
+export const Reveal = ({
   children,
   variants = null,
   transition = null,
   ...props
-}) {
+}) => {
   const controls = useAnimation()
   const [ref, inView] = useInView({
     // triggerOnce: true,
@@ -23,7 +23,7 @@ export default function Reveal({
     <motion.span
       ref={ref}
       animate={controls}
-      initial='hidden'
+      initial="hidden"
       style={{ display: 'inline-block' }}
       variants={{
         visible: { opacity: 1, y: 0 },

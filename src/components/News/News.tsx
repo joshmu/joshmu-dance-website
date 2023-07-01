@@ -1,6 +1,6 @@
 import useLocation from '@/hooks/useLocation'
-import LineAccent from '@/components/shared/Lineaccent/LineAccent'
-import Reveal from '@/shared/ux/Reveal'
+import { LineAccent } from '@/components/shared/LineAccent/LineAccent'
+import { Reveal } from '@/shared/ux/Reveal'
 
 const News = (props) => {
   const { ref } = useLocation('news')

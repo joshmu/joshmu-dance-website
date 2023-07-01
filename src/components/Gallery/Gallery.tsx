@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { AiFillInstagram as InstagramIcon } from 'react-icons/ai'
 
 import useLocation from '@/hooks/useLocation'
-import LineAccent from '@/components/shared/Lineaccent/LineAccent'
+import { LineAccent } from '@/components/shared/LineAccent/LineAccent'
 
 const Gallery = ({ duration = 3000, ...props }) => {
   const { ref } = useLocation('portfolio')

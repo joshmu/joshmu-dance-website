@@ -5,7 +5,7 @@ import { scroller } from 'react-scroll'
 import { useGlobalContext } from '@/context/globalContext'
 import { useThemeContext } from '@/context/themeContext'
 import useScreenSize from '@/hooks/useScreenSize'
-import Compressor from '@/shared/ux/Compressor'
+import { Compressor } from '@/shared/ux/Compressor'
 
 import MobileMenu from './MobileMenu/MobileMenu'
 import MobileMenuBtn from './MobileMenu/MobileMenuBtn/MobileMenuBtn'
@@ -45,12 +45,12 @@ const Navbar = () => {
     },
   }
 
-  const toggleMenu = choice => {
+  const toggleMenu = (choice) => {
     const decision = choice === undefined ? !isMobileMenuOpen : choice
     setIsMobileMenuOpen(decision)
   }
 
-  const scrollTo = elemId => {
+  const scrollTo = (elemId) => {
     scroller.scrollTo(elemId, {
       duration: 800,
       delay: 0,
@@ -66,31 +66,31 @@ const Navbar = () => {
           : 'bg-transparent h-16 text-themeBg'
       } fixed z-50 w-full items-center justify-center transition-all duration-700 ease-in-out`}
     >
-      <div className='container h-full mx-auto'>
-        <div className='flex items-center justify-between w-full h-full px-4'>
+      <div className="container h-full mx-auto">
+        <div className="flex items-center justify-between w-full h-full px-4">
           <div
             onClick={toggleTheme}
-            className='flex h-full text-2xl font-semibold uppercase cursor-pointer'
+            className="flex h-full text-2xl font-semibold uppercase cursor-pointer"
           >
-            <Compressor text='josh mu' hide='osh ' />
+            <Compressor text="josh mu" hide="osh " />
           </div>
 
           {screenSize.name === 'sm' ? (
-            <div className='relative flex flex-col items-center'>
+            <div className="relative flex flex-col items-center">
               <MobileMenuBtn
                 toggleMenu={toggleMenu}
                 isOpen={isMobileMenuOpen}
               />
             </div>
           ) : (
-            <nav className='relative flex h-full uppercase'>
+            <nav className="relative flex h-full uppercase">
               <motion.ul
-                initial='hidden'
-                animate='show'
+                initial="hidden"
+                animate="show"
                 variants={parentAnimation}
-                className='flex flex-wrap items-center justify-center h-full px-4 py-1 overflow-hidden text-sm'
+                className="flex flex-wrap items-center justify-center h-full px-4 py-1 overflow-hidden text-sm"
               >
-                {SECTIONS.map(item => (
+                {SECTIONS.map((item) => (
                   <li key={item}>
                     <motion.button
                       onClick={() => scrollTo(item)}
@@ -116,7 +116,7 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className='flex justify-end w-full -mt-px'
+              className="flex justify-end w-full -mt-px"
             >
               <MobileMenu
                 sections={SECTIONS}
