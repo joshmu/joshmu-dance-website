@@ -1,4 +1,4 @@
-import Image from "next/legacy/image"
+import Image from "next/image"
 
 import useLocation from '@/hooks/useLocation'
 import LineAccent from '@/shared/LineAccent/LineAccent'
@@ -19,7 +19,10 @@ const About = props => {
             // layout='responsive' // <= causes img to disappear on mobile
             alt='josh mu headshot'
             className='object-cover w-full h-full'
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </div>
 
         <div className='flex flex-col flex-1 m-8 md:m-0'>
@@ -58,7 +61,7 @@ const About = props => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default About
