@@ -7,12 +7,10 @@
     "start": "next start"
   },
   "dependencies": {
-    "autoprefixer": "^10.4.14",
     "eslint-config-next": "^13.4.7",
     "framer-motion": "^6.5.1",
     "next": "^13.4.7",
     "nodemailer": "^6.9.3",
-    "postcss": "^8.4.5",
     "react": "^18.2.0",
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",
@@ -24,6 +22,8 @@
   "devDependencies": {
     "@types/node": "20.3.3",
     "@types/react": "18.2.14",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
     "postcss-preset-env": "^7.8.3",
     "sass": "^1.63.6",
     "save": "^2.9.0",
