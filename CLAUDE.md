@@ -4,30 +4,30 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is Josh Mu's dance portfolio website built with Next.js (Pages Router), TypeScript, and Tailwind CSS. It's a single-page application with smooth scrolling between sections and features animations, contact forms, and media galleries.
+This is Josh Mu's dance portfolio website built with Next.js (App Router), TypeScript, and Tailwind CSS. It's a single-page application with smooth scrolling between sections and features animations, contact forms, and media galleries.
 
 ## Development Commands
 
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
-# Start development server
-npm run dev
+# Start development server (with Turbopack)
+pnpm run dev
 
 # Build for production
-npm run build
+pnpm run build
 
 # Start production server
-npm start
+pnpm start
 ```
 
 ## Architecture & Structure
 
 ### Routing Pattern
-- Uses Next.js Pages Router (not App Router)
+- Uses Next.js App Router (migrated from Pages Router)
 - Single-page application with section-based navigation
-- API routes in `/pages/api/` for email and Instagram functionality
+- API routes in `/app/api/` using Route Handlers for email and Instagram functionality
 
 ### Component Organization
 ```
@@ -85,16 +85,17 @@ SMTP_PASS=your_smtp_password
 
 ## API Routes
 
-- `/api/email` - Handles contact form submissions via nodemailer
-- `/api/instagram` - Instagram feed integration (currently commented out)
-- `/api/hello` - Example API route
+- `/app/api/email/route.ts` - Handles contact form submissions via nodemailer
+- `/app/api/instagram/route.ts` - Instagram feed integration (currently commented out)
+- `/app/api/hello/route.ts` - Example API route
 
 ## Known Issues & Notes
 
 - Instagram Gallery component is commented out due to API issues
 - No testing framework is configured
-- The project uses npm (not yarn or pnpm) based on `package-lock.json`
-- Currently on feature branch `feat_infra-update` with recent infrastructure updates
+- The project uses pnpm (migrated from npm)
+- Successfully migrated to Next.js 15 with App Router
+- Turbopack enabled for faster development builds
 
 ## Development Patterns
 

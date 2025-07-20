@@ -72,7 +72,7 @@ const Gallery = ({ duration = 3000, ...props }) => {
 
   return (
     <section ref={ref} {...props}>
-      <AnimatePresence exitBeforeEnter initial={false}>
+      <AnimatePresence mode="wait" initial={false}>
         <div className="container flex flex-wrap px-5 py-24 mx-auto">
           <div className="w-full mb-8 text-center">
             <h2 className="text-3xl font-light uppercase whitespace-pre">
@@ -90,7 +90,6 @@ const Gallery = ({ duration = 3000, ...props }) => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{
-                    ease: [0.6, 0.05, -0.01, 0.9],
                     duration: 2,
                   }}
                   className="w-full h-full overflow-hidden"
@@ -116,7 +115,6 @@ const Gallery = ({ duration = 3000, ...props }) => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{
-                    ease: [0.6, 0.05, -0.01, 0.9],
                     duration: 2,
                   }}
                   className="w-full h-full overflow-hidden"
@@ -142,7 +140,6 @@ const Gallery = ({ duration = 3000, ...props }) => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{
-                    ease: [0.6, 0.05, -0.01, 0.9],
                     duration: 2,
                   }}
                   className="w-full h-full overflow-hidden"
@@ -170,7 +167,6 @@ const Gallery = ({ duration = 3000, ...props }) => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{
-                    ease: [0.6, 0.05, -0.01, 0.9],
                     duration: 2,
                   }}
                   className="w-full h-full overflow-hidden"
@@ -196,7 +192,6 @@ const Gallery = ({ duration = 3000, ...props }) => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{
-                    ease: [0.6, 0.05, -0.01, 0.9],
                     duration: 2,
                   }}
                   className="w-full h-full overflow-hidden"
@@ -222,7 +217,6 @@ const Gallery = ({ duration = 3000, ...props }) => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{
-                    ease: [0.6, 0.05, -0.01, 0.9],
                     duration: 2,
                   }}
                   className="w-full h-full overflow-hidden"

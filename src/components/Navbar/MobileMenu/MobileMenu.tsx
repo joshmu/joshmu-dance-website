@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, Variants } from 'framer-motion'
 import { Link } from 'react-scroll'
 
 export default function MobileMenu({
@@ -8,7 +8,7 @@ export default function MobileMenu({
   toggleMenu,
 }) {
   // animation
-  const parentAnimation = {
+  const parentAnimation: Variants = {
     hidden: {
       opacity: 0,
     },
@@ -19,7 +19,7 @@ export default function MobileMenu({
       },
     },
   }
-  const childAnimation = {
+  const childAnimation: Variants = {
     hidden: {
       x: 50,
       opacity: 0,
@@ -30,7 +30,6 @@ export default function MobileMenu({
       transition: {
         duration: 1,
         // yoyo: Infinity,
-        ease: [0.6, 0.05, -0.01, 0.9],
       },
     },
   }

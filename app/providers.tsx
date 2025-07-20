@@ -8,7 +8,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <GlobalProvider>
       <ThemeProvider>
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence mode="wait">
           {children}
         </AnimatePresence>
       </ThemeProvider>

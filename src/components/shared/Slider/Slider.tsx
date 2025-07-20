@@ -25,7 +25,7 @@ export const Slider = ({ content, duration = 5000, ...props }) => {
 
   return (
     <ul className="flex items-center justify-center px-2">
-      <AnimatePresence initial={false} exitBeforeEnter>
+      <AnimatePresence initial={false} mode="wait">
         <motion.li
           key={pos}
           initial={{ x: 100, opacity: 0 }}

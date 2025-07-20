@@ -23,7 +23,6 @@ const News = (props) => {
             transition={{
               delay: 0.5,
               duration: 0.8,
-              ease: [0.6, 0.05, -0.01, 0.9],
             }}
           >
             <span className="text-3xl font-semibold tracking-tight text-center text-themeText">

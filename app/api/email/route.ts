@@ -20,7 +20,13 @@ export async function POST(request: NextRequest) {
   }
 }
 
-async function sendEmail({ from, subject, text }: { from: string; subject: string; text: string }) {
+interface EmailParams {
+  from: string
+  subject: string
+  text: string
+}
+
+async function sendEmail({ from, subject, text }: EmailParams) {
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
     host: 'smtp.dreamhost.com',

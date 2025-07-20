@@ -13,7 +13,7 @@ export default function MobileMenuBtn({ isOpen, toggleMenu }) {
       onClick={handleClick}
       className='flex flex-col justify-center w-full h-full p-2 text-2xl bg-transparent cursor-pointer'
     >
-      <AnimatePresence exitBeforeEnter>
+      <AnimatePresence mode="wait">
         {isOpen ? (
           <motion.div
             key='opened'
