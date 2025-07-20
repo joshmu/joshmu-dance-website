@@ -1,6 +1,11 @@
-const nodemailer = require('nodemailer')
+import { NextApiRequest, NextApiResponse } from 'next'
+import nodemailer from 'nodemailer'
 
-module.exports = async (req, res) => {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' })
+  }
+
   const {
     email: from, // sender address
     name: subject, // Subject line
@@ -10,7 +15,7 @@ module.exports = async (req, res) => {
   try {
     console.log({ from, subject, text })
     const info = await email({ from, subject, text })
-    res.status(200).send({ msg: 'success', info })
+    res.status(200).json({ msg: 'success', info })
   } catch (err) {
     console.error(err)
     res.status(400).json({ error: err.message })
@@ -19,7 +24,7 @@ module.exports = async (req, res) => {
 
 async function email({ from, subject, text }) {
   // create reusable transporter object using the default SMTP transport
-  let transporter = nodemailer.createTransport({
+  const transporter = nodemailer.createTransport({
     host: 'smtp.dreamhost.com',
     port: 587,
     secure: false, // true for 465, false for other ports
@@ -39,7 +44,7 @@ async function email({ from, subject, text }) {
   }
 
   // send mail with defined transport object
-  let info = await transporter.sendMail(mailItem)
+  const info = await transporter.sendMail(mailItem)
 
   return info
 }

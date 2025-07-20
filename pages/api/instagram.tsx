@@ -50,8 +50,9 @@ function trimPostInformation(response) {
   })
 }
 
-export default async (req, res) => {
+import { NextApiRequest, NextApiResponse } from 'next'
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const posts = await getPosts()
-  res.statusCode = 200
-  res.json(posts)
+  res.status(200).json(posts)
 }
