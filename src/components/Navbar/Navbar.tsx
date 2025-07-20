@@ -40,7 +40,6 @@ const Navbar = () => {
       transition: {
         duration: 1,
         // yoyo: Infinity,
-        ease: [0.6, 0.05, -0.01, 0.9],
       },
     },
   }

@@ -1,20 +1,15 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-/**
- * Instagram Serverless Posts Fetcher
- */
+import { NextResponse } from 'next/server'
 
 // * this is updated - grab from icognito network api call -
 const query_hash = 'd4d88dc1500312af6f937f7b804c68c3'
-
 const user_id = '13112419'
 const num_of_posts = 16
 
 const url = `https://www.instagram.com/graphql/query/?query_hash=${query_hash}&variables={"id":"${user_id}","first":${num_of_posts}}`
-// const url = 'https://www.instagram.com/graphql/query/?query_hash=8c2a529969ee035a5063f2fc8602a0fd&variables=%7B%22id%22:%2213112419%22,%22first%22:16%7D'
 
 const cache = {
   lastFetch: 0,
-  posts: [],
+  posts: [] as any[],
 }
 
 // cache the ig data
@@ -32,8 +27,8 @@ async function getPosts() {
   return posts
 }
 
-function trimPostInformation(response) {
-  return response.data.user.edge_owner_to_timeline_media.edges.map(edge => {
+function trimPostInformation(response: any) {
+  return response.data.user.edge_owner_to_timeline_media.edges.map((edge: any) => {
     if (!edge.node.dimensions) {
       console.log('no dimensions?', edge.node)
     }
@@ -50,8 +45,11 @@ function trimPostInformation(response) {
   })
 }
 
-export default async (req, res) => {
-  const posts = await getPosts()
-  res.statusCode = 200
-  res.json(posts)
+export async function GET() {
+  try {
+    const posts = await getPosts()
+    return NextResponse.json(posts, { status: 200 })
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message }, { status: 500 })
+  }
 }

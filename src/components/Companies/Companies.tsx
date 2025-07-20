@@ -11,7 +11,7 @@ interface ICompany {
     name: string
     url: string
   }[]
-  content?: JSX.Element[]
+  content?: React.ReactElement[]
   duration?: number
 }
 

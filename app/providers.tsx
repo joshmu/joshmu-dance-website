@@ -1,20 +1,17 @@
-import '@/styles/globals.scss'
+'use client'
 
 import { AnimatePresence } from 'framer-motion'
-
 import { GlobalProvider } from '@/context/globalContext'
 import { ThemeProvider } from '@/context/themeContext'
 
-function MyApp({ Component, pageProps, router }) {
+export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <GlobalProvider>
       <ThemeProvider>
-        <AnimatePresence exitBeforeEnter>
-          <Component {...pageProps} key={router.route} />
+        <AnimatePresence mode="wait">
+          {children}
         </AnimatePresence>
       </ThemeProvider>
     </GlobalProvider>
   )
 }
-
-export default MyApp
