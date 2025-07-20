@@ -1,28 +1,26 @@
-import { NextApiRequest, NextApiResponse } from 'next'
+import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' })
-  }
-
-  const {
-    email: from, // sender address
-    name: subject, // Subject line
-    message: text, // plain text body
-  } = req.body
-
+export async function POST(request: NextRequest) {
   try {
+    const body = await request.json()
+    const {
+      email: from, // sender address
+      name: subject, // Subject line
+      message: text, // plain text body
+    } = body
+
     console.log({ from, subject, text })
-    const info = await email({ from, subject, text })
-    res.status(200).json({ msg: 'success', info })
-  } catch (err) {
+    const info = await sendEmail({ from, subject, text })
+    
+    return NextResponse.json({ msg: 'success', info }, { status: 200 })
+  } catch (err: any) {
     console.error(err)
-    res.status(400).json({ error: err.message })
+    return NextResponse.json({ error: err.message }, { status: 400 })
   }
 }
 
-async function email({ from, subject, text }) {
+async function sendEmail({ from, subject, text }: { from: string; subject: string; text: string }) {
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
     host: 'smtp.dreamhost.com',

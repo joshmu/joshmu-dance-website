@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --light: #ffffff;
+  --dark: #202020;
+  --twitter: #5daadf;
+}
+
+.theme-light {
+  --text: #202020;
+  --textSecondary: #5e5e5e;
+  --background: #ffffff;
+  --accent: rgba(255, 138, 76, 1);
+}
+
+.theme-dark {
+  --text: #ffffff;
+  --textSecondary: #bdbdbc;
+  --background: #202020;
+  --accent: rgba(255, 138, 76, 1);
+}
+
+body {
+  background-color: theme('colors.themeBg');
+  color: theme('colors.themeText');
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.ig-gallery-img {
+  div {
+    // force nextjs 10 <Image /> to fill parent container
+    min-height: 100% !important;
+  }
+}
