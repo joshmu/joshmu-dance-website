@@ -7,9 +7,9 @@
     "start": "next start"
   },
   "dependencies": {
-    "eslint-config-next": "^15.4.2",
+    "eslint-config-next": "^15.4.8",
     "framer-motion": "^12.23.6",
-    "next": "^15.4.2",
+    "next": "^15.4.8",
     "nodemailer": "^6.9.3",
     "react": "^19.1.0",
     "react-device-detect": "^2.2.3",
