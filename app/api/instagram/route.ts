@@ -50,6 +50,8 @@ export async function GET() {
     const posts = await getPosts()
     return NextResponse.json(posts, { status: 200 })
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+    // Instagram's unofficial GraphQL API is unreliable — return empty array
+    // so the Gallery component can show its fallback UI
+    return NextResponse.json([], { status: 200 })
   }
 }
