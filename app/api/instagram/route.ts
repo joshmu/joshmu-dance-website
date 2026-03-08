@@ -1,57 +1,72 @@
 import { NextResponse } from 'next/server'
 
-// * this is updated - grab from icognito network api call -
-const query_hash = 'd4d88dc1500312af6f937f7b804c68c3'
-const user_id = '13112419'
-const num_of_posts = 16
-
-const url = `https://www.instagram.com/graphql/query/?query_hash=${query_hash}&variables={"id":"${user_id}","first":${num_of_posts}}`
+const INSTAGRAM_ACCESS_TOKEN = process.env.INSTAGRAM_ACCESS_TOKEN
 
 const cache = {
   lastFetch: 0,
   posts: [] as any[],
 }
 
-// cache the ig data
-async function getPosts() {
+const CACHE_DURATION = 1800000 // 30 minutes
+
+async function fetchInstagramPosts() {
+  if (!INSTAGRAM_ACCESS_TOKEN) {
+    console.warn('INSTAGRAM_ACCESS_TOKEN is not set')
+    return []
+  }
+
   const timeSinceLastFetch = Date.now() - cache.lastFetch
-  // 30 minutes
-  const cacheDuration = 1800000
-  if (timeSinceLastFetch <= cacheDuration) {
+  if (timeSinceLastFetch <= CACHE_DURATION && cache.posts.length > 0) {
     return cache.posts
   }
-  const data = await fetch(url).then(res => res.json())
-  const posts = trimPostInformation(data)
+
+  // Fetch recent media from the Instagram Graph API
+  const url = `https://graph.instagram.com/me/media?fields=id,caption,media_url,thumbnail_url,permalink,media_type,timestamp&limit=16&access_token=${INSTAGRAM_ACCESS_TOKEN}`
+
+  const response = await fetch(url)
+
+  if (!response.ok) {
+    const errorBody = await response.text()
+    console.error('Instagram API error:', response.status, errorBody)
+
+    // If token is expired, return cached posts if available
+    if (cache.posts.length > 0) {
+      return cache.posts
+    }
+    return []
+  }
+
+  const data = await response.json()
+
+  // Filter to only IMAGE and CAROUSEL_ALBUM types (skip VIDEO-only posts)
+  const posts = (data.data || [])
+    .filter((item: any) => item.media_type !== 'VIDEO')
+    .map((item: any) => ({
+      id: item.id,
+      src: item.media_url,
+      thumbnail: item.thumbnail_url || item.media_url,
+      url: item.permalink,
+      caption: item.caption || '',
+      width: 1080,
+      height: 1080,
+    }))
+
   cache.lastFetch = Date.now()
   cache.posts = posts
-  return posts
-}
 
-function trimPostInformation(response: any) {
-  return response.data.user.edge_owner_to_timeline_media.edges.map((edge: any) => {
-    if (!edge.node.dimensions) {
-      console.log('no dimensions?', edge.node)
-    }
-    const post = {
-      src: edge.node.display_url,
-      width: edge.node.dimensions.width,
-      height: edge.node.dimensions.height,
-      thumbnail: edge.node.thumbnail_src,
-      url: `https://instagram.com/p/${edge.node.shortcode}`,
-      caption: edge.node.edge_media_to_caption.edges[0].node.text,
-      id: edge.node.id,
-    }
-    return post
-  })
+  return posts
 }
 
 export async function GET() {
   try {
-    const posts = await getPosts()
+    const posts = await fetchInstagramPosts()
     return NextResponse.json(posts, { status: 200 })
   } catch (error: any) {
-    // Instagram's unofficial GraphQL API is unreliable — return empty array
-    // so the Gallery component can show its fallback UI
+    console.error('Instagram fetch error:', error.message)
+    // Return cached posts if available, otherwise empty array
+    if (cache.posts.length > 0) {
+      return NextResponse.json(cache.posts, { status: 200 })
+    }
     return NextResponse.json([], { status: 200 })
   }
 }

@@ -74,6 +74,7 @@ Required in `.env.local`:
 ```
 SMTP_USER=your_smtp_username
 SMTP_PASS=your_smtp_password
+INSTAGRAM_ACCESS_TOKEN=your_instagram_graph_api_token
 ```
 
 ## TypeScript Configuration
@@ -86,12 +87,12 @@ SMTP_PASS=your_smtp_password
 ## API Routes
 
 - `/app/api/email/route.ts` - Handles contact form submissions via nodemailer
-- `/app/api/instagram/route.ts` - Instagram feed integration (currently commented out)
+- `/app/api/instagram/route.ts` - Instagram feed integration via Instagram Graph API
 - `/app/api/hello/route.ts` - Example API route
 
 ## Known Issues & Notes
 
-- Instagram Gallery component is commented out due to API issues
+- Instagram Gallery requires INSTAGRAM_ACCESS_TOKEN env var (from Facebook Developer portal)
 - No testing framework is configured
 - The project uses pnpm (migrated from npm)
 - Successfully migrated to Next.js 15 with App Router
