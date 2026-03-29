@@ -1,24 +1,24 @@
-import { MdKeyboardArrowDown as ArrowDownIcon } from 'react-icons/md'
-import { scroller } from 'react-scroll'
+import { MdKeyboardArrowDown as ArrowDownIcon } from "react-icons/md";
+import { scroller } from "react-scroll";
 
-import { useThemeContext } from '@/context/themeContext'
-import useLocation from '@/hooks/useLocation'
-import { FixedBackground } from '@/shared/FixedBackground/FixedBackground'
-import { Overlay } from '@/shared/Overlay/Overlay'
+import { useThemeContext } from "@/context/themeContext";
+import useLocation from "@/hooks/useLocation";
+import { FixedBackground } from "@/shared/FixedBackground/FixedBackground";
+import { Overlay } from "@/shared/Overlay/Overlay";
 
-const heroImg = '/assets/forearm_pg.jpg'
+const heroImg = "/assets/forearm_pg.jpg";
 
 const Hero = (props) => {
-  const { toggleTheme } = useThemeContext()
-  const { ref } = useLocation('home')
+  const { toggleTheme } = useThemeContext();
+  const { ref } = useLocation("home");
 
   const scrollTo = (elemId) => {
     scroller.scrollTo(elemId, {
       duration: 800,
       delay: 0,
-      smooth: 'easeInOutQuart',
-    })
-  }
+      smooth: "easeInOutQuart",
+    });
+  };
 
   return (
     <div ref={ref} className="relative w-full h-screen text-themeBg" {...props}>
@@ -35,19 +35,18 @@ const Hero = (props) => {
             josh mu
           </h1>
           <p className="z-10">
-            <span>performer</span> | <span>choreographer</span> |{' '}
-            <span>teacher</span>
+            <span>performer</span> | <span>choreographer</span> | <span>teacher</span>
           </p>
         </div>
         <div className="absolute bottom-0 z-10 flex items-center justify-center w-full mb-8 text-4xl ">
           <ArrowDownIcon
-            onClick={() => scrollTo('about')}
+            onClick={() => scrollTo("about")}
             className="transition-colors duration-300 ease-in-out cursor-pointer fill-current animate-bounce hover:text-themeAccent"
           />
         </div>
       </FixedBackground>
     </div>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

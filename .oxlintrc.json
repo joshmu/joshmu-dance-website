@@ -1,0 +1,12 @@
+{
+  "plugins": ["typescript", "react", "nextjs", "react-perf"],
+  "rules": {
+    "typescript/ban-ts-comment": "warn",
+    "typescript/no-explicit-any": "warn",
+    "nextjs/no-sync-scripts": "warn",
+    "nextjs/no-img-element": "off",
+    "react/exhaustive-deps": "warn",
+    "typescript/no-unused-vars": "warn"
+  },
+  "ignorePatterns": [".next/", "node_modules/", "public/"]
+}

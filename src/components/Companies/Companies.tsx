@@ -1,72 +1,72 @@
-import { Banner } from '@/shared/Banner/Banner'
+import { Banner } from "@/shared/Banner/Banner";
 
-const companyBannerImg = '/assets/zero_group_pg.jpg'
+const companyBannerImg = "/assets/zero_group_pg.jpg";
 
 interface ICompany {
-  title: string
-  highlight: string
-  image: string
-  imageAlt: string
+  title: string;
+  highlight: string;
+  image: string;
+  imageAlt: string;
   raw: {
-    name: string
-    url: string
-  }[]
-  content?: React.ReactElement[]
-  duration?: number
+    name: string;
+    url: string;
+  }[];
+  content?: React.ReactElement[];
+  duration?: number;
 }
 
 const Companies = () => {
   const companies: ICompany = {
-    title: 'some companies I have worked for',
-    highlight: 'companies',
+    title: "some companies I have worked for",
+    highlight: "companies",
     image: companyBannerImg,
     imageAlt: "josh mu's choreographic work ZERO, image taken by Pedro Grieg",
     raw: [
       {
-        name: 'Sydney Dance Company',
-        url: 'https://www.sydneydancecompany.com',
+        name: "Sydney Dance Company",
+        url: "https://www.sydneydancecompany.com",
       },
       {
-        name: 'Dancenorth',
-        url: 'https://wwww.dancenorth.com.au',
+        name: "Dancenorth",
+        url: "https://wwww.dancenorth.com.au",
       },
       {
-        name: 'Chunky Move',
-        url: 'https://www.chunkymove.com.au',
+        name: "Chunky Move",
+        url: "https://www.chunkymove.com.au",
       },
       {
-        name: 'Stephanie Lake Company',
-        url: 'https://www.stephanielake.com.au',
+        name: "Stephanie Lake Company",
+        url: "https://www.stephanielake.com.au",
       },
       {
-        name: 'Sydney Theatre Company',
-        url: 'https://wwww.sydneytheatrecompany.com.au',
+        name: "Sydney Theatre Company",
+        url: "https://wwww.sydneytheatrecompany.com.au",
       },
       {
-        name: 'Force Majeure',
-        url: 'https://www.forcemajeure.com.au',
+        name: "Force Majeure",
+        url: "https://www.forcemajeure.com.au",
       },
       {
-        name: 'Marrugeku',
-        url: 'https://www.marrugeku.com.au',
+        name: "Marrugeku",
+        url: "https://www.marrugeku.com.au",
       },
       {
-        name: 'Shaun Parker & Company',
-        url: 'https://www.shaunparkercompany.com',
+        name: "Shaun Parker & Company",
+        url: "https://www.shaunparkercompany.com",
       },
       {
-        name: 'Foxtel',
-        url: 'https://www.foxtel.com.au',
+        name: "Foxtel",
+        url: "https://www.foxtel.com.au",
       },
       {
-        name: 'Perth Theatre Company',
-        url: 'https://www.perththeatre.com.au',
+        name: "Perth Theatre Company",
+        url: "https://www.perththeatre.com.au",
       },
     ],
     duration: 2000,
-  }
+  };
 
-  companies.content = companies.raw.map(Company)
+  companies.content = companies.raw.map(Company);
 
   return (
     <Banner
@@ -77,8 +77,8 @@ const Companies = () => {
       image={companies.image}
       imageAlt={companies.imageAlt}
     />
-  )
-}
+  );
+};
 
 function Company(data) {
   return (
@@ -87,7 +87,7 @@ function Company(data) {
         <p>{data.name}</p>
       </a>
     </div>
-  )
+  );
 }
 
-export default Companies
+export default Companies;

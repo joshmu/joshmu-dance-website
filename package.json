@@ -1,13 +1,37 @@
 {
   "name": "joshmu-dance-website",
   "version": "0.1.0",
+  "keywords": [
+    "art",
+    "dance",
+    "josh mu",
+    "website",
+    "yoga"
+  ],
+  "homepage": "https://github.com/joshmu/joshmu-dance-website",
+  "bugs": {
+    "url": "https://github.com/joshmu/joshmu-dance-website/issues"
+  },
+  "license": "MIT",
+  "author": "Josh Mu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joshmu/joshmu-dance-website.git"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "md:lint": "markdownlint-cli2 '**/*.md' '#node_modules'",
+    "validate": "pnpm run typecheck && pnpm run lint && pnpm run format:check",
+    "prepare": "husky"
   },
   "dependencies": {
-    "eslint-config-next": "^15.4.8",
     "framer-motion": "^12.23.6",
     "next": "15.4.10",
     "nodemailer": "^6.9.3",
@@ -20,11 +44,17 @@
     "react-scroll": "^1.8.9"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
     "@types/node": "22.16.5",
     "@types/react": "19.1.8",
     "@types/react-dom": "^19.1.6",
     "autoprefixer": "^10.4.14",
-    "eslint": "^9.31.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "markdownlint-cli2": "^0.22.0",
+    "oxfmt": "^0.42.0",
+    "oxlint": "^1.57.0",
     "postcss": "^8.4.24",
     "postcss-preset-env": "^7.8.3",
     "sass": "^1.63.6",
@@ -32,21 +62,13 @@
     "tailwindcss": "^3.3.2",
     "typescript": "5.8.3"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/joshmu/joshmu-dance-website.git"
-  },
-  "keywords": [
-    "josh mu",
-    "dance",
-    "art",
-    "yoga",
-    "website"
-  ],
-  "author": "Josh Mu",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/joshmu/joshmu-dance-website/issues"
-  },
-  "homepage": "https://github.com/joshmu/joshmu-dance-website"
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "oxlint",
+      "oxfmt --check"
+    ],
+    "*.md": [
+      "markdownlint-cli2"
+    ]
+  }
 }

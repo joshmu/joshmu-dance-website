@@ -1,12 +1,7 @@
-import { motion, Variants } from 'framer-motion'
-import { Link } from 'react-scroll'
+import { motion, Variants } from "framer-motion";
+import { Link } from "react-scroll";
 
-export default function MobileMenu({
-  currentView,
-  sections,
-  scrollTo,
-  toggleMenu,
-}) {
+export default function MobileMenu({ currentView, sections, scrollTo, toggleMenu }) {
   // animation
   const parentAnimation: Variants = {
     hidden: {
@@ -18,7 +13,7 @@ export default function MobileMenu({
         staggerChildren: 0.2,
       },
     },
-  }
+  };
   const childAnimation: Variants = {
     hidden: {
       x: 50,
@@ -32,33 +27,31 @@ export default function MobileMenu({
         // yoyo: Infinity,
       },
     },
-  }
+  };
 
-  const handleMobileMenuClick = item => {
-    toggleMenu(false)
-    scrollTo(item)
-  }
+  const handleMobileMenuClick = (item) => {
+    toggleMenu(false);
+    scrollTo(item);
+  };
 
   return (
-    <nav className='z-50 flex h-full text-right uppercase md:hidden'>
+    <nav className="z-50 flex h-full text-right uppercase md:hidden">
       <motion.ul
-        initial='hidden'
-        animate='show'
+        initial="hidden"
+        animate="show"
         variants={parentAnimation}
         className={`${
-          currentView !== 'home' ? 'bg-themeText' : 'bg-transparent'
+          currentView !== "home" ? "bg-themeText" : "bg-transparent"
         } flex flex-col items-stretch transition-all duration-700 ease-in-out justify-center h-full px-4 py-1 overflow-hidden text-sm`}
       >
-        {sections.map(item => (
+        {sections.map((item) => (
           <li key={item}>
             <Link to={item} smooth={true} offset={0} duration={750}>
               <motion.button
                 onClick={() => handleMobileMenuClick(item)}
                 variants={childAnimation}
                 className={`${
-                  currentView === item
-                    ? 'active text-themeAccent'
-                    : 'font-normal'
+                  currentView === item ? "active text-themeAccent" : "font-normal"
                 } uppercase relative px-3 py-2 focus:outline-none`}
                 whileHover={{ scale: 1.5 }}
               >
@@ -69,5 +62,5 @@ export default function MobileMenu({
         ))}
       </motion.ul>
     </nav>
-  )
+  );
 }

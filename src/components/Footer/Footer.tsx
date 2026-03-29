@@ -1,19 +1,19 @@
-import Link from 'next/link'
+import Link from "next/link";
 import {
   AiOutlineCopyright as CopyrightIcon,
   AiFillInstagram as InstagramIcon,
   AiOutlineTwitter as TwitterIcon,
-} from 'react-icons/ai'
-import { FaFacebookF as FacebookIcon } from 'react-icons/fa'
-import { MdKeyboardArrowUp as ArrowUpIcon } from 'react-icons/md'
-import { animateScroll as scroll } from 'react-scroll'
+} from "react-icons/ai";
+import { FaFacebookF as FacebookIcon } from "react-icons/fa";
+import { MdKeyboardArrowUp as ArrowUpIcon } from "react-icons/md";
+import { animateScroll as scroll } from "react-scroll";
 
-import { Reveal } from '@/shared/ux/Reveal'
+import { Reveal } from "@/shared/ux/Reveal";
 
 const Footer = () => {
   const handleScrollToTopBtn = () => {
-    scroll.scrollToTop()
-  }
+    scroll.scrollToTop();
+  };
 
   return (
     <footer className="w-full bg-varDark text-varLight">
@@ -33,14 +33,14 @@ const Footer = () => {
           <div className="text-sm">
             <p>
               <span className="hidden md:inline-block">Developed by </span>
-              <Link 
-                href="https://joshmu.dev" 
+              <Link
+                href="https://joshmu.dev"
                 target="_blank"
                 className="font-bold transition-colors duration-300 cursor-pointer text-themeAccent hover:text-orange-500"
               >
                 Josh Mu
-              </Link>{' '}
-              <CopyrightIcon className="relative inline fill-current" />{' '}
+              </Link>{" "}
+              <CopyrightIcon className="relative inline fill-current" />{" "}
               <span>{new Date().getFullYear()}</span>
             </p>
           </div>
@@ -59,10 +59,7 @@ const Footer = () => {
                     className="inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent"
                     href="https://www.facebook.com/josh.mu"
                   >
-                    <FacebookIcon
-                      aria-label="facebook"
-                      className="text-xl fill-current"
-                    />
+                    <FacebookIcon aria-label="facebook" className="text-xl fill-current" />
                   </a>
                 </Reveal>
               </li>
@@ -77,10 +74,7 @@ const Footer = () => {
                     className="inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent"
                     href="https://www.instagram.com/joshmu"
                   >
-                    <InstagramIcon
-                      aria-label="instagram"
-                      className="text-xl fill-current"
-                    />
+                    <InstagramIcon aria-label="instagram" className="text-xl fill-current" />
                   </a>
                 </Reveal>
               </li>
@@ -95,10 +89,7 @@ const Footer = () => {
                     className="inline-block px-1 py-4 transition-colors duration-300 ease-in-out cursor-pointer hover:text-themeAccent"
                     href="https://www.twitter.com/josh_mu_"
                   >
-                    <TwitterIcon
-                      aria-label="twitter"
-                      className="text-xl fill-current"
-                    />
+                    <TwitterIcon aria-label="twitter" className="text-xl fill-current" />
                   </a>
                 </Reveal>
               </li>
@@ -107,7 +98,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

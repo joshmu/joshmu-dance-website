@@ -1,82 +1,76 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-import useLocation from '@/hooks/useLocation'
-import { LineAccent } from '@/components/shared/LineAccent/LineAccent'
-import { Reveal } from '@/shared/ux/Reveal'
+import useLocation from "@/hooks/useLocation";
+import { LineAccent } from "@/components/shared/LineAccent/LineAccent";
+import { Reveal } from "@/shared/ux/Reveal";
 
 // @see https://www.w3resource.com/javascript/form/email-validation.php
-const emailPattern =
-  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-const checkValidEmail = (email) => emailPattern.test(email)
+const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const checkValidEmail = (email) => emailPattern.test(email);
 
 const Contact = (props) => {
-  const { ref } = useLocation('contact')
+  const { ref } = useLocation("contact");
 
   const [state, setState] = useState({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
     sent: false,
     error: null,
-  })
-  const [isEmailValid, setIsEmailValid] = useState(true)
+  });
+  const [isEmailValid, setIsEmailValid] = useState(true);
 
   const isValid = (type, text) => {
-    if (type === 'email') {
+    if (type === "email") {
       if (!checkValidEmail(text)) {
-        setIsEmailValid(false)
-        return false
+        setIsEmailValid(false);
+        return false;
       } else {
-        setIsEmailValid(true)
-        return true
+        setIsEmailValid(true);
+        return true;
       }
     }
-  }
+  };
 
   const handleChange = (e) => {
     // match the state props with the placeholder names
-    const id = e.target.placeholder.toLowerCase()
-    setState({ ...state, [id]: e.target.value })
-  }
+    const id = e.target.placeholder.toLowerCase();
+    setState({ ...state, [id]: e.target.value });
+  };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     // if no message
-    if (state.message.length === 0) return
+    if (state.message.length === 0) return;
 
     // if email is not valid
-    if (!isValid('email', state.email)) return
+    if (!isValid("email", state.email)) return;
 
-    const url = '/api/email'
+    const url = "/api/email";
 
     const settings = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ ...state }),
-    }
+    };
 
     try {
-      const fetchResponse = await fetch(url, settings)
-      const data = await fetchResponse.json()
-      console.log('response', data) // parses JSON response into native JavaScript objects
-      setState({ ...state, sent: true })
+      const fetchResponse = await fetch(url, settings);
+      const data = await fetchResponse.json();
+      console.log("response", data); // parses JSON response into native JavaScript objects
+      setState({ ...state, sent: true });
     } catch (err) {
-      console.error(err.message)
-      setState({ ...state, error: err.message })
+      console.error(err.message);
+      setState({ ...state, error: err.message });
     }
-  }
+  };
 
   return (
-    <section
-      id="contact"
-      ref={ref}
-      className="relative text-themeText"
-      {...props}
-    >
+    <section id="contact" ref={ref} className="relative text-themeText" {...props}>
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col w-full mb-12 text-center">
           <h2 className="mb-2 text-2xl font-light text-themeText sm:text-3xl">
@@ -105,15 +99,13 @@ const Contact = (props) => {
                 onChange={handleChange}
                 onBlur={() => {
                   if (state.email.length) {
-                    isValid('email', state.email)
+                    isValid("email", state.email);
                   } else {
-                    setIsEmailValid(true)
+                    setIsEmailValid(true);
                   }
                 }}
                 className={`w-full px-4 py-2 text-base bg-gray-100 rounded-sm focus:outline-none focus:border-themeAccent ${
-                  isEmailValid
-                    ? 'border border-gray-400'
-                    : 'border-2 border-red-400'
+                  isEmailValid ? "border border-gray-400" : "border-2 border-red-400"
                 }`}
                 placeholder="Email"
                 name="email"
@@ -136,10 +128,10 @@ const Contact = (props) => {
                 onClick={handleSubmit}
                 disabled={state.sent}
                 className={`${
-                  state.sent ? 'opacity-50' : ''
+                  state.sent ? "opacity-50" : ""
                 } flex px-8 py-2 mx-auto text-lg text-white uppercase transition-all duration-300 ease-in-out border-0 rounded-sm bg-themeAccent focus:outline-none hover:bg-orange-500`}
               >
-                {state.sent ? '️✓' : 'send'}
+                {state.sent ? "️✓" : "send"}
               </button>
             </div>
             <div className="w-full p-2 pt-8 mt-8 text-center border-t border-gray-200">
@@ -152,9 +144,7 @@ const Contact = (props) => {
               )}
               {state.sent ? (
                 <Reveal>
-                  <p className="text-xl italic text-green-600 animate-bounce">
-                    Message sent!
-                  </p>
+                  <p className="text-xl italic text-green-600 animate-bounce">Message sent!</p>
                 </Reveal>
               ) : (
                 <Reveal>
@@ -172,7 +162,7 @@ const Contact = (props) => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;
