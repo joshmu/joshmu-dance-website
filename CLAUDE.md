@@ -32,7 +32,7 @@ pnpm start
 
 ### Component Organization
 
-```
+```text
 src/components/
 ├── shared/          # Reusable components (Layout, Nav, Footer, etc.)
 ├── Hero/           # Landing section with theme toggle
@@ -79,7 +79,7 @@ TypeScript path aliases are configured for clean imports:
 
 Required in `.env.local`:
 
-```
+```text
 SMTP_USER=your_smtp_username
 SMTP_PASS=your_smtp_password
 ```

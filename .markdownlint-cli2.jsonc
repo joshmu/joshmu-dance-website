@@ -1,0 +1,10 @@
+{
+  "config": {
+    // Line length — disabled for prose
+    "MD013": false,
+    // Inline HTML — needed for badges/images
+    "MD033": false,
+    // First line heading — CLAUDE.md starts with comment
+    "MD041": false
+  }
+}
