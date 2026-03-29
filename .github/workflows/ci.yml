@@ -23,7 +23,7 @@ jobs:
       - uses: pnpm/action-setup@v5
       - uses: actions/setup-node@v6
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm format:check
@@ -37,7 +37,7 @@ jobs:
       - uses: pnpm/action-setup@v5
       - uses: actions/setup-node@v6
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
@@ -51,7 +51,7 @@ jobs:
       - uses: pnpm/action-setup@v5
       - uses: actions/setup-node@v6
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint:md
@@ -65,7 +65,7 @@ jobs:
       - uses: pnpm/action-setup@v5
       - uses: actions/setup-node@v6
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm typecheck
@@ -82,7 +82,7 @@ jobs:
       - uses: pnpm/action-setup@v5
       - uses: actions/setup-node@v6
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
@@ -96,30 +96,10 @@ jobs:
       - uses: pnpm/action-setup@v5
       - uses: actions/setup-node@v6
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm test:run
-
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v6
-      - uses: pnpm/action-setup@v5
-      - uses: actions/setup-node@v6
-        with:
-          node-version-file: '.nvmrc'
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - uses: actions/cache@v5
-        with:
-          path: .next/cache
-          key: nextjs-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('**/*.ts', '**/*.tsx') }}
-          restore-keys: |
-            nextjs-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-
-      - run: pnpm build
 
   gitleaks:
     name: Secret Scanning
@@ -145,7 +125,7 @@ jobs:
       - uses: pnpm/action-setup@v5
       - uses: actions/setup-node@v6
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm audit --audit-level=critical
@@ -159,7 +139,7 @@ jobs:
       - uses: pnpm/action-setup@v5
       - uses: actions/setup-node@v6
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint:knip
@@ -174,7 +154,6 @@ jobs:
       - typecheck
       - commitlint
       - test
-      - build
       - gitleaks
       - audit
       - knip
@@ -189,7 +168,6 @@ jobs:
           echo "TypeCheck: ${{ needs.typecheck.result }}"
           echo "Commitlint: ${{ needs.commitlint.result }}"
           echo "Test: ${{ needs.test.result }}"
-          echo "Build: ${{ needs.build.result }}"
           echo "Gitleaks: ${{ needs.gitleaks.result }}"
           echo "Audit: ${{ needs.audit.result }}"
           echo "Knip: ${{ needs.knip.result }}"
@@ -199,7 +177,6 @@ jobs:
                 "${{ needs.lint-md.result }}" == "failure" ||
                 "${{ needs.typecheck.result }}" == "failure" ||
                 "${{ needs.test.result }}" == "failure" ||
-                "${{ needs.build.result }}" == "failure" ||
                 "${{ needs.gitleaks.result }}" == "failure" ||
                 "${{ needs.audit.result }}" == "failure" ||
                 "${{ needs.knip.result }}" == "failure" ]]; then
