@@ -1,12 +1,12 @@
-import ReactGA from 'react-ga'
+import ReactGA from "react-ga";
 
-const trackingId = 'UA-31428430-1'
+const trackingId = "UA-31428430-1";
 
 export const initGA = () => {
-  ReactGA.initialize(trackingId)
-}
+  ReactGA.initialize(trackingId);
+};
 
 export const logPageView = () => {
-  ReactGA.set({ page: window.location.pathname })
-  ReactGA.pageview(window.location.pathname)
-}
+  ReactGA.set({ page: window.location.pathname });
+  ReactGA.pageview(window.location.pathname);
+};

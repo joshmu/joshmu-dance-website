@@ -25,11 +25,13 @@ pnpm start
 ## Architecture & Structure
 
 ### Routing Pattern
+
 - Uses Next.js App Router (migrated from Pages Router)
 - Single-page application with section-based navigation
 - API routes in `/app/api/` using Route Handlers for email and Instagram functionality
 
 ### Component Organization
+
 ```
 src/components/
 ├── shared/          # Reusable components (Layout, Nav, Footer, etc.)
@@ -41,7 +43,9 @@ src/components/
 ```
 
 ### Path Aliases
+
 TypeScript path aliases are configured for clean imports:
+
 - `@/components/*` → `src/components/*`
 - `@/shared/*` → `src/components/shared/*`
 - `@/context/*` → `src/context/*`
@@ -50,6 +54,7 @@ TypeScript path aliases are configured for clean imports:
 - `@/styles/*` → `./styles/*`
 
 ### Styling Architecture
+
 1. **Tailwind CSS** for utility classes
 2. **SCSS** for global styles (`/styles/`)
 3. **CSS Variables** for theming:
@@ -57,11 +62,13 @@ TypeScript path aliases are configured for clean imports:
    - Theme toggle functionality in Hero component
 
 ### State Management
+
 - React Context API for global state
 - `GlobalContext` and `ThemeContext` in `/src/context/`
 - No external state management libraries
 
 ### Key Dependencies
+
 - **framer-motion**: Page transitions and animations
 - **react-scroll**: Smooth section navigation
 - **react-intersection-observer**: Viewport detection
@@ -71,6 +78,7 @@ TypeScript path aliases are configured for clean imports:
 ## Environment Variables
 
 Required in `.env.local`:
+
 ```
 SMTP_USER=your_smtp_username
 SMTP_PASS=your_smtp_password

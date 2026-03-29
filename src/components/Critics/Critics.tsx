@@ -1,65 +1,64 @@
-import useLocation from '@/hooks/useLocation'
-import { Banner } from '@/shared/Banner/Banner'
+import useLocation from "@/hooks/useLocation";
+import { Banner } from "@/shared/Banner/Banner";
 
-const criticsBannerImg = '/assets/standing_pg.jpg'
+const criticsBannerImg = "/assets/standing_pg.jpg";
 
 interface Critics {
-  title: string
-  highlight: string
-  image: string
-  imageAlt: string
+  title: string;
+  highlight: string;
+  image: string;
+  imageAlt: string;
   raw: {
-    review: string
-    critic: string
-  }[]
-  content?: React.ReactNode[]
-  duration?: number
+    review: string;
+    critic: string;
+  }[];
+  content?: React.ReactNode[];
+  duration?: number;
 }
 
 const Critics = (props) => {
-  const { ref } = useLocation('critics')
+  const { ref } = useLocation("critics");
 
   const critics: Critics = {
-    title: 'from the critics',
-    highlight: 'critics',
+    title: "from the critics",
+    highlight: "critics",
     duration: 6000,
     image: criticsBannerImg,
-    imageAlt: 'josh mu standing straight, image taken by Pedro Grieg',
+    imageAlt: "josh mu standing straight, image taken by Pedro Grieg",
     raw: [
       {
         review:
-          'Josh Mu is the salient dancer. He commands the stage both with his dramatic range and the perfect control he exercises over his body',
-        critic: 'aussietheatre.com.au',
+          "Josh Mu is the salient dancer. He commands the stage both with his dramatic range and the perfect control he exercises over his body",
+        critic: "aussietheatre.com.au",
       },
       {
         review: "Josh Mu's slinky rippling opening solo",
-        critic: 'ArtsHub',
+        critic: "ArtsHub",
       },
       {
-        review: 'the joy, elevation and vivacity of Josh Mu',
-        critic: 'Capital Times',
+        review: "the joy, elevation and vivacity of Josh Mu",
+        critic: "Capital Times",
       },
       {
-        review:
-          'Josh Mu is a strong performer, equally talented in drama and dance',
-        critic: 'Dance Australia',
+        review: "Josh Mu is a strong performer, equally talented in drama and dance",
+        critic: "Dance Australia",
       },
       {
-        review: 'Mu inhabitating some extremely precise phrases',
-        critic: 'theatreview.org.nz',
+        review: "Mu inhabitating some extremely precise phrases",
+        critic: "theatreview.org.nz",
       },
       {
-        review: 'The opening sequence of an outstandingly flexible male solo',
-        critic: 'Sydney Morning Herald',
+        review: "The opening sequence of an outstandingly flexible male solo",
+        critic: "Sydney Morning Herald",
       },
       {
-        review: 'Josh Mu is a powerfully agile dancer',
-        critic: 'Daily Review',
+        review: "Josh Mu is a powerfully agile dancer",
+        critic: "Daily Review",
       },
     ],
-  }
+  };
 
-  critics.content = critics.raw.map(Critic)
+  critics.content = critics.raw.map(Critic);
 
   return (
     <div ref={ref} {...props}>
@@ -72,8 +71,8 @@ const Critics = (props) => {
         imageAlt={critics.imageAlt}
       />
     </div>
-  )
-}
+  );
+};
 
 function Critic({ review, critic }) {
   return (
@@ -81,7 +80,7 @@ function Critic({ review, critic }) {
       <p className="">{review}</p>
       <p className="mt-2 font-semibold">{critic}</p>
     </div>
-  )
+  );
 }
 
-export default Critics
+export default Critics;

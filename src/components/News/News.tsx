@@ -1,9 +1,9 @@
-import useLocation from '@/hooks/useLocation'
-import { LineAccent } from '@/components/shared/LineAccent/LineAccent'
-import { Reveal } from '@/shared/ux/Reveal'
+import useLocation from "@/hooks/useLocation";
+import { LineAccent } from "@/components/shared/LineAccent/LineAccent";
+import { Reveal } from "@/shared/ux/Reveal";
 
 const News = (props) => {
-  const { ref } = useLocation('news')
+  const { ref } = useLocation("news");
 
   return (
     <>
@@ -32,16 +32,16 @@ const News = (props) => {
         </div>
 
         {/* Video Embed */}
-        <div style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
+        <div style={{ padding: "56.25% 0 0 0", position: "relative" }}>
           <iframe
             title="zero trailer"
             src="https://player.vimeo.com/video/456437416?autoplay=1&loop=1&byline=0&portrait=0&muted=1"
             style={{
-              position: 'absolute',
+              position: "absolute",
               top: 0,
               left: 0,
-              width: '100%',
-              height: '100%',
+              width: "100%",
+              height: "100%",
             }}
             allowFullScreen
           ></iframe>
@@ -49,7 +49,7 @@ const News = (props) => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default News
+export default News;

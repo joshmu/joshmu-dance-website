@@ -1,6 +1,23 @@
 {
   "name": "joshmu-dance-website",
   "version": "0.1.0",
+  "keywords": [
+    "art",
+    "dance",
+    "josh mu",
+    "website",
+    "yoga"
+  ],
+  "homepage": "https://github.com/joshmu/joshmu-dance-website",
+  "bugs": {
+    "url": "https://github.com/joshmu/joshmu-dance-website/issues"
+  },
+  "license": "MIT",
+  "author": "Josh Mu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joshmu/joshmu-dance-website.git"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -38,22 +55,5 @@
     "save": "^2.9.0",
     "tailwindcss": "^3.3.2",
     "typescript": "5.8.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/joshmu/joshmu-dance-website.git"
-  },
-  "keywords": [
-    "josh mu",
-    "dance",
-    "art",
-    "yoga",
-    "website"
-  ],
-  "author": "Josh Mu",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/joshmu/joshmu-dance-website/issues"
-  },
-  "homepage": "https://github.com/joshmu/joshmu-dance-website"
+  }
 }

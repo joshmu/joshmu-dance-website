@@ -1,16 +1,15 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { useEffect } from 'react'
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 
-import { initGA, logPageView } from '@/services/googleAnalytics'
-import Navbar from '@/components/Navbar/Navbar'
-import Footer from '@/components/Footer/Footer'
-
+import { initGA, logPageView } from "@/services/googleAnalytics";
+import Navbar from "@/components/Navbar/Navbar";
+import Footer from "@/components/Footer/Footer";
 
 declare global {
   interface Window {
-    GA_INITIALIZED?: boolean
+    GA_INITIALIZED?: boolean;
   }
 }
 
@@ -18,11 +17,11 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
   // initialise google analytics on load
   useEffect(() => {
     if (!window.GA_INITIALIZED) {
-      initGA()
-      window.GA_INITIALIZED = true
+      initGA();
+      window.GA_INITIALIZED = true;
     }
-    logPageView()
-  }, [])
+    logPageView();
+  }, []);
 
   return (
     <motion.div
@@ -40,5 +39,5 @@ export function LayoutWrapper({ children }: { children: React.ReactNode }) {
         <Footer />
       </div>
     </motion.div>
-  )
+  );
 }

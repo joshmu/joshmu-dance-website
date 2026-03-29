@@ -1,43 +1,43 @@
-import { createContext, useContext, useState, useEffect } from 'react'
-import { useScroll } from 'framer-motion'
+import { createContext, useContext, useState, useEffect } from "react";
+import { useScroll } from "framer-motion";
 
 interface IGlobalContext {
-  SECTIONS: string[]
-  scrollProgress: number
-  currentView: string
-  setCurrentView: React.Dispatch<React.SetStateAction<string>>
+  SECTIONS: string[];
+  scrollProgress: number;
+  currentView: string;
+  setCurrentView: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const globalContext = createContext<IGlobalContext>({
   SECTIONS: [],
   scrollProgress: 0,
-  currentView: '',
+  currentView: "",
   setCurrentView: () => {},
-})
+});
 
 export function GlobalProvider({ children }) {
-  const [currentView, setCurrentView] = useState('hero')
-  const { scrollYProgress } = useScroll()
-  const [scrollProgress, setScrollProgress] = useState(0)
+  const [currentView, setCurrentView] = useState("hero");
+  const { scrollYProgress } = useScroll();
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   // const SECTIONS = ['home', 'about', 'news', 'portfolio', 'critics', 'contact']
-  const SECTIONS = ['home', 'about', 'news', 'critics', 'contact']
+  const SECTIONS = ["home", "about", "news", "critics", "contact"];
 
   // initial scroll
   useEffect(() => {
     // handle motion
     function handleScroll() {
-      setScrollProgress(scrollYProgress.get())
+      setScrollProgress(scrollYProgress.get());
     }
 
     // subscribe
-    const unsubscribeY = scrollYProgress.onChange(handleScroll)
+    const unsubscribeY = scrollYProgress.onChange(handleScroll);
 
     // destroy
     return () => {
-      unsubscribeY()
-    }
-  }, [])
+      unsubscribeY();
+    };
+  }, []);
 
   const value = {
     SECTIONS,
@@ -45,13 +45,11 @@ export function GlobalProvider({ children }) {
     scrollProgress,
     currentView,
     setCurrentView,
-  }
+  };
 
-  return (
-    <globalContext.Provider value={value}>{children}</globalContext.Provider>
-  )
+  return <globalContext.Provider value={value}>{children}</globalContext.Provider>;
 }
 
 export function useGlobalContext() {
-  return useContext(globalContext)
+  return useContext(globalContext);
 }

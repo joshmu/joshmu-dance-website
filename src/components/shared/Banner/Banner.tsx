@@ -1,18 +1,18 @@
-import { FixedBackground } from '../FixedBackground/FixedBackground'
-import { LineAccent } from '../LineAccent/LineAccent'
-import { Overlay } from '../Overlay/Overlay'
-import { Slider } from '../Slider/Slider'
+import { FixedBackground } from "../FixedBackground/FixedBackground";
+import { LineAccent } from "../LineAccent/LineAccent";
+import { Overlay } from "../Overlay/Overlay";
+import { Slider } from "../Slider/Slider";
 
 export const Banner = ({
-  title = '',
-  titleHighlight = '',
+  title = "",
+  titleHighlight = "",
   sliderContent,
   duration = 5000,
-  image = '../../public/assets/waves.jpg',
-  imageAlt = 'josh mu in the waves',
+  image = "../../public/assets/waves.jpg",
+  imageAlt = "josh mu in the waves",
   header = null,
 }) => {
-  const txt = parseTxt(title, titleHighlight)
+  const txt = parseTxt(title, titleHighlight);
 
   return (
     <div className="relative w-full overflow-hidden h-96 text-themeBg">
@@ -43,14 +43,14 @@ export const Banner = ({
         </div>
       </FixedBackground>
     </div>
-  )
-}
+  );
+};
 
 const parseTxt = (txt, highlight) => {
   // split text in to 3 parts
-  const textArray = Array(3)
-  textArray[0] = txt.slice(0, txt.indexOf(highlight))
-  textArray[1] = highlight
-  textArray[2] = txt.slice(txt.indexOf(highlight) + highlight.length)
-  return textArray
-}
+  const textArray = Array(3);
+  textArray[0] = txt.slice(0, txt.indexOf(highlight));
+  textArray[1] = highlight;
+  textArray[2] = txt.slice(txt.indexOf(highlight) + highlight.length);
+  return textArray;
+};

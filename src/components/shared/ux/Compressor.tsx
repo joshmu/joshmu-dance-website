@@ -1,35 +1,35 @@
-import { motion, useAnimation } from 'framer-motion'
-import React, { useEffect, useState } from 'react'
+import { motion, useAnimation } from "framer-motion";
+import React, { useEffect, useState } from "react";
 
-import { useGlobalContext } from '@/context/globalContext'
+import { useGlobalContext } from "@/context/globalContext";
 
 export const Compressor = ({ text, hide, ...props }) => {
-  const [output, setOutput] = useState(['', '', ''])
-  const [toggle, setToggle] = useState(false)
+  const [output, setOutput] = useState(["", "", ""]);
+  const [toggle, setToggle] = useState(false);
 
-  const { scrollProgress } = useGlobalContext()
-  const controls = useAnimation()
+  const { scrollProgress } = useGlobalContext();
+  const controls = useAnimation();
 
   useEffect(() => {
     // split text in to 3 parts
-    const textArray = Array(3)
-    textArray[0] = text.slice(0, text.indexOf(hide))
-    textArray[1] = hide
-    textArray[2] = text.slice(text.indexOf(hide) + hide.length)
-    setOutput(textArray)
-  }, [])
+    const textArray = Array(3);
+    textArray[0] = text.slice(0, text.indexOf(hide));
+    textArray[1] = hide;
+    textArray[2] = text.slice(text.indexOf(hide) + hide.length);
+    setOutput(textArray);
+  }, []);
 
   useEffect(() => {
-    controls.start(toggle ? 'hide' : 'show')
-  }, [toggle])
+    controls.start(toggle ? "hide" : "show");
+  }, [toggle]);
 
   useEffect(() => {
     if (scrollProgress > 0) {
-      setToggle(true)
+      setToggle(true);
     } else if (toggle && scrollProgress === 0) {
-      setToggle(false)
+      setToggle(false);
     }
-  }, [scrollProgress])
+  }, [scrollProgress]);
 
   const animationVariants = {
     hide: {
@@ -37,13 +37,13 @@ export const Compressor = ({ text, hide, ...props }) => {
       opacity: 0,
     },
     show: {
-      width: 'auto',
+      width: "auto",
       opacity: 1,
     },
     transition: {
       duration: 1,
     },
-  }
+  };
 
   return (
     <p className="flex items-center justify-center whitespace-pre" {...props}>
@@ -57,5 +57,5 @@ export const Compressor = ({ text, hide, ...props }) => {
       </motion.span>
       <span>{output[2]}</span>
     </p>
-  )
-}
+  );
+};

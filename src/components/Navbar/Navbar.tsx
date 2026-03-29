@@ -1,21 +1,21 @@
-import { AnimatePresence, motion } from 'framer-motion'
-import { useState } from 'react'
-import { scroller } from 'react-scroll'
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
+import { scroller } from "react-scroll";
 
-import { useGlobalContext } from '@/context/globalContext'
-import { useThemeContext } from '@/context/themeContext'
-import useScreenSize from '@/hooks/useScreenSize'
-import { Compressor } from '@/shared/ux/Compressor'
+import { useGlobalContext } from "@/context/globalContext";
+import { useThemeContext } from "@/context/themeContext";
+import useScreenSize from "@/hooks/useScreenSize";
+import { Compressor } from "@/shared/ux/Compressor";
 
-import MobileMenu from './MobileMenu/MobileMenu'
-import MobileMenuBtn from './MobileMenu/MobileMenuBtn/MobileMenuBtn'
+import MobileMenu from "./MobileMenu/MobileMenu";
+import MobileMenuBtn from "./MobileMenu/MobileMenuBtn/MobileMenuBtn";
 
 const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { SECTIONS, currentView } = useGlobalContext()
-  const { toggleTheme } = useThemeContext()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { SECTIONS, currentView } = useGlobalContext();
+  const { toggleTheme } = useThemeContext();
 
-  const screenSize = useScreenSize()
+  const screenSize = useScreenSize();
 
   // animation
   const parentAnimation = {
@@ -28,7 +28,7 @@ const Navbar = () => {
         staggerChildren: 0.2,
       },
     },
-  }
+  };
   const childAnimation = {
     hidden: {
       y: 50,
@@ -42,27 +42,27 @@ const Navbar = () => {
         // yoyo: Infinity,
       },
     },
-  }
+  };
 
   const toggleMenu = (choice) => {
-    const decision = choice === undefined ? !isMobileMenuOpen : choice
-    setIsMobileMenuOpen(decision)
-  }
+    const decision = choice === undefined ? !isMobileMenuOpen : choice;
+    setIsMobileMenuOpen(decision);
+  };
 
   const scrollTo = (elemId) => {
     scroller.scrollTo(elemId, {
       duration: 800,
       delay: 0,
-      smooth: 'easeInOutQuart',
-    })
-  }
+      smooth: "easeInOutQuart",
+    });
+  };
 
   return (
     <header
       className={`${
-        currentView !== 'home'
-          ? 'text-themeBg bg-themeText h-12'
-          : 'bg-transparent h-16 text-themeBg'
+        currentView !== "home"
+          ? "text-themeBg bg-themeText h-12"
+          : "bg-transparent h-16 text-themeBg"
       } fixed z-50 w-full items-center justify-center transition-all duration-700 ease-in-out`}
     >
       <div className="container h-full mx-auto">
@@ -74,12 +74,9 @@ const Navbar = () => {
             <Compressor text="josh mu" hide="osh " />
           </div>
 
-          {screenSize.name === 'sm' ? (
+          {screenSize.name === "sm" ? (
             <div className="relative flex flex-col items-center">
-              <MobileMenuBtn
-                toggleMenu={toggleMenu}
-                isOpen={isMobileMenuOpen}
-              />
+              <MobileMenuBtn toggleMenu={toggleMenu} isOpen={isMobileMenuOpen} />
             </div>
           ) : (
             <nav className="relative flex h-full uppercase">
@@ -95,9 +92,7 @@ const Navbar = () => {
                       onClick={() => scrollTo(item)}
                       variants={childAnimation}
                       className={`${
-                        currentView === item
-                          ? 'active text-themeAccent'
-                          : 'font-normal'
+                        currentView === item ? "active text-themeAccent" : "font-normal"
                       } uppercase relative px-3 py-2 focus:outline-none`}
                       whileHover={{ scale: 1.5 }}
                     >
@@ -128,7 +123,7 @@ const Navbar = () => {
         </AnimatePresence>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
