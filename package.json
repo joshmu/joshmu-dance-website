@@ -28,7 +28,17 @@
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
     "md:lint": "markdownlint-cli2 '**/*.md' '#node_modules'",
-    "validate": "pnpm run typecheck && pnpm run lint && pnpm run format:check"
+    "validate": "pnpm run typecheck && pnpm run lint && pnpm run format:check",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "oxlint",
+      "oxfmt --check"
+    ],
+    "*.md": [
+      "markdownlint-cli2"
+    ]
   },
   "dependencies": {
     "framer-motion": "^12.23.6",
@@ -49,6 +59,8 @@
     "@types/react": "19.1.8",
     "@types/react-dom": "^19.1.6",
     "autoprefixer": "^10.4.14",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "markdownlint-cli2": "^0.22.0",
     "oxfmt": "^0.42.0",
     "oxlint": "^1.57.0",
