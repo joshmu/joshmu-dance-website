@@ -20,6 +20,15 @@ pnpm run build
 
 # Start production server
 pnpm start
+
+# Validation
+pnpm run typecheck        # TypeScript type checking
+pnpm run lint             # Oxlint linting
+pnpm run lint:fix         # Oxlint with auto-fix
+pnpm run format           # Oxfmt auto-format
+pnpm run format:check     # Oxfmt check (no write)
+pnpm run md:lint          # Markdown linting
+pnpm run validate         # Run typecheck + lint + format:check
 ```
 
 ## Architecture & Structure
@@ -96,6 +105,47 @@ SMTP_PASS=your_smtp_password
 - `/app/api/email/route.ts` - Handles contact form submissions via nodemailer
 - `/app/api/instagram/route.ts` - Instagram feed integration (currently commented out)
 - `/app/api/hello/route.ts` - Example API route
+
+## Validation & Quality
+
+### Linting & Formatting
+
+- **Oxlint** (replacing ESLint) — Rust-based linter, 50-100x faster. Plugins: typescript, react, nextjs, react-perf. Config in `.oxlintrc.json`
+- **Oxfmt** (replacing Prettier) — Rust-based formatter, 100% Prettier-compatible
+
+### Pre-commit Hooks
+
+Husky + lint-staged enforce quality on every commit:
+
+- **pre-commit**: oxlint, oxfmt check, markdownlint (staged files), then full typecheck
+- **commit-msg**: commitlint validates conventional commit format
+
+### Commit Convention
+
+All commits must follow `type(scope): description` format. Scope is **required**.
+
+Common types: `feat`, `fix`, `chore`, `docs`, `ci`, `refactor`, `style`, `test`
+
+### CI/CD (GitHub Actions)
+
+8 parallel jobs on push to `main` and PRs:
+
+| Job           | Tool                      | Blocking          |
+| ------------- | ------------------------- | ----------------- |
+| Lint          | Oxlint                    | Yes               |
+| Format        | Oxfmt                     | Yes               |
+| Typecheck     | tsc --noEmit              | Yes               |
+| Build         | next build                | Yes               |
+| Commitlint    | @commitlint/cli (PR only) | Yes               |
+| Markdown Lint | markdownlint-cli2         | Yes               |
+| Secret Scan   | Gitleaks                  | Yes               |
+| Dep Audit     | pnpm audit                | No (non-blocking) |
+
+Stable gate job (`ci-status`) aggregates all results for branch protection.
+
+### Markdown Linting
+
+markdownlint-cli2 with config in `.markdownlint-cli2.jsonc`. Disabled rules: MD013 (line length), MD033 (inline HTML), MD041 (first-line heading).
 
 ## Known Issues & Notes
 

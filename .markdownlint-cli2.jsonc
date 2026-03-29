@@ -5,6 +5,6 @@
     // Inline HTML — needed for badges/images
     "MD033": false,
     // First line heading — CLAUDE.md starts with comment
-    "MD041": false
-  }
+    "MD041": false,
+  },
 }
