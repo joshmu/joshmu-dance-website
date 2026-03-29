@@ -28,6 +28,7 @@ pnpm run lint:fix         # Oxlint with auto-fix
 pnpm run format           # Oxfmt auto-format
 pnpm run format:check     # Oxfmt check (no write)
 pnpm run md:lint          # Markdown linting
+pnpm run knip             # Dead code detection
 pnpm run validate         # Run typecheck + lint + format:check
 ```
 
@@ -128,7 +129,7 @@ Common types: `feat`, `fix`, `chore`, `docs`, `ci`, `refactor`, `style`, `test`
 
 ### CI/CD (GitHub Actions)
 
-8 parallel jobs on push to `main` and PRs:
+9 parallel jobs on push to `master` and PRs:
 
 | Job           | Tool                      | Blocking          |
 | ------------- | ------------------------- | ----------------- |
@@ -138,7 +139,8 @@ Common types: `feat`, `fix`, `chore`, `docs`, `ci`, `refactor`, `style`, `test`
 | Build         | next build                | Yes               |
 | Commitlint    | @commitlint/cli (PR only) | Yes               |
 | Markdown Lint | markdownlint-cli2         | Yes               |
-| Secret Scan   | Gitleaks                  | Yes               |
+| Secret Scan   | Gitleaks (CLI binary)     | Yes               |
+| Dead Code     | Knip                      | Yes               |
 | Dep Audit     | pnpm audit                | No (non-blocking) |
 
 Stable gate job (`ci-status`) aggregates all results for branch protection.
