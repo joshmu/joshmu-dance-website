@@ -1,18 +1,39 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@/components/*": ["src/components/*"],
-      "@/shared/*": ["src/components/shared/*"],
-      "@/context/*": ["src/context/*"],
-      "@/hooks/*": ["src/hooks/*"],
-      "@/pages/*": ["src/pages/*"],
-      "@/api/*": ["src/pages/api/*"],
-      "@/services/*": ["src/services/*"],
-      "@/styles/*": ["./styles/*"],
-      "@/public/*": ["./public/*"]
+      "@/components/*": [
+        "./src/components/*"
+      ],
+      "@/shared/*": [
+        "./src/components/shared/*"
+      ],
+      "@/context/*": [
+        "./src/context/*"
+      ],
+      "@/hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@/pages/*": [
+        "./src/pages/*"
+      ],
+      "@/api/*": [
+        "./src/pages/api/*"
+      ],
+      "@/services/*": [
+        "./src/services/*"
+      ],
+      "@/styles/*": [
+        "./styles/*"
+      ],
+      "@/public/*": [
+        "./public/*"
+      ]
     },
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -21,10 +42,10 @@
     "incremental": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "plugins": [
       {
         "name": "next"
@@ -33,6 +54,15 @@
     "strictNullChecks": true,
     "target": "ES2017"
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "vitest.config.ts"]
+  "include": [
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "vitest.config.ts"
+  ]
 }
