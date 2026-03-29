@@ -43,6 +43,8 @@
     "react-scroll": "^1.8.9"
   },
   "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
     "@types/node": "22.16.5",
     "@types/react": "19.1.8",
     "@types/react-dom": "^19.1.6",
