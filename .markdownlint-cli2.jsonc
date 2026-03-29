@@ -1,10 +1,14 @@
 {
   "config": {
-    // Line length — disabled for prose
     "MD013": false,
-    // Inline HTML — needed for badges/images
+    "MD024": { "siblings_only": true },
+    "MD026": { "punctuation": ".,;" },
     "MD033": false,
-    // First line heading — CLAUDE.md starts with comment
+    "MD034": false,
+    "MD036": false,
+    "MD040": false,
     "MD041": false,
-  },
+    "MD060": false
+  }
 }
+
