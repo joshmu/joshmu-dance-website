@@ -22,14 +22,18 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
+    "lint": "oxlint src/",
+    "lint:fix": "oxlint --fix src/",
+    "format": "oxfmt src/",
+    "format:check": "oxfmt --check src/",
     "typecheck": "tsc --noEmit",
-    "lint": "oxlint",
-    "lint:fix": "oxlint --fix",
-    "format": "oxfmt --write .",
-    "format:check": "oxfmt --check .",
-    "md:lint": "markdownlint-cli2 '**/*.md' '#node_modules'",
-    "knip": "knip",
-    "validate": "pnpm run typecheck && pnpm run lint && pnpm run format:check",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "lint:md": "markdownlint-cli2 '**/*.md' '#node_modules'",
+    "lint:knip": "pnpm exec knip",
+    "audit": "pnpm audit --audit-level=high",
+    "validate": "pnpm typecheck && pnpm lint && pnpm format:check",
     "prepare": "husky"
   },
   "dependencies": {
@@ -50,8 +54,11 @@
     "@types/node": "22.16.5",
     "@types/react": "19.1.8",
     "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^6.0.1",
+    "@vitest/coverage-v8": "^4.1.2",
     "autoprefixer": "^10.4.14",
     "husky": "^9.1.7",
+    "jsdom": "^29.0.1",
     "knip": "^6.1.0",
     "lint-staged": "^16.4.0",
     "markdownlint-cli2": "^0.22.0",
@@ -61,12 +68,16 @@
     "postcss-preset-env": "^7.8.3",
     "sass": "^1.63.6",
     "tailwindcss": "^3.3.2",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "vitest": "^4.1.2"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,jsx}": [
-      "oxlint",
-      "oxfmt --check"
+    "*.{ts,tsx,js,mjs}": [
+      "oxfmt --write",
+      "oxlint --fix"
+    ],
+    "*.{json,css}": [
+      "oxfmt --write"
     ],
     "*.md": [
       "markdownlint-cli2"

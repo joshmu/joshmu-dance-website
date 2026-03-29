@@ -2,34 +2,20 @@ name: CI
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
+
+permissions:
+  contents: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
-permissions:
-  contents: read
-
 jobs:
-  lint:
-    name: Lint (Oxlint)
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run lint
-
   format:
-    name: Format (Oxfmt)
+    name: Format Check
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -40,10 +26,38 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm run format:check
+      - run: pnpm format:check
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+
+  lint-md:
+    name: Markdown Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint:md
 
   typecheck:
-    name: Typecheck (tsc)
+    name: Type Check
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -54,10 +68,41 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm run typecheck
+      - run: pnpm typecheck
+
+  commitlint:
+    name: Commit Messages
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test:run
 
   build:
-    name: Build (Next.js)
+    name: Build
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -71,43 +116,13 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ github.sha }}
-          restore-keys: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
-      - run: pnpm run build
-
-  commitlint:
-    name: Commitlint
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    if: github.event_name == 'pull_request'
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm exec commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }}
-
-  markdownlint:
-    name: Markdown Lint
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run md:lint
+          key: nextjs-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('**/*.ts', '**/*.tsx') }}
+          restore-keys: |
+            nextjs-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}-
+      - run: pnpm build
 
   gitleaks:
-    name: Secret Scan (Gitleaks)
+    name: Secret Scanning
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -116,29 +131,15 @@ jobs:
           fetch-depth: 0
       - name: Install gitleaks
         run: |
-          GITLEAKS_VERSION="8.24.3"
-          curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" | tar -xz -C /usr/local/bin gitleaks
-      - run: gitleaks detect --no-git --source . --no-banner
-
-  knip:
-    name: Dead Code (Knip)
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run knip
+          curl -sSL https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz | tar -xz
+          sudo mv gitleaks /usr/local/bin/
+      - name: Run gitleaks
+        run: gitleaks detect --no-banner --verbose
 
   audit:
-    name: Dependency Audit
+    name: Security Audit
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -149,17 +150,59 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm audit --audit-level=high
 
+  knip:
+    name: Dead Code
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint:knip
+
   ci-status:
     name: CI Status
+    if: always()
+    needs:
+      - format
+      - lint
+      - lint-md
+      - typecheck
+      - commitlint
+      - test
+      - build
+      - gitleaks
+      - audit
+      - knip
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    needs: [lint, format, typecheck, build, commitlint, markdownlint, gitleaks, knip]
-    if: always()
     steps:
-      - name: Check required job results
+      - name: Check job results
         run: |
-          if [[ "${{ contains(needs.*.result, 'failure') }}" == "true" ]]; then
-            echo "One or more required jobs failed"
+          echo "Format: ${{ needs.format.result }}"
+          echo "Lint: ${{ needs.lint.result }}"
+          echo "Lint-MD: ${{ needs.lint-md.result }}"
+          echo "TypeCheck: ${{ needs.typecheck.result }}"
+          echo "Commitlint: ${{ needs.commitlint.result }}"
+          echo "Test: ${{ needs.test.result }}"
+          echo "Build: ${{ needs.build.result }}"
+          echo "Gitleaks: ${{ needs.gitleaks.result }}"
+          echo "Audit: ${{ needs.audit.result }}"
+          echo "Knip: ${{ needs.knip.result }}"
+
+          if [[ "${{ needs.format.result }}" == "failure" ||
+                "${{ needs.lint.result }}" == "failure" ||
+                "${{ needs.lint-md.result }}" == "failure" ||
+                "${{ needs.typecheck.result }}" == "failure" ||
+                "${{ needs.test.result }}" == "failure" ||
+                "${{ needs.build.result }}" == "failure" ||
+                "${{ needs.gitleaks.result }}" == "failure" ||
+                "${{ needs.audit.result }}" == "failure" ||
+                "${{ needs.knip.result }}" == "failure" ]]; then
+            echo "::error::One or more required jobs failed"
             exit 1
           fi
-          echo "All required jobs passed"
