@@ -1,14 +1,21 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { RiCloseFill as CloseIcon, RiMenu5Line as HamburgerIcon } from "react-icons/ri";
 
-export default function MobileMenuBtn({ isOpen, toggleMenu }) {
-  const handleClick = () => {
-    toggleMenu();
-  };
+interface MobileMenuBtnProps {
+  isOpen: boolean;
+  menuId: string;
+  onToggle: () => void;
+}
+
+export default function MobileMenuBtn({ isOpen, menuId, onToggle }: MobileMenuBtnProps) {
   return (
-    <div
-      onClick={handleClick}
-      className="flex flex-col justify-center w-full h-full p-2 text-2xl bg-transparent cursor-pointer"
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-expanded={isOpen}
+      aria-controls={menuId}
+      aria-label={isOpen ? "Close menu" : "Open menu"}
+      className="flex flex-col justify-center w-full h-full p-2 text-2xl bg-transparent cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-themeAccent"
     >
       <AnimatePresence mode="wait">
         {isOpen ? (
@@ -19,7 +26,7 @@ export default function MobileMenuBtn({ isOpen, toggleMenu }) {
             exit={{ opacity: 0, rotate: 180, scale: 0 }}
             className="bg-transparent"
           >
-            <CloseIcon className="fill-current" />
+            <CloseIcon aria-hidden className="fill-current" />
           </motion.div>
         ) : (
           <motion.div
@@ -29,10 +36,10 @@ export default function MobileMenuBtn({ isOpen, toggleMenu }) {
             exit={{ opacity: 0, rotate: 180, scale: 0 }}
             className="bg-transparent"
           >
-            <HamburgerIcon className="fill-current" />
+            <HamburgerIcon aria-hidden className="fill-current" />
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </button>
   );
 }

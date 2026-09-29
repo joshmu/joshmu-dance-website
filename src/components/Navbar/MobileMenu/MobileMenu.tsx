@@ -7,7 +7,7 @@ import {
   useCurrentSection,
 } from "@/context/sectionNavigation";
 
-export default function MobileMenu({ onClose }: { onClose: () => void }) {
+export default function MobileMenu({ id, onClose }: { id: string; onClose: () => void }) {
   const currentSection = useCurrentSection();
 
   // animation
@@ -43,7 +43,7 @@ export default function MobileMenu({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <nav className="z-50 flex h-full text-right uppercase md:hidden">
+    <nav id={id} className="z-50 flex h-full text-right uppercase md:hidden">
       <motion.ul
         initial="hidden"
         animate="show"

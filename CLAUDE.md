@@ -165,4 +165,4 @@ markdownlint-cli2 with config in `.markdownlint-cli2.jsonc`. Disabled rules: MD0
 - Responsive design with mobile menu support
 - SEO optimization with comprehensive meta tags in Layout component
 - Sections own their anchor via `useSectionAnchor(id)`; navigation scrolls with `scrollToSection(id)`
-- Custom hooks for media queries
+- Responsive layout switches (desktop nav vs menu button) use Tailwind breakpoint classes, not JS media queries

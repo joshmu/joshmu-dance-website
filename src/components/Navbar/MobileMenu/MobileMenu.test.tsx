@@ -14,7 +14,7 @@ describe("MobileMenu", () => {
     const onClose = vi.fn();
     render(
       <SectionProvider>
-        <MobileMenu onClose={onClose} />
+        <MobileMenu id="mobile-menu" onClose={onClose} />
         <div id="about" />
       </SectionProvider>,
     );

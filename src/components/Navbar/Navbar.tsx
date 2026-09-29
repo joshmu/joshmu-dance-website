@@ -3,18 +3,17 @@ import { useState } from "react";
 
 import { SECTIONS, scrollToSection, useCurrentSection } from "@/context/sectionNavigation";
 import { useThemeContext } from "@/context/themeContext";
-import useScreenSize from "@/hooks/useScreenSize";
 import { Compressor } from "@/shared/ux/Compressor";
 
 import MobileMenu from "./MobileMenu/MobileMenu";
 import MobileMenuBtn from "./MobileMenu/MobileMenuBtn/MobileMenuBtn";
 
+const MOBILE_MENU_ID = "mobile-menu";
+
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const currentSection = useCurrentSection();
   const { toggleTheme } = useThemeContext();
-
-  const screenSize = useScreenSize();
 
   // animation
   const parentAnimation = {
@@ -43,11 +42,6 @@ const Navbar = () => {
     },
   };
 
-  const toggleMenu = (choice) => {
-    const decision = choice === undefined ? !isMobileMenuOpen : choice;
-    setIsMobileMenuOpen(decision);
-  };
-
   return (
     <header
       className={`${
@@ -67,35 +61,36 @@ const Navbar = () => {
             <Compressor text="josh mu" hide="osh " />
           </button>
 
-          {screenSize.name === "sm" ? (
-            <div className="relative flex flex-col items-center">
-              <MobileMenuBtn toggleMenu={toggleMenu} isOpen={isMobileMenuOpen} />
-            </div>
-          ) : (
-            <nav className="relative flex h-full uppercase">
-              <motion.ul
-                initial="hidden"
-                animate="show"
-                variants={parentAnimation}
-                className="flex flex-wrap items-center justify-center h-full px-4 py-1 overflow-hidden text-sm"
-              >
-                {SECTIONS.map((item) => (
-                  <li key={item}>
-                    <motion.button
-                      onClick={() => scrollToSection(item)}
-                      variants={childAnimation}
-                      className={`${
-                        currentSection === item ? "active text-themeAccent" : "font-normal"
-                      } uppercase relative px-3 py-2 focus:outline-none`}
-                      whileHover={{ scale: 1.5 }}
-                    >
-                      {item}
-                    </motion.button>
-                  </li>
-                ))}
-              </motion.ul>
-            </nav>
-          )}
+          <div className="relative flex flex-col items-center md:hidden">
+            <MobileMenuBtn
+              isOpen={isMobileMenuOpen}
+              menuId={MOBILE_MENU_ID}
+              onToggle={() => setIsMobileMenuOpen((open) => !open)}
+            />
+          </div>
+          <nav className="relative hidden h-full uppercase md:flex">
+            <motion.ul
+              initial="hidden"
+              animate="show"
+              variants={parentAnimation}
+              className="flex flex-wrap items-center justify-center h-full px-4 py-1 overflow-hidden text-sm"
+            >
+              {SECTIONS.map((item) => (
+                <li key={item}>
+                  <motion.button
+                    onClick={() => scrollToSection(item)}
+                    variants={childAnimation}
+                    className={`${
+                      currentSection === item ? "active text-themeAccent" : "font-normal"
+                    } uppercase relative px-3 py-2 focus:outline-none`}
+                    whileHover={{ scale: 1.5 }}
+                  >
+                    {item}
+                  </motion.button>
+                </li>
+              ))}
+            </motion.ul>
+          </nav>
         </div>
         <AnimatePresence>
           {isMobileMenuOpen && (
@@ -103,9 +98,9 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="flex justify-end w-full -mt-px"
+              className="flex justify-end w-full -mt-px md:hidden"
             >
-              <MobileMenu onClose={() => toggleMenu(false)} />
+              <MobileMenu id={MOBILE_MENU_ID} onClose={() => setIsMobileMenuOpen(false)} />
             </motion.div>
           )}
         </AnimatePresence>
