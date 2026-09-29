@@ -43,7 +43,7 @@ describe("Hero", () => {
         </SectionProvider>
       </ThemeProvider>,
     );
-    const name = screen.getByRole("button", { name: "josh mu" });
+    const name = screen.getByRole("button", { name: "josh mu, toggle theme" });
     expect(name.closest("h1")).not.toBeNull();
     expect(document.body.classList.contains("theme-light")).toBe(true);
 

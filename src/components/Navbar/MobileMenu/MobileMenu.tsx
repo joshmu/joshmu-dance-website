@@ -59,7 +59,7 @@ export default function MobileMenu({ id, onClose }: { id: string; onClose: () =>
               variants={childAnimation}
               className={`${
                 currentSection === item ? "active text-themeAccent" : "font-normal"
-              } uppercase relative px-3 py-2 focus:outline-none`}
+              } uppercase relative px-3 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-themeAccent`}
               whileHover={{ scale: 1.5 }}
             >
               {item}

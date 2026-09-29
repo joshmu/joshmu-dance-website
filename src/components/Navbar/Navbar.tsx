@@ -55,7 +55,7 @@ const Navbar = () => {
           <button
             type="button"
             onClick={toggleTheme}
-            title="Toggle theme"
+            aria-label="josh mu, toggle theme"
             className="flex h-full text-2xl font-semibold uppercase cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-themeAccent"
           >
             <Compressor text="josh mu" hide="osh " />
@@ -82,7 +82,7 @@ const Navbar = () => {
                     variants={childAnimation}
                     className={`${
                       currentSection === item ? "active text-themeAccent" : "font-normal"
-                    } uppercase relative px-3 py-2 focus:outline-none`}
+                    } uppercase relative px-3 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-themeAccent`}
                     whileHover={{ scale: 1.5 }}
                   >
                     {item}

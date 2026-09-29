@@ -19,25 +19,25 @@ export default function MobileMenuBtn({ isOpen, menuId, onToggle }: MobileMenuBt
     >
       <AnimatePresence mode="wait">
         {isOpen ? (
-          <motion.div
+          <motion.span
             key="opened"
             initial={{ opacity: 0, rotate: -180, scale: 0 }}
             animate={{ opacity: 1, rotate: 0, scale: 1 }}
             exit={{ opacity: 0, rotate: 180, scale: 0 }}
-            className="bg-transparent"
+            className="block bg-transparent"
           >
             <CloseIcon aria-hidden className="fill-current" />
-          </motion.div>
+          </motion.span>
         ) : (
-          <motion.div
+          <motion.span
             key="closed"
             initial={{ opacity: 0, rotate: -180, scale: 0 }}
             animate={{ opacity: 1, rotate: 0, scale: 1 }}
             exit={{ opacity: 0, rotate: 180, scale: 0 }}
-            className="bg-transparent"
+            className="block bg-transparent"
           >
             <HamburgerIcon aria-hidden className="fill-current" />
-          </motion.div>
+          </motion.span>
         )}
       </AnimatePresence>
     </button>

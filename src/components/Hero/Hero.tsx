@@ -22,7 +22,7 @@ const Hero = () => {
             <button
               type="button"
               onClick={toggleTheme}
-              title="Toggle theme"
+              aria-label="josh mu, toggle theme"
               className="uppercase cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-themeAccent"
             >
               josh mu
