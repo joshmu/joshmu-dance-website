@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import Contact from "@/components/Contact/Contact";
 
@@ -20,10 +20,13 @@ async function fillAndSend() {
 }
 
 describe("Contact", () => {
-  vi.stubGlobal("fetch", fetchMock);
+  beforeEach(() => {
+    vi.stubGlobal("fetch", fetchMock);
+  });
 
   afterEach(() => {
     fetchMock.mockReset();
+    vi.unstubAllGlobals();
   });
 
   it("reports an error, never success, when the send is rejected", async () => {

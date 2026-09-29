@@ -11,7 +11,9 @@ export const smtpMailer: Mailer = {
   async send(mail) {
     const user = process.env.SMTP_USER;
     const pass = process.env.SMTP_PASS;
-    if (!user || !pass) throw new Error("SMTP_USER and SMTP_PASS must be set");
+    if (!user || !pass) {
+      throw Object.assign(new Error("SMTP_USER and SMTP_PASS must be set"), { code: "ECONFIG" });
+    }
 
     transporter ??= nodemailer.createTransport({
       host: "smtp.dreamhost.com",

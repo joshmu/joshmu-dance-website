@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import {
   handleContactRequest,
@@ -93,6 +93,10 @@ describe("sendContactMessage", () => {
 });
 
 describe("handleContactRequest", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it("sends a valid Contact message with replyTo set to the visitor", async () => {
     const mailer = inMemoryMailer();
     const res = await handleContactRequest(post(JSON.stringify(valid)), mailer);
@@ -135,6 +139,36 @@ describe("handleContactRequest", () => {
     expect(res.status).toBe(502);
     expect(body).not.toContain("secret-user");
     expect(JSON.stringify(consoleError.mock.calls)).not.toContain("ada@example.com");
-    consoleError.mockRestore();
+  });
+
+  it("logs only the SMTP error code, response code and command on a failed send", async () => {
+    const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
+    const smtpError = Object.assign(new Error("535 auth failed for ada@example.com"), {
+      code: "EAUTH",
+      responseCode: 535,
+      command: "AUTH PLAIN",
+    });
+    const mailer: Mailer = { send: () => Promise.reject(smtpError) };
+    await handleContactRequest(post(JSON.stringify(valid)), mailer);
+
+    expect(consoleError).toHaveBeenCalledWith(expect.any(String), {
+      code: "EAUTH",
+      responseCode: 535,
+      command: "AUTH PLAIN",
+    });
+  });
+
+  it("logs the ECONFIG code when SMTP is not configured", async () => {
+    const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
+    const mailer: Mailer = {
+      send: () => Promise.reject(Object.assign(new Error("missing env"), { code: "ECONFIG" })),
+    };
+    const res = await handleContactRequest(post(JSON.stringify(valid)), mailer);
+
+    expect(res.status).toBe(502);
+    expect(consoleError).toHaveBeenCalledWith(
+      expect.any(String),
+      expect.objectContaining({ code: "ECONFIG" }),
+    );
   });
 });

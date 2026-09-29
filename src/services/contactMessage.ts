@@ -44,6 +44,8 @@ export function sendContactMessage(msg: ContactMessage, mailer: Mailer): Promise
   });
 }
 
+type SmtpErrorFields = { code?: string; responseCode?: number; command?: string };
+
 export async function handleContactRequest(req: Request, mailer: Mailer): Promise<Response> {
   let body: unknown;
   try {
@@ -58,7 +60,8 @@ export async function handleContactRequest(req: Request, mailer: Mailer): Promis
   try {
     await sendContactMessage(parsed.value, mailer);
   } catch (err) {
-    console.error("Contact message send failed:", (err as { code?: string })?.code ?? "unknown");
+    const { code = "unknown", responseCode, command } = (err ?? {}) as SmtpErrorFields;
+    console.error("Contact message send failed:", { code, responseCode, command });
     return Response.json({ error: "Could not send message" }, { status: 502 });
   }
 

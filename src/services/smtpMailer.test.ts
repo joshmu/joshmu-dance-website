@@ -28,7 +28,8 @@ describe("smtpMailer", () => {
     for (const [key, value] of Object.entries(env)) vi.stubEnv(key, value);
     const { smtpMailer } = await import("@/services/smtpMailer");
 
-    await expect(smtpMailer.send(mail)).rejects.toThrow();
+    await expect(smtpMailer.send(mail)).rejects.toMatchObject({ code: "ECONFIG" });
+    expect(createTransport).not.toHaveBeenCalled();
     expect(sendMail).not.toHaveBeenCalled();
   });
 
