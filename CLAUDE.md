@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is Josh Mu's dance portfolio website built with Next.js (App Router), TypeScript, and Tailwind CSS. It's a single-page application with smooth scrolling between sections and features animations, contact forms, and media galleries.
+This is Josh Mu's dance portfolio website built with Next.js (App Router), TypeScript, and Tailwind CSS. It's a single-page application with smooth scrolling between sections, animations and a contact form.
+
+Domain terms (Section, Contact message, Mailer, Banner, Critic review, Company) are defined in `CONTEXT.md`.
 
 ## Development Commands
 
@@ -12,7 +14,7 @@ This is Josh Mu's dance portfolio website built with Next.js (App Router), TypeS
 # Install dependencies
 pnpm install
 
-# Start development server (with Turbopack)
+# Start development server (Turbopack)
 pnpm run dev
 
 # Build for production
@@ -27,9 +29,13 @@ pnpm run lint             # Oxlint linting
 pnpm run lint:fix         # Oxlint with auto-fix
 pnpm run format           # Oxfmt auto-format
 pnpm run format:check     # Oxfmt check (no write)
-pnpm run md:lint          # Markdown linting
-pnpm run knip             # Dead code detection
+pnpm run lint:md          # Markdown linting
+pnpm run lint:knip        # Dead code detection
 pnpm run validate         # Run typecheck + lint + format:check
+
+# Tests (Vitest + React Testing Library, jsdom)
+pnpm test                 # Watch mode
+pnpm run test:run         # Single run
 ```
 
 ## Architecture & Structure
@@ -38,7 +44,7 @@ pnpm run validate         # Run typecheck + lint + format:check
 
 - Uses Next.js App Router (migrated from Pages Router)
 - Single-page application with section-based navigation
-- API routes in `/app/api/` using Route Handlers for email and Instagram functionality
+- API route in `/app/api/` using a Route Handler for the contact email
 
 ### Component Organization
 
@@ -48,7 +54,6 @@ src/components/
 ├── Hero/           # Landing section with theme toggle
 ├── About/          # About section
 ├── Contact/        # Contact form with email API
-├── Gallery/        # Media gallery components
 └── ...            # Other section components
 ```
 
@@ -66,7 +71,7 @@ TypeScript path aliases are configured for clean imports:
 ### Styling Architecture
 
 1. **Tailwind CSS** for utility classes
-2. **SCSS** for global styles (`/styles/`)
+2. **SCSS** for global styles (`app/globals.scss`)
 3. **CSS Variables** for theming:
    - `--text`, `--background`, `--primary`, `--secondary`, `--accent`
    - Theme toggle functionality in Hero component
@@ -104,8 +109,6 @@ SMTP_PASS=your_smtp_password
 ## API Routes
 
 - `/app/api/email/route.ts` - Handles contact form submissions via nodemailer
-- `/app/api/instagram/route.ts` - Instagram feed integration (currently commented out)
-- `/app/api/hello/route.ts` - Example API route
 
 ## Validation & Quality
 
@@ -118,7 +121,7 @@ SMTP_PASS=your_smtp_password
 
 Husky + lint-staged enforce quality on every commit:
 
-- **pre-commit**: oxlint, oxfmt check, markdownlint (staged files), then full typecheck
+- **pre-commit**: oxfmt and oxlint --fix, markdownlint (staged files), then full typecheck
 - **commit-msg**: commitlint validates conventional commit format
 
 ### Commit Convention
@@ -129,21 +132,21 @@ Common types: `feat`, `fix`, `chore`, `docs`, `ci`, `refactor`, `style`, `test`
 
 ### CI/CD (GitHub Actions)
 
-9 parallel jobs on push to `master` and PRs:
+9 parallel jobs on push to `main` and PRs:
 
 | Job           | Tool                      | Blocking          |
 | ------------- | ------------------------- | ----------------- |
 | Lint          | Oxlint                    | Yes               |
 | Format        | Oxfmt                     | Yes               |
 | Typecheck     | tsc --noEmit              | Yes               |
-| Build         | next build                | Yes               |
 | Commitlint    | @commitlint/cli (PR only) | Yes               |
+| Unit Tests    | Vitest                    | Yes               |
 | Markdown Lint | markdownlint-cli2         | Yes               |
 | Secret Scan   | Gitleaks (CLI binary)     | Yes               |
 | Dead Code     | Knip                      | Yes               |
-| Dep Audit     | pnpm audit                | No (non-blocking) |
+| Dep Audit     | pnpm audit (critical)     | Yes               |
 
-Stable gate job (`ci-status`) aggregates all results for branch protection.
+Stable gate job (`ci-status`) aggregates all results for branch protection. There is no build job: Vercel builds and deploys `main`, so run `pnpm build` locally before pushing.
 
 ### Markdown Linting
 
@@ -151,10 +154,9 @@ markdownlint-cli2 with config in `.markdownlint-cli2.jsonc`. Disabled rules: MD0
 
 ## Known Issues & Notes
 
-- Instagram Gallery component is commented out due to API issues
-- No testing framework is configured
+- Tests use Vitest with React Testing Library in jsdom. Shared stubs (IntersectionObserver, scrollIntoView, matchMedia, framer-motion skipAnimations) live in `vitest.setup.ts`
 - The project uses pnpm (migrated from npm)
-- Successfully migrated to Next.js 15 with App Router
+- Next.js 16 with App Router
 - Turbopack enabled for faster development builds
 
 ## Development Patterns
