@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import Contact from "@/components/Contact/Contact";
@@ -25,6 +25,7 @@ describe("Contact", () => {
     const { container } = render(<Contact />);
     const bubble = container.querySelector("svg")!;
     const path = bubble.querySelector("path")!;
+    await act(() => new Promise((resolve) => setTimeout(resolve, 50)));
     expect(path.getAttribute("stroke-dasharray")).toBe("0px 1px");
 
     triggerIntersection(bubble, true);
