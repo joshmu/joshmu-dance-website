@@ -35,7 +35,7 @@ export const Compressor = ({ text, hide, ...props }) => {
   };
 
   return (
-    <p className="flex items-center justify-center whitespace-pre" {...props}>
+    <span className="flex items-center justify-center whitespace-pre" {...props}>
       <span>{output[0]}</span>
       <motion.span
         variants={animationVariants as any}
@@ -45,6 +45,6 @@ export const Compressor = ({ text, hide, ...props }) => {
         <span>{output[1]}</span>
       </motion.span>
       <span>{output[2]}</span>
-    </p>
+    </span>
   );
 };

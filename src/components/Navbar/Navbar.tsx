@@ -1,8 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { scroller } from "react-scroll";
 
-import { useGlobalContext } from "@/context/globalContext";
+import { SECTIONS, scrollToSection, useCurrentSection } from "@/context/sectionNavigation";
 import { useThemeContext } from "@/context/themeContext";
 import useScreenSize from "@/hooks/useScreenSize";
 import { Compressor } from "@/shared/ux/Compressor";
@@ -12,7 +11,7 @@ import MobileMenuBtn from "./MobileMenu/MobileMenuBtn/MobileMenuBtn";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { SECTIONS, currentView } = useGlobalContext();
+  const currentSection = useCurrentSection();
   const { toggleTheme } = useThemeContext();
 
   const screenSize = useScreenSize();
@@ -49,30 +48,24 @@ const Navbar = () => {
     setIsMobileMenuOpen(decision);
   };
 
-  const scrollTo = (elemId) => {
-    scroller.scrollTo(elemId, {
-      duration: 800,
-      delay: 0,
-      smooth: "easeInOutQuart",
-    });
-  };
-
   return (
     <header
       className={`${
-        currentView !== "home"
+        currentSection !== "home"
           ? "text-themeBg bg-themeText h-12"
           : "bg-transparent h-16 text-themeBg"
       } fixed z-50 w-full items-center justify-center transition-all duration-700 ease-in-out`}
     >
       <div className="container h-full mx-auto">
         <div className="flex items-center justify-between w-full h-full px-4">
-          <div
+          <button
+            type="button"
             onClick={toggleTheme}
-            className="flex h-full text-2xl font-semibold uppercase cursor-pointer"
+            title="Toggle theme"
+            className="flex h-full text-2xl font-semibold uppercase cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-themeAccent"
           >
             <Compressor text="josh mu" hide="osh " />
-          </div>
+          </button>
 
           {screenSize.name === "sm" ? (
             <div className="relative flex flex-col items-center">
@@ -89,10 +82,10 @@ const Navbar = () => {
                 {SECTIONS.map((item) => (
                   <li key={item}>
                     <motion.button
-                      onClick={() => scrollTo(item)}
+                      onClick={() => scrollToSection(item)}
                       variants={childAnimation}
                       className={`${
-                        currentView === item ? "active text-themeAccent" : "font-normal"
+                        currentSection === item ? "active text-themeAccent" : "font-normal"
                       } uppercase relative px-3 py-2 focus:outline-none`}
                       whileHover={{ scale: 1.5 }}
                     >
@@ -112,12 +105,7 @@ const Navbar = () => {
               exit={{ opacity: 0 }}
               className="flex justify-end w-full -mt-px"
             >
-              <MobileMenu
-                sections={SECTIONS}
-                currentView={currentView}
-                scrollTo={scrollTo}
-                toggleMenu={toggleMenu}
-              />
+              <MobileMenu onClose={() => toggleMenu(false)} />
             </motion.div>
           )}
         </AnimatePresence>

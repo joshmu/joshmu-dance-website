@@ -11,7 +11,6 @@ Feel free to get in touch or fly me some feedback.
 - [Framer Motion](https://www.framer.com/motion/)
 - [react-intersection-observer](https://github.com/thebuilder/react-intersection-observer)
 - [react-icons](https://github.com/react-icons/react-icons)
-- [react-scroll](https://github.com/fisshy/react-scroll)
 - [react-device-detect](https://github.com/duskload/react-device-detect)
 - [react-ga](https://github.com/react-ga/react-ga)
 - [nodemailer](https://github.com/nodemailer/nodemailer)

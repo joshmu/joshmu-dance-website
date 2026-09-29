@@ -1,15 +1,13 @@
 import Image from "next/image";
 
-import useLocation from "@/hooks/useLocation";
+import { useSectionAnchor } from "@/context/sectionNavigation";
 import { LineAccent } from "@/components/shared/LineAccent/LineAccent";
 
 const headshotImg = "/assets/headshot.jpg";
 
-const About = (props) => {
-  const { ref } = useLocation("about");
-
+const About = () => {
   return (
-    <div ref={ref} className="container py-12 mx-auto sm:py-24" {...props}>
+    <div {...useSectionAnchor("about")} className="container py-12 mx-auto sm:py-24">
       <div className="flex flex-col items-center justify-center w-full md:flex-row md:items-start">
         <div className="flex-1 mx-8 md:ml-0 md:mr-4">
           <Image
