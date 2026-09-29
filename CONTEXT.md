@@ -6,13 +6,9 @@ The words this codebase uses for the things on Josh Mu's dance site. Use these n
 
 A scroll-addressable part of the single page: `home`, `about`, `news`, `critics` or `contact`. Navigation scrolls to a Section by its id, and the page tracks which Section is in view.
 
-## Contact message
+## Contact
 
-What a visitor sends to the owner from the contact form: their name, their email address and a message.
-
-## Mailer
-
-The seam a Contact message is sent through. In production it delivers over SMTP; in tests it is an in-memory stand-in, so no test sends real mail.
+The `contact` Section: a `mailto:` link to hello@joshmu.com that opens the visitor's own mail app. The site sends no mail itself.
 
 ## Banner
 

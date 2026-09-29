@@ -1,86 +1,36 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { act, render, screen, waitFor } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
 
 import Contact from "@/components/Contact/Contact";
 
-const fetchMock = vi.fn<typeof fetch>();
-
-function respondWith(status: number) {
-  fetchMock.mockResolvedValue(Response.json({}, { status }));
-}
-
-async function fillAndSend() {
-  const user = userEvent.setup();
-  render(<Contact />);
-  await user.type(screen.getByLabelText("Name"), "Ada");
-  await user.type(screen.getByLabelText("Email"), "ada@example.com");
-  await user.type(screen.getByLabelText("Message"), "Hello there");
-  await user.click(screen.getByRole("button", { name: /send/i }));
-}
+import { triggerIntersection } from "../../test/intersectionObserver";
 
 describe("Contact", () => {
-  beforeEach(() => {
-    vi.stubGlobal("fetch", fetchMock);
+  it("is the contact Section", () => {
+    const { container } = render(<Contact />);
+    expect(container.querySelector("section#contact")).not.toBeNull();
   });
 
-  afterEach(() => {
-    fetchMock.mockReset();
-    vi.unstubAllGlobals();
+  it("links straight to hello@joshmu.com instead of a form", () => {
+    const { container } = render(<Contact />);
+
+    const link = screen.getByRole("link", { name: "hello@joshmu.com" });
+    expect(link.getAttribute("href")).toBe("mailto:hello@joshmu.com");
+    expect(container.querySelector("form")).toBeNull();
+    expect(screen.queryByRole("textbox")).toBeNull();
+    expect(screen.queryByRole("button")).toBeNull();
   });
 
-  it("reports an error, never success, when the send is rejected", async () => {
-    respondWith(400);
-    await fillAndSend();
+  it("draws the chat bubble in when it comes into view", async () => {
+    const { container } = render(<Contact />);
+    const bubble = container.querySelector("svg")!;
+    const path = bubble.querySelector("path")!;
+    await act(() => new Promise((resolve) => setTimeout(resolve, 50)));
+    expect(path.getAttribute("stroke-dasharray")).toBe("0px 1px");
 
-    expect((await screen.findByRole("status")).textContent).toMatch(/please use my email/i);
-    expect(screen.queryByText("Message sent!")).toBeNull();
-  });
+    triggerIntersection(bubble, true);
 
-  it("reports an error when the network fails", async () => {
-    fetchMock.mockRejectedValue(new TypeError("Failed to fetch"));
-    await fillAndSend();
-
-    expect(await screen.findByText(/please use my email/i)).toBeTruthy();
-    expect(screen.queryByText("Message sent!")).toBeNull();
-  });
-
-  it("keeps the typed values and re-enables the button after an error", async () => {
-    respondWith(502);
-    await fillAndSend();
-    await screen.findByText(/please use my email/i);
-
-    expect(screen.getByRole<HTMLButtonElement>("button", { name: /send/i }).disabled).toBe(false);
-    expect(screen.getByLabelText<HTMLInputElement>("Name").value).toBe("Ada");
-    expect(screen.getByLabelText<HTMLInputElement>("Email").value).toBe("ada@example.com");
-    expect(screen.getByLabelText<HTMLTextAreaElement>("Message").value).toBe("Hello there");
-    expect(screen.getByRole("link", { name: /hello@joshmu\.com/ })).toBeTruthy();
-  });
-
-  it("shows success and posts exactly the Contact message on a 200", async () => {
-    respondWith(200);
-    await fillAndSend();
-
-    expect(await screen.findByText("Message sent!")).toBeTruthy();
-    expect(fetchMock).toHaveBeenCalledTimes(1);
-    const [url, init] = fetchMock.mock.calls[0];
-    expect(url).toBe("/api/email");
-    expect(JSON.parse(init?.body as string)).toEqual({
-      name: "Ada",
-      email: "ada@example.com",
-      message: "Hello there",
-    });
-  });
-
-  it("does not post an invalid Contact message", async () => {
-    const user = userEvent.setup();
-    render(<Contact />);
-    await user.type(screen.getByLabelText("Name"), "Ada");
-    await user.type(screen.getByLabelText("Email"), "ada@example.com");
-    await user.type(screen.getByLabelText("Message"), "   ");
-    await user.click(screen.getByRole("button", { name: /send/i }));
-
-    expect(fetchMock).not.toHaveBeenCalled();
-    expect(screen.getByLabelText("Message").getAttribute("aria-invalid")).toBe("true");
+    await waitFor(() => expect(path.getAttribute("stroke-dasharray")).toBe("1px 1px"));
+    expect(bubble.style.opacity).toBe("1");
   });
 });

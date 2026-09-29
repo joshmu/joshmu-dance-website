@@ -13,7 +13,6 @@ Feel free to get in touch or fly me some feedback.
 - [react-icons](https://github.com/react-icons/react-icons)
 - [react-device-detect](https://github.com/duskload/react-device-detect)
 - [react-ga](https://github.com/react-ga/react-ga)
-- [nodemailer](https://github.com/nodemailer/nodemailer)
 
 ## Development
 
