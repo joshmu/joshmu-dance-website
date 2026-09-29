@@ -50,7 +50,7 @@ pnpm run test:run         # Single run
 
 ```text
 src/components/
-├── shared/          # Reusable components (Layout, Nav, Footer, etc.)
+├── shared/          # Reusable building blocks (Banner, Slider, FixedBackground, Overlay, LineAccent, ux/ Reveal and Compressor)
 ├── Hero/           # Landing section with theme toggle
 ├── About/          # About section
 ├── Contact/        # Contact form with email API
@@ -66,7 +66,6 @@ TypeScript path aliases are configured for clean imports:
 - `@/context/*` → `src/context/*`
 - `@/hooks/*` → `src/hooks/*`
 - `@/services/*` → `src/services/*`
-- `@/styles/*` → `./styles/*`
 
 ### Styling Architecture
 
@@ -139,14 +138,14 @@ Common types: `feat`, `fix`, `chore`, `docs`, `ci`, `refactor`, `style`, `test`
 | Lint          | Oxlint                    | Yes               |
 | Format        | Oxfmt                     | Yes               |
 | Typecheck     | tsc --noEmit              | Yes               |
-| Commitlint    | @commitlint/cli (PR only) | Yes               |
+| Commitlint    | @commitlint/cli (PR only) | No (not in gate)  |
 | Unit Tests    | Vitest                    | Yes               |
 | Markdown Lint | markdownlint-cli2         | Yes               |
 | Secret Scan   | Gitleaks (CLI binary)     | Yes               |
 | Dead Code     | Knip                      | Yes               |
 | Dep Audit     | pnpm audit (critical)     | Yes               |
 
-Stable gate job (`ci-status`) aggregates all results for branch protection. There is no build job: Vercel builds and deploys `main`, so run `pnpm build` locally before pushing.
+Stable gate job (`ci-status`) fails when any blocking job fails; use it for branch protection. There is no build job: Vercel builds and deploys `main`, so run `pnpm build` locally before pushing.
 
 ### Markdown Linting
 
@@ -154,7 +153,7 @@ markdownlint-cli2 with config in `.markdownlint-cli2.jsonc`. Disabled rules: MD0
 
 ## Known Issues & Notes
 
-- Tests use Vitest with React Testing Library in jsdom. Shared stubs (IntersectionObserver, scrollIntoView, matchMedia, framer-motion skipAnimations) live in `vitest.setup.ts`
+- Tests use Vitest with React Testing Library in jsdom. Shared stubs (IntersectionObserver, scrollIntoView, matchMedia, framer-motion skipAnimations) live in `vitest.setup.ts`; call `triggerIntersection(target, isIntersecting)` from `src/test/intersectionObserver.ts` to fire an intersection in a test
 - The project uses pnpm (migrated from npm)
 - Next.js 16 with App Router
 - Turbopack enabled for faster development builds
