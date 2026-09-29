@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "entry": ["app/**/page.tsx", "app/**/layout.tsx", "app/api/**/route.ts"],
+  "entry": ["app/**/page.tsx", "app/**/layout.tsx"],
   "project": ["src/**/*.{ts,tsx}", "app/**/*.{ts,tsx}"],
   "ignoreDependencies": ["@vitest/coverage-v8"]
 }

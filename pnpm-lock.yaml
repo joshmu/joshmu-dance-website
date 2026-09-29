@@ -14,9 +14,6 @@ importers:
       next:
         specifier: 16.3.7
         version: 16.3.7(@types/node@22.16.5)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.63.6)
-      nodemailer:
-        specifier: ^6.9.3
-        version: 6.9.3
       react:
         specifier: ^19.2.4
         version: 19.2.4
@@ -35,9 +32,6 @@ importers:
       react-intersection-observer:
         specifier: ^8.34.0
         version: 8.34.0(react@19.2.4)
-      server-only:
-        specifier: ^0.0.1
-        version: 0.0.1
     devDependencies:
       '@commitlint/cli':
         specifier: ^20.5.0
@@ -2263,10 +2257,6 @@ packages:
   node-releases@2.0.12:
     resolution: {integrity: sha512-QzsYKWhXTWx8h1kIvqfnC++o0pEmpRQA/aenALsL2F4pqNVr7YzcdMlDij5WBnwftRbJCNJL/O7zdKaxKPHqgQ==}
 
-  nodemailer@6.9.3:
-    resolution: {integrity: sha512-fy9v3NgTzBngrMFkDsKEj0r02U7jm6XfC3b52eoNV+GCrGj+s8pt5OqhiJdWKuw51zCTdiNR/IUD1z33LIIGpg==}
-    engines: {node: '>=6.0.0'}
-
   normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
@@ -2702,9 +2692,6 @@ packages:
     resolution: {integrity: sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==}
     engines: {node: '>=10'}
     hasBin: true
-
-  server-only@0.0.1:
-    resolution: {integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==}
 
   sharp@0.35.5:
     resolution: {integrity: sha512-Ywn4OnzGukp7CDMrp08RQ50YKmuwG47brZgIVPTvBaaAfQlRlygrRqSrxdCiL9M+LlzLBiJ68IR1QqvzHyjC7g==}
@@ -4900,8 +4887,6 @@ snapshots:
 
   node-releases@2.0.12: {}
 
-  nodemailer@6.9.3: {}
-
   normalize-path@3.0.0: {}
 
   normalize-range@0.1.2: {}
@@ -5419,8 +5404,6 @@ snapshots:
 
   semver@7.8.5:
     optional: true
-
-  server-only@0.0.1: {}
 
   sharp@0.35.5(@types/node@22.16.5):
     dependencies:
