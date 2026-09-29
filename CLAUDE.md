@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is Josh Mu's dance portfolio website built with Next.js (App Router), TypeScript, and Tailwind CSS. It's a single-page application with smooth scrolling between sections, animations and a contact form.
+This is Josh Mu's dance portfolio website built with Next.js (App Router), TypeScript, and Tailwind CSS. It's a single-page application with smooth scrolling between sections, animations and a contact email link.
 
-Domain terms (Section, Contact message, Mailer, Banner, Critic review, Company) are defined in `CONTEXT.md`.
+Domain terms (Section, Contact, Banner, Critic review, Company) are defined in `CONTEXT.md`.
 
 ## Development Commands
 
@@ -44,7 +44,6 @@ pnpm run test:run         # Single run
 
 - Uses Next.js App Router (migrated from Pages Router)
 - Single-page application with section-based navigation
-- API route in `/app/api/` using a Route Handler for the contact email
 
 ### Component Organization
 
@@ -53,7 +52,7 @@ src/components/
 ├── shared/          # Reusable building blocks (Banner, Slider, FixedBackground, Overlay, LineAccent, ux/ Reveal and Compressor)
 ├── Hero/           # Landing section with theme toggle
 ├── About/          # About section
-├── Contact/        # Contact form with email API
+├── Contact/        # Contact Section with a mailto link
 └── ...            # Other section components
 ```
 
@@ -86,17 +85,11 @@ TypeScript path aliases are configured for clean imports:
 
 - **framer-motion**: Page transitions and animations
 - **react-intersection-observer**: Viewport detection (which Section is current)
-- **nodemailer**: Contact form email sending
 - **react-ga**: Google Analytics tracking
 
 ## Environment Variables
 
-Required in `.env.local`:
-
-```text
-SMTP_USER=your_smtp_username
-SMTP_PASS=your_smtp_password
-```
+None required.
 
 ## TypeScript Configuration
 
@@ -104,10 +97,6 @@ SMTP_PASS=your_smtp_password
 - Only `strictNullChecks` is enabled
 - JSX files use `.tsx` extension
 - Path aliases configured in `tsconfig.json`
-
-## API Routes
-
-- `/app/api/email/route.ts` - Handles contact form submissions via nodemailer
 
 ## Validation & Quality
 
