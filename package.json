@@ -46,7 +46,8 @@
     "react-ga": "^3.3.1",
     "react-icons": "^4.10.1",
     "react-intersection-observer": "^8.34.0",
-    "react-scroll": "^1.8.9"
+    "react-scroll": "^1.8.9",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
