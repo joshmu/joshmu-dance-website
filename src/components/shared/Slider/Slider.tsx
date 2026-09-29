@@ -1,5 +1,5 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { type FocusEvent, useEffect, useState } from "react";
+import { type FocusEvent, type PointerEvent, useEffect, useState } from "react";
 
 export const Slider = ({ content, duration = 5000, ...props }) => {
   const [pos, setPos] = useState(0);
@@ -14,6 +14,10 @@ export const Slider = ({ content, duration = 5000, ...props }) => {
     return () => clearTimeout(timer);
   }, [pos, duration, content.length, paused]);
 
+  const handlePointerEnter = (event: PointerEvent<HTMLUListElement>) => {
+    if (event.pointerType === "mouse") setHovered(true);
+  };
+
   const handleBlur = (event: FocusEvent<HTMLUListElement>) => {
     if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false);
   };
@@ -21,8 +25,8 @@ export const Slider = ({ content, duration = 5000, ...props }) => {
   return (
     <ul
       className="flex items-start justify-center min-h-[6rem] px-2"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={() => setHovered(false)}
       onFocus={() => setFocused(true)}
       onBlur={handleBlur}
     >
