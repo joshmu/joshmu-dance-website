@@ -2,29 +2,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export const Slider = ({ content, duration = 5000, ...props }) => {
-  const [output, setOutput] = useState(null);
   const [pos, setPos] = useState(0);
 
-  let timer;
   useEffect(() => {
-    // initiate timer to change pos
-    clearTimeout(timer);
-    timer = setTimeout(() => changeContent(pos), duration);
-    // remove timer if we unmount
+    const timer = setTimeout(() => setPos((pos + 1) % content.length), duration);
     return () => clearTimeout(timer);
-  }, [pos]);
-
-  function changeContent(index) {
-    if (index === content.length - 1) {
-      setPos(0);
-    } else {
-      setPos(index + 1);
-    }
-    setOutput(content[index]);
-  }
+  }, [pos, duration, content.length]);
 
   return (
-    <ul className="flex items-center justify-center px-2">
+    <ul className="flex items-start justify-center min-h-[6rem] px-2">
       <AnimatePresence initial={false} mode="wait">
         <motion.li
           key={pos}
@@ -36,7 +22,7 @@ export const Slider = ({ content, duration = 5000, ...props }) => {
             ease: "easeInOut",
           }}
         >
-          <span {...props}>{output}</span>
+          <span {...props}>{content[pos]}</span>
         </motion.li>
       </AnimatePresence>
     </ul>

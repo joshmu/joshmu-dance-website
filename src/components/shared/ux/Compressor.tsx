@@ -2,22 +2,14 @@ import { motion, useAnimation } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
 import { useGlobalContext } from "@/context/globalContext";
+import { splitHighlight } from "@/shared/splitHighlight/splitHighlight";
 
 export const Compressor = ({ text, hide, ...props }) => {
-  const [output, setOutput] = useState(["", "", ""]);
+  const output = splitHighlight(text, hide);
   const [toggle, setToggle] = useState(false);
 
   const { scrollProgress } = useGlobalContext();
   const controls = useAnimation();
-
-  useEffect(() => {
-    // split text in to 3 parts
-    const textArray = Array(3);
-    textArray[0] = text.slice(0, text.indexOf(hide));
-    textArray[1] = hide;
-    textArray[2] = text.slice(text.indexOf(hide) + hide.length);
-    setOutput(textArray);
-  }, []);
 
   useEffect(() => {
     controls.start(toggle ? "hide" : "show");
