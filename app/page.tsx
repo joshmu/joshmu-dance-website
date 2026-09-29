@@ -6,7 +6,6 @@ import Contact from "@/components/Contact/Contact";
 import Critics from "@/components/Critics/Critics";
 import Hero from "@/components/Hero/Hero";
 import News from "@/components/News/News";
-import Twitter from "@/components/Twitter/Twitter";
 import { LayoutWrapper } from "./layout-wrapper";
 
 export default function Home() {
@@ -17,9 +16,6 @@ export default function Home() {
       <About id="about" />
       <Companies />
       <News id="news" />
-      <Twitter />
-      {/* // TODO: update instagram api */}
-      {/* <Gallery id='portfolio' /> */}
       <Critics id="critics" />
       <Contact id="contact" />
     </LayoutWrapper>

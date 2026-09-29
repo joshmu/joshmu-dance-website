@@ -1,7 +1,6 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "ignore": ["src/components/Gallery/Gallery.tsx"],
   "entry": ["app/**/page.tsx", "app/**/layout.tsx", "app/api/**/route.ts"],
   "project": ["src/**/*.{ts,tsx}", "app/**/*.{ts,tsx}"],
-  "ignoreDependencies": ["@vitest/coverage-v8"]
+  "ignoreDependencies": ["@vitest/coverage-v8", "@testing-library/user-event"]
 }
