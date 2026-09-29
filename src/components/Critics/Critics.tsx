@@ -1,4 +1,4 @@
-import useLocation from "@/hooks/useLocation";
+import { useSectionAnchor } from "@/context/sectionNavigation";
 import { Banner } from "@/shared/Banner/Banner";
 
 const criticsBannerImg = "/assets/standing_pg.jpg";
@@ -40,11 +40,9 @@ const reviews: CriticReview[] = [
   },
 ];
 
-const Critics = (props) => {
-  const { ref } = useLocation("critics");
-
+const Critics = () => {
   return (
-    <div ref={ref} {...props}>
+    <div {...useSectionAnchor("critics")}>
       <Banner
         title="from the critics"
         highlight="critics"

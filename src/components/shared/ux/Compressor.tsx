@@ -1,27 +1,24 @@
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation, useMotionValueEvent, useScroll } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
-import { useGlobalContext } from "@/context/globalContext";
 import { splitHighlight } from "@/shared/splitHighlight/splitHighlight";
 
 export const Compressor = ({ text, hide, ...props }) => {
   const output = splitHighlight(text, hide);
   const [toggle, setToggle] = useState(false);
 
-  const { scrollProgress } = useGlobalContext();
+  const { scrollY } = useScroll();
   const controls = useAnimation();
+
+  useEffect(() => {
+    setToggle(window.scrollY > 0);
+  }, []);
+
+  useMotionValueEvent(scrollY, "change", (y) => setToggle(y > 0));
 
   useEffect(() => {
     controls.start(toggle ? "hide" : "show");
   }, [toggle]);
-
-  useEffect(() => {
-    if (scrollProgress > 0) {
-      setToggle(true);
-    } else if (toggle && scrollProgress === 0) {
-      setToggle(false);
-    }
-  }, [scrollProgress]);
 
   const animationVariants = {
     hide: {
@@ -38,7 +35,7 @@ export const Compressor = ({ text, hide, ...props }) => {
   };
 
   return (
-    <p className="flex items-center justify-center whitespace-pre" {...props}>
+    <span className="flex items-center justify-center whitespace-pre" {...props}>
       <span>{output[0]}</span>
       <motion.span
         variants={animationVariants as any}
@@ -48,6 +45,6 @@ export const Compressor = ({ text, hide, ...props }) => {
         <span>{output[1]}</span>
       </motion.span>
       <span>{output[2]}</span>
-    </p>
+    </span>
   );
 };

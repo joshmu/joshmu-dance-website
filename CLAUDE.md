@@ -78,14 +78,14 @@ TypeScript path aliases are configured for clean imports:
 ### State Management
 
 - React Context API for global state
-- `GlobalContext` and `ThemeContext` in `/src/context/`
+- Section navigation (`SectionProvider`, `useSectionAnchor`, `useCurrentSection`, `scrollToSection`) in `src/context/sectionNavigation.tsx`
+- `ThemeContext` in `/src/context/`
 - No external state management libraries
 
 ### Key Dependencies
 
 - **framer-motion**: Page transitions and animations
-- **react-scroll**: Smooth section navigation
-- **react-intersection-observer**: Viewport detection
+- **react-intersection-observer**: Viewport detection (which Section is current)
 - **nodemailer**: Contact form email sending
 - **react-ga**: Google Analytics tracking
 
@@ -164,4 +164,5 @@ markdownlint-cli2 with config in `.markdownlint-cli2.jsonc`. Disabled rules: MD0
 - Fixed background images handled by dedicated components
 - Responsive design with mobile menu support
 - SEO optimization with comprehensive meta tags in Layout component
-- Custom hooks for location tracking and media queries
+- Sections own their anchor via `useSectionAnchor(id)`; navigation scrolls with `scrollToSection(id)`
+- Responsive layout switches (desktop nav vs menu button) use Tailwind breakpoint classes, not JS media queries

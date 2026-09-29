@@ -11,13 +11,12 @@ import { LayoutWrapper } from "./layout-wrapper";
 export default function Home() {
   return (
     <LayoutWrapper>
-      {/* use ids to designate where to scroll to */}
-      <Hero id="home" />
-      <About id="about" />
+      <Hero />
+      <About />
       <Companies />
-      <News id="news" />
-      <Critics id="critics" />
-      <Contact id="contact" />
+      <News />
+      <Critics />
+      <Contact />
     </LayoutWrapper>
   );
 }

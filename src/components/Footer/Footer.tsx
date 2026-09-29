@@ -6,26 +6,24 @@ import {
 } from "react-icons/ai";
 import { FaFacebookF as FacebookIcon } from "react-icons/fa";
 import { MdKeyboardArrowUp as ArrowUpIcon } from "react-icons/md";
-import { animateScroll as scroll } from "react-scroll";
 
+import { scrollToSection } from "@/context/sectionNavigation";
 import { Reveal } from "@/shared/ux/Reveal";
 
 const Footer = () => {
-  const handleScrollToTopBtn = () => {
-    scroll.scrollToTop();
-  };
-
   return (
     <footer className="w-full bg-varDark text-varLight">
       <div className="container relative mx-auto">
         {/* scroll to top */}
         <div className="absolute top-0 left-1/2">
-          <div
-            onClick={handleScrollToTopBtn}
-            className="p-1 transition-colors duration-300 ease-in-out transform -translate-x-1/2 -translate-y-1/2 border-4 rounded-full cursor-pointer border-themeBg bg-themeAccent hover:bg-orange-500"
+          <button
+            type="button"
+            onClick={() => scrollToSection("top")}
+            aria-label="Back to top"
+            className="p-1 transition-colors duration-300 ease-in-out transform -translate-x-1/2 -translate-y-1/2 border-4 rounded-full cursor-pointer border-themeBg bg-themeAccent hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-themeAccent"
           >
-            <ArrowUpIcon className="text-3xl fill-current sm:text-4xl" />
-          </div>
+            <ArrowUpIcon aria-hidden className="text-3xl fill-current sm:text-4xl" />
+          </button>
         </div>
 
         <div className="flex items-center justify-between w-full px-4 ">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import useLocation from "@/hooks/useLocation";
+import { useSectionAnchor } from "@/context/sectionNavigation";
 import { LineAccent } from "@/components/shared/LineAccent/LineAccent";
 import { Reveal } from "@/shared/ux/Reveal";
 import {
@@ -25,8 +25,8 @@ const errorsOf = (values: ContactMessage): ContactMessageErrors => {
   return result.ok ? {} : result.errors;
 };
 
-const Contact = (props: React.ComponentProps<"section">) => {
-  const { ref } = useLocation("contact");
+const Contact = () => {
+  const anchor = useSectionAnchor("contact");
 
   const [values, setValues] = useState<ContactMessage>({ name: "", email: "", message: "" });
   const [errors, setErrors] = useState<ContactMessageErrors>({});
@@ -67,7 +67,7 @@ const Contact = (props: React.ComponentProps<"section">) => {
   };
 
   return (
-    <section id="contact" ref={ref} className="relative text-themeText" {...props}>
+    <section {...anchor} className="relative text-themeText">
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col w-full mb-12 text-center">
           <h2 className="mb-2 text-2xl font-light text-themeText sm:text-3xl">

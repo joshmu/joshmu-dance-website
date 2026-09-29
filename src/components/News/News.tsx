@@ -1,13 +1,11 @@
-import useLocation from "@/hooks/useLocation";
+import { useSectionAnchor } from "@/context/sectionNavigation";
 import { LineAccent } from "@/components/shared/LineAccent/LineAccent";
 import { Reveal } from "@/shared/ux/Reveal";
 
-const News = (props) => {
-  const { ref } = useLocation("news");
-
+const News = () => {
   return (
     <>
-      <div ref={ref} className="container py-24 mx-auto" {...props}>
+      <div {...useSectionAnchor("news")} className="container py-24 mx-auto">
         <h2 className="text-3xl font-light text-center uppercase">
           What I did in <span className="font-semibold">2020</span>
         </h2>
