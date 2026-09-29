@@ -1,9 +1,9 @@
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import Navbar from "@/components/Navbar/Navbar";
-import { SectionProvider } from "@/context/sectionNavigation";
+import { SECTIONS, SectionProvider } from "@/context/sectionNavigation";
 
 function renderNavbar() {
   render(
@@ -22,6 +22,10 @@ describe("Navbar", () => {
     vi.mocked(Element.prototype.scrollIntoView).mockClear();
   });
 
+  afterEach(() => {
+    history.replaceState(null, "", "/");
+  });
+
   it("shows the desktop nav from md up and the menu button below md", () => {
     renderNavbar();
 
@@ -30,6 +34,36 @@ describe("Navbar", () => {
     expect(
       screen.getByRole("button", { name: "Open menu" }).closest(".md\\:hidden"),
     ).not.toBeNull();
+  });
+
+  it("links each desktop nav item to its Section", () => {
+    renderNavbar();
+    const nav = screen.getByRole("navigation");
+
+    for (const id of SECTIONS) {
+      expect(within(nav).getByRole("link", { name: id }).getAttribute("href")).toBe(`#${id}`);
+    }
+  });
+
+  it("scrolls once to a Section from the desktop nav instead of jumping", () => {
+    renderNavbar();
+
+    const notPrevented = fireEvent.click(
+      within(screen.getByRole("navigation")).getByRole("link", { name: "about" }),
+    );
+
+    expect(notPrevented).toBe(false);
+    expect(Element.prototype.scrollIntoView).toHaveBeenCalledTimes(1);
+    expect(window.location.hash).toBe("#about");
+  });
+
+  it("leaves a ctrl or meta click on a nav item to the browser", () => {
+    renderNavbar();
+    const link = within(screen.getByRole("navigation")).getByRole("link", { name: "about" });
+
+    expect(fireEvent.click(link, { ctrlKey: true })).toBe(true);
+    expect(fireEvent.click(link, { metaKey: true })).toBe(true);
+    expect(Element.prototype.scrollIntoView).not.toHaveBeenCalled();
   });
 
   it("opens the mobile menu from an accessible menu button", async () => {
@@ -52,7 +86,7 @@ describe("Navbar", () => {
     await user.click(menuButton);
     const menu = controlledMenu(menuButton)!;
 
-    await user.click(within(menu).getByRole("button", { name: "about" }));
+    await user.click(within(menu).getByRole("link", { name: "about" }));
 
     expect(Element.prototype.scrollIntoView).toHaveBeenCalledTimes(1);
     expect(menuButton.getAttribute("aria-expanded")).toBe("false");

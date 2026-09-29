@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
-import { SECTIONS, scrollToSection, useCurrentSection } from "@/context/sectionNavigation";
+import { SECTIONS, sectionLink, useCurrentSection } from "@/context/sectionNavigation";
 import { useThemeContext } from "@/context/themeContext";
 import { Compressor } from "@/shared/ux/Compressor";
 
@@ -77,16 +77,16 @@ const Navbar = () => {
             >
               {SECTIONS.map((item) => (
                 <li key={item}>
-                  <motion.button
-                    onClick={() => scrollToSection(item)}
+                  <motion.a
+                    {...sectionLink(item)}
                     variants={childAnimation}
                     className={`${
                       currentSection === item ? "active text-themeAccent" : "font-normal"
-                    } uppercase relative px-3 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-themeAccent`}
+                    } uppercase relative inline-block px-3 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-themeAccent`}
                     whileHover={{ scale: 1.5 }}
                   >
                     {item}
-                  </motion.button>
+                  </motion.a>
                 </li>
               ))}
             </motion.ul>
