@@ -1,6 +1,6 @@
-type ContactMessage = { name: string; email: string; message: string };
+export type ContactMessage = { name: string; email: string; message: string };
 
-type ContactMessageErrors = Partial<Record<keyof ContactMessage, string>>;
+export type ContactMessageErrors = Partial<Record<keyof ContactMessage, string>>;
 
 type ParseResult =
   | { ok: true; value: ContactMessage }
@@ -10,7 +10,7 @@ export interface Mailer {
   send(mail: { replyTo: string; subject: string; text: string }): Promise<void>;
 }
 
-const MAX_LENGTH: Record<keyof ContactMessage, number> = {
+export const MAX_LENGTH: Record<keyof ContactMessage, number> = {
   name: 100,
   email: 254,
   message: 5000,
