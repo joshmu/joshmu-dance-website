@@ -1,4 +1,11 @@
-import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  type MouseEvent,
+  type ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useInView } from "react-intersection-observer";
 
 export const SECTIONS = ["home", "about", "news", "critics", "contact"] as const;
@@ -39,4 +46,19 @@ export function scrollToSection(target: SectionId | "top") {
 
   if (target === "top") window.scrollTo({ top: 0, behavior });
   else document.getElementById(target)?.scrollIntoView({ behavior, block: "start" });
+}
+
+export function sectionLink(id: SectionId, onNavigate?: () => void) {
+  return {
+    href: `#${id}`,
+    onClick(event: MouseEvent<HTMLAnchorElement>) {
+      // Modified and non-primary clicks open the link the browser's way (new tab, copy, download).
+      if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey)
+        return;
+      event.preventDefault();
+      scrollToSection(id);
+      history.replaceState(history.state, "", `#${id}`);
+      onNavigate?.();
+    },
+  };
 }

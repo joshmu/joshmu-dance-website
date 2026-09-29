@@ -1,11 +1,6 @@
 import { motion, Variants } from "framer-motion";
 
-import {
-  SECTIONS,
-  type SectionId,
-  scrollToSection,
-  useCurrentSection,
-} from "@/context/sectionNavigation";
+import { SECTIONS, sectionLink, useCurrentSection } from "@/context/sectionNavigation";
 
 export default function MobileMenu({ id, onClose }: { id: string; onClose: () => void }) {
   const currentSection = useCurrentSection();
@@ -37,11 +32,6 @@ export default function MobileMenu({ id, onClose }: { id: string; onClose: () =>
     },
   };
 
-  const handleMobileMenuClick = (item: SectionId) => {
-    onClose();
-    scrollToSection(item);
-  };
-
   return (
     <nav id={id} className="z-50 flex h-full text-right uppercase md:hidden">
       <motion.ul
@@ -54,16 +44,16 @@ export default function MobileMenu({ id, onClose }: { id: string; onClose: () =>
       >
         {SECTIONS.map((item) => (
           <li key={item}>
-            <motion.button
-              onClick={() => handleMobileMenuClick(item)}
+            <motion.a
+              {...sectionLink(item, onClose)}
               variants={childAnimation}
               className={`${
                 currentSection === item ? "active text-themeAccent" : "font-normal"
-              } uppercase relative px-3 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-themeAccent`}
+              } uppercase relative inline-block px-3 py-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-themeAccent`}
               whileHover={{ scale: 1.5 }}
             >
               {item}
-            </motion.button>
+            </motion.a>
           </li>
         ))}
       </motion.ul>
