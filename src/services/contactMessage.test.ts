@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import {
   handleContactRequest,
+  HONEYPOT,
   type Mailer,
   parseContactMessage,
   sendContactMessage,
@@ -106,6 +107,29 @@ describe("handleContactRequest", () => {
     expect(mailer.sent[0].replyTo).toBe("ada@example.com");
     expect(mailer.sent[0].subject).toContain("Ada");
     expect(mailer.sent[0].text).toContain("Hello there");
+  });
+
+  it("answers a filled honeypot like a sent message without calling the Mailer", async () => {
+    const mailer = inMemoryMailer();
+    const res = await handleContactRequest(
+      post(JSON.stringify({ ...valid, [HONEYPOT]: "https://spam.example" })),
+      mailer,
+    );
+
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual({ ok: true });
+    expect(mailer.sent).toHaveLength(0);
+  });
+
+  it("sends when the honeypot is empty", async () => {
+    const mailer = inMemoryMailer();
+    const res = await handleContactRequest(
+      post(JSON.stringify({ ...valid, [HONEYPOT]: "" })),
+      mailer,
+    );
+
+    expect(res.status).toBe(200);
+    expect(mailer.sent).toHaveLength(1);
   });
 
   it("returns 400 for malformed JSON without sending", async () => {

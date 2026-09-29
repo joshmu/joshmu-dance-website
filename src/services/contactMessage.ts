@@ -16,6 +16,9 @@ export const MAX_LENGTH: Record<keyof ContactMessage, number> = {
   message: 5000,
 };
 
+/** Form field hidden from people; only bots fill it in. */
+export const HONEYPOT = "website";
+
 const FIELDS = ["name", "email", "message"] as const;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -53,6 +56,8 @@ export async function handleContactRequest(req: Request, mailer: Mailer): Promis
   } catch {
     return Response.json({ error: "Malformed request" }, { status: 400 });
   }
+
+  if ((body as Record<string, unknown> | null)?.[HONEYPOT]) return Response.json({ ok: true });
 
   const parsed = parseContactMessage(body);
   if (!parsed.ok) return Response.json({ errors: parsed.errors }, { status: 400 });

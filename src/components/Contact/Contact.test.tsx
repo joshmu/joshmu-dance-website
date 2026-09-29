@@ -1,8 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import Contact from "@/components/Contact/Contact";
+import { HONEYPOT } from "@/services/contactMessage";
 
 const fetchMock = vi.fn<typeof fetch>();
 
@@ -57,7 +58,7 @@ describe("Contact", () => {
     expect(screen.getByRole("link", { name: /hello@joshmu\.com/ })).toBeTruthy();
   });
 
-  it("shows success and posts exactly the Contact message on a 200", async () => {
+  it("shows success and posts the Contact message with an empty honeypot on a 200", async () => {
     respondWith(200);
     await fillAndSend();
 
@@ -69,7 +70,41 @@ describe("Contact", () => {
       name: "Ada",
       email: "ada@example.com",
       message: "Hello there",
+      [HONEYPOT]: "",
     });
+  });
+
+  it("keeps the honeypot out of the accessibility tree and the tab order", async () => {
+    const user = userEvent.setup();
+    render(<Contact />);
+    const honeypot = screen.getByLabelText<HTMLInputElement>("Website");
+
+    expect(honeypot.name).toBe(HONEYPOT);
+    expect(honeypot.autocomplete).toBe("off");
+    expect(screen.queryByRole("textbox", { name: /website/i })).toBeNull();
+    expect(screen.getAllByRole("textbox")).toHaveLength(3);
+
+    for (let i = 0; i < 6; i++) {
+      await user.tab();
+      expect(document.activeElement).not.toBe(honeypot);
+    }
+  });
+
+  it("posts whatever a bot puts in the honeypot", async () => {
+    respondWith(200);
+    const user = userEvent.setup();
+    render(<Contact />);
+    fireEvent.change(screen.getByLabelText("Website"), {
+      target: { value: "https://spam.example" },
+    });
+    await user.type(screen.getByLabelText("Name"), "Ada");
+    await user.type(screen.getByLabelText("Email"), "ada@example.com");
+    await user.type(screen.getByLabelText("Message"), "Hello there");
+    await user.click(screen.getByRole("button", { name: /send/i }));
+
+    await screen.findByText("Message sent!");
+    const [, init] = fetchMock.mock.calls[0];
+    expect(JSON.parse(init?.body as string)[HONEYPOT]).toBe("https://spam.example");
   });
 
   it("does not post an invalid Contact message", async () => {

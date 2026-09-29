@@ -6,6 +6,7 @@ import { Reveal } from "@/shared/ux/Reveal";
 import {
   type ContactMessage,
   type ContactMessageErrors,
+  HONEYPOT,
   MAX_LENGTH,
   parseContactMessage,
 } from "@/services/contactMessage";
@@ -52,13 +53,14 @@ const Contact = () => {
       setErrors(parsed.errors);
       return;
     }
+    const honeypot = new FormData(e.currentTarget).get(HONEYPOT);
 
     setStatus("sending");
     try {
       const res = await fetch("/api/email", {
         method: "POST",
         headers: { Accept: "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify(parsed.value),
+        body: JSON.stringify({ ...parsed.value, [HONEYPOT]: honeypot }),
       });
       setStatus(res.ok ? "sent" : "error");
     } catch {
@@ -113,6 +115,16 @@ const Contact = () => {
                 type="email"
                 maxLength={MAX_LENGTH.email}
                 required
+              />
+            </div>
+            <div className="sr-only" aria-hidden="true">
+              <label htmlFor="contact-website">Website</label>
+              <input
+                id="contact-website"
+                name={HONEYPOT}
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
               />
             </div>
             <div className="w-full p-2">
