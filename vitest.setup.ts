@@ -1,31 +1,21 @@
 import { MotionGlobalConfig } from "framer-motion";
+import { vi } from "vitest";
+
+import { IntersectionObserverStub } from "./src/test/intersectionObserver";
 
 MotionGlobalConfig.skipAnimations = true;
 
-class IntersectionObserverStub implements IntersectionObserver {
-  readonly root = null;
-  readonly rootMargin = "0px";
-  readonly scrollMargin = "0px";
-  readonly thresholds = [0];
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-  takeRecords(): IntersectionObserverEntry[] {
-    return [];
-  }
-}
-
 globalThis.IntersectionObserver = IntersectionObserverStub;
 
-Element.prototype.scrollIntoView = () => {};
+Element.prototype.scrollIntoView = vi.fn();
 
-window.matchMedia = (query: string) => ({
+window.matchMedia = vi.fn((query: string) => ({
   matches: false,
   media: query,
   onchange: null,
-  addListener: () => {},
-  removeListener: () => {},
-  addEventListener: () => {},
-  removeEventListener: () => {},
-  dispatchEvent: () => false,
-});
+  addListener: vi.fn(),
+  removeListener: vi.fn(),
+  addEventListener: vi.fn(),
+  removeEventListener: vi.fn(),
+  dispatchEvent: vi.fn(() => false),
+}));
