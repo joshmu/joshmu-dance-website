@@ -63,7 +63,7 @@
     "knip": "^6.1.0",
     "lint-staged": "^16.4.0",
     "markdownlint-cli2": "^0.22.0",
-    "oxfmt": "^0.42.0",
+    "oxfmt": "^0.73.0",
     "oxlint": "^1.57.0",
     "postcss": "^8.4.24",
     "postcss-preset-env": "^7.8.3",
